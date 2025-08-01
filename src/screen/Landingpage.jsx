@@ -1,10 +1,12 @@
 import Navbar from '../component/navbar';
 import Hero from '../component/hero';
+import About from '../component/About';
 const LandingPage = () => {
     return(
-        <div className='bg-[#000000] h-screen'>
+        <div >
         <Navbar />
         <Hero />
+        <About />
         </div>
     )
 }
