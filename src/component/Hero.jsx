@@ -5,7 +5,7 @@ const Hero =()=>{
             <div>
             <h6 className="text-3xl text-[#BDD749] mt-[190px]">Hello !</h6>
             <h4 className="text-6xl text-[#7FB2FF] mt-[20px]"><span className="text-[#ffffff]"> I'M</span> Kailasam N</h4>
-            <h4 className="text-6xl text-[#7FB2FF] mt-[1a0px]">Software Developer</h4>
+            <h4 className="text-6xl text-[#7FB2FF] mt-[10px]">Software Developer</h4>
             <button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]">Download Resume</button>
             </div>
             <div className="">
