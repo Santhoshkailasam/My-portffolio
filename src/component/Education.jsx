@@ -22,7 +22,7 @@ const Education = ()=>{
         }
     ]
     return(
-      <div className="relative bg-black min-h-screen py-2 text-white">
+      <div className="relative  min-h-screen py-2 text-white">
       <h2 className="text-3xl font-bold text-center mb-12">Education</h2>
 
       <div className="relative w-full max-w-4xl mx-auto">
