@@ -15,11 +15,12 @@ const Projectslist=[
         image:"/Parking.png",
         github:"sk",
         btn:"View Project ",
-    }
+    },
+    
 ]
 const Projects =()=>{
     return(
-       
+       <section id="projects">
         <div>
              {/*  Header for Projects section */}
             <h1 className="text-[#ffffff] text-center text-2xl font-bold mb-10">Projects</h1>
@@ -28,7 +29,7 @@ const Projects =()=>{
                 <div className="flex flex-row items-center justify-center w-full">
                     {Projectslist.map((project) => (
                         <div key={project.id} className="bg-gray-800 p-1 rounded-lg shadow-lg w-[400px] h-[266px] ml-4 flex flex-row h-full ">
-                            <img src={project.image} alt={project.title} className="w-full h-48 object-cover rounded-t-lg" />
+                            <img src={project.image} alt={project.title} className="w-full h-[266px] object-cover rounded-t-lg" />
                            
                             <div className="p-4">
                                 <p className="text-[#ffffff] mb-5">{project.description}</p>
@@ -40,6 +41,7 @@ const Projects =()=>{
                 </div>
             </div>
         </div>
+         </section>
     )
 }
 export default Projects;

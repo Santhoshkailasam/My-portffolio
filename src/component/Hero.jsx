@@ -1,7 +1,7 @@
 import React from "react";
 const Hero =()=>{
     return(
-        <div className="mx-[100px] flex flex-row">
+        <div className="mx-[100px] flex flex-row" id="home">
             <div>
             <h6 className="text-3xl text-[#BDD749] mt-[190px]">Hello !</h6>
             <h4 className="text-6xl text-[#7FB2FF] mt-[20px]"><span className="text-[#ffffff]"> I'M</span> Kailasam N</h4>

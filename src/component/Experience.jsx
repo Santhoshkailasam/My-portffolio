@@ -23,7 +23,7 @@ const Experience = () => {
   ];
 
   return (
-    <div>
+    <div >
       {/* Heading */}
       <h1 className="text-[#ffffff] text-center text-2xl font-bold mt-10 mb-10">
         Experience

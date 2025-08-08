@@ -15,7 +15,7 @@ const skills = [
   { name: "Tailwind CSS", percent: 60},
 ];
     return(
-        <div>
+        <div id="about">
          <div className=" p-4 mt-[100px] ">
                 {/* For Header */}
             <h1 className="text-4xl text-[#FFFFFF] mt-[50px] mx-[150px] text-center mb-[50px]">About Me</h1>
@@ -25,7 +25,7 @@ const skills = [
 
                 {/* Img section */}
                 <div>
-                <img src="/Profile.jpeg" alt="My Image" className="rounded-sm w-[500px] h-[500px] " / >
+                <img src="/mine.webp" alt="My Image" className="rounded-sm w-[500px] h-[500px] " / >
                  </div>
                 {/* Profile */}
                 <div className="bg-[#2A0C0C] text-white p-8 font-sans w-full md:w-[500px]">
