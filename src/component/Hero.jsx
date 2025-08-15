@@ -88,8 +88,11 @@ Software Developer
         <motion.button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]"
            variants={buttonVariants}
            initial="initial"
-           animate="animate"
-           whileHover="hover">Download Resume</motion.button></div>
+           whileInView="animate" // triggers on scroll
+           whileHover="hover"
+           viewport={{ once: false, amount: 0.3 }} >Download Resume
+        </motion.button>
+        </div>
 {/* Image */}
             <div className="">
                 <motion.img src="/Ellipse 1.png" alt="Hero Image" 
