@@ -78,6 +78,7 @@ const blurText = {
 Software Developer
            </motion.h4>
 {/* button */}
+<a href="https://drive.google.com/file/d/1Yw_4jM7vir9qMOQzKVeGICxbuB3YUR2P/view?usp=sharing" target="_blank" rel="noopener noreferrer">
         <motion.button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]"
            variants={buttonVariants}
            initial="initial"
@@ -85,6 +86,7 @@ Software Developer
            whileHover="hover"
            viewport={{ once: false, amount: 0.3 }} >Download Resume
         </motion.button>
+        </a>
         </div>
 {/* Image */}
             <div className="">
