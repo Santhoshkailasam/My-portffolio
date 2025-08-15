@@ -15,6 +15,14 @@ const Hero =()=>{
     transition: { duration: 0.2, ease: "easeOut" } // fast hover in/out
   }
 };
+const blurText = {
+  hidden: { opacity: 0, "--blur": "12px" },
+  visible: {
+    opacity: 1,
+    "--blur": "0px",
+    transition: { duration: 1.2, ease: "easeOut" }
+  }
+};
     return(
         <div className="mx-[100px] flex flex-row" id="home">
             <div>
@@ -30,34 +38,33 @@ const Hero =()=>{
             cursor={false} // hide blinking cursor
           />
             </h6>
+            {/* Myname */}
          <motion.h4
-  className="text-6xl text-[#7FB2FF] mt-[20px]"
-  initial={{ opacity: 0, filter: "blur(10px)" }}
-  animate={{ opacity: 1, filter: "blur(0px)" }}
-  transition={{ duration: 1.5, ease: "easeOut" }}
->
-  <span className="text-[#ffffff]"> I'M</span> Kailasam N
-</motion.h4>
-
+           className="text-6xl text-[#7FB2FF] mt-[20px]"
+           style={{ filter: "blur(var(--blur))", willChange: "filter, opacity" }}
+           variants={blurText}
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: false, amount: 0.3 }}><span className="text-[#ffffff]"> I'M</span> Kailasam N
+         </motion.h4>
+{/* Software */}
            <motion.h4
-  className="text-6xl text-[#7FB2FF] mt-[20px]"
-  initial={{ opacity: 0, filter: "blur(10px)" }}
-  animate={{ opacity: 1, filter: "blur(0px)" }}
-  transition={{ duration: 1.5, ease: "easeOut" }}
+           className="text-6xl text-[#7FB2FF] mt-[20px]"
+           style={{ filter: "blur(var(--blur))", willChange: "filter, opacity" }}
+           variants={blurText}
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: false, amount: 0.3 }}
 >
 Software Developer
-</motion.h4>
-
-            <motion.button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]"
+           </motion.h4>
+{/* button */}
+        <motion.button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]"
            variants={buttonVariants}
-         initial="initial"
-  animate="animate"
-  whileHover="hover">Download Resume</motion.button></div>
-
-
-
-
-
+           initial="initial"
+           animate="animate"
+           whileHover="hover">Download Resume</motion.button></div>
+{/* Image */}
             <div className="">
                 <motion.img src="/Ellipse 1.png" alt="Hero Image" 
                 className="mt-[130px] ml-[100px] absolute"
