@@ -1,7 +1,18 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
-import { motion } from "framer-motion";
+import { motion,useInView} from "framer-motion";
+import { useState,useRef,useEffect } from "react";
 const Hero =()=>{
+const ref = useRef(null);
+  const inView = useInView(ref, { amount: 0.3, once: false });
+  const [startTyping, setStartTyping] = useState(false);
+  useEffect(() => {
+    if (inView) {
+      setStartTyping(true);
+    } else {
+      setStartTyping(false); // optional: reset when out of view
+    }
+  }, [inView]);
     const buttonVariants = {
        initial: { opacity: 0, y: 30 },
        animate: {
@@ -23,21 +34,36 @@ const blurText = {
     transition: { duration: 1.2, ease: "easeOut" }
   }
 };
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, ease: "easeOut", delay }
+  })
+};
     return(
         <div className="mx-[100px] flex flex-row" id="home">
             <div>
-            <h6 className="text-3xl text-[#BDD749] mt-[190px]">
-            <TypeAnimation
-            sequence={[
-              "Hello !", // type this
-              1000,      // wait 1 second
-            ]}
-            wrapper="span"
-            speed={50}
-            repeat={0} // 0 = no repeat
-            cursor={false} // hide blinking cursor
-          />
-            </h6>
+            <motion.h6 className="text-3xl text-[#BDD749] mt-[190px]"
+            ref={ref}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+      >
+    {startTyping ? (
+        <TypeAnimation
+          sequence={["Hello !", 1000]}
+          wrapper="span"
+          speed={50}
+          repeat={0}
+          cursor={false}
+        />
+      ) : (
+        <span className="opacity-0">Hello !</span>
+      )}
+            </motion.h6>
             {/* Myname */}
          <motion.h4
            className="text-6xl text-[#7FB2FF] mt-[20px]"
@@ -69,14 +95,16 @@ Software Developer
                 <motion.img src="/Ellipse 1.png" alt="Hero Image" 
                 className="mt-[130px] ml-[100px] absolute"
                 initial={{ x: -200, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                 transition={{ duration: 1.5, ease: "easeOut" }} />
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+                viewport={{ once: false, amount: 0.3 }} />
 
                  <motion.img src="/heros.png" alt="Hero Image" 
                  className=" mt-[70px] ml-[250px]  absolute"
-                  initial={{ x: 200, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                   transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }} />
+                 initial={{ x: 200, opacity: 0 }}
+                 whileInView={{ x: 0, opacity: 1 }}
+                 transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
+                 viewport={{ once: false, amount: 0.3 }} />
             </div>
            
         </div>
