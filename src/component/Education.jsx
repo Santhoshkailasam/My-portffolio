@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 const Education = ()=>{
     const educationdata =[
         {
@@ -38,7 +39,11 @@ const Education = ()=>{
               {/* Left side card */}
               {isLeft ? (
                 <div className="w-1/2 pr-6 flex justify-end">
-                  <div className="bg-gray-800 p-4 rounded-lg w-[90%] mt-5 relative mr-10">
+                  <motion.div className="bg-gray-800 p-4 rounded-lg w-[90%] mt-5 relative mr-10"
+                    initial={{ opacity: 0, x: -100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ amount: 0.3 }}>
                     {/* Triangle connected to the right side */}
                   <div className="absolute right-[-16px] top-6 w-0 h-0 
                     border-t-[10px] border-b-[10px] border-l-[16px] 
@@ -47,24 +52,36 @@ const Education = ()=>{
                     {edu.degree && <p>{edu.degree}</p>}
                     <p>{edu.score}</p>
                     <p className="text-[#C4D613] font-semibold">{edu.duration}</p>
-                  </div>
+                  </motion.div>
                 </div>
               ) : (
                 <div className="w-1/2" />
               )}
 
               {/* Timeline circle with icon */}
-              <div className="absolute left-1/2 transform   top-[30px] -translate-x-1/2 bg-[#C4D613] rounded-full h-12 w-12 flex items-center justify-center z-20 border-4 border-black">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <motion.div className="absolute left-1/2 transform   top-[30px] -translate-x-1/2 bg-[#C4D613] rounded-full h-12 w-12 flex items-center justify-center z-20 border-4 border-black"
+                  initial={{ opacity: 0, filter: "blur(12px)" }}
+                  whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                  viewport={{ once: false, amount: 0.3 }} >
+                <motion.svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  initial={{ opacity: 0, filter: "blur(12px)" }}
+                  whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                  viewport={{ once: false, amount: 0.3 }}>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" /> 
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422A12.083 12.083 0 0112 20.5a12.083 12.083 0 01-6.16-9.922L12 14z" />
-                </svg>
-              </div>
+                </motion.svg>
+              </motion.div>
 
               {/* Right side card */}
               {!isLeft ? (
                 <div className="w-1/2 pl-6 flex justify-start pt-5">
-                  <div className="bg-gray-800 p-4 rounded-lg w-[90%] relative ml-10 ">
+                  <motion.div className="bg-gray-800 p-4 rounded-lg w-[90%] relative ml-10 "
+                    initial={{ opacity: 0, x: 100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ amount: 0.3 }}>
                     {/* Right Triangle */}
                     <div className="absolute left-[-16px] top-7 w-0 h-0 
                     border-t-[10px] border-b-[10px] border-r-[16px] 
@@ -73,7 +90,7 @@ const Education = ()=>{
                     {edu.degree && <p>{edu.degree}</p>}
                     <p>{edu.score}</p>
                     <p className="text-[#C4D613] font-semibold">{edu.duration}</p>
-                  </div>
+                  </motion.div>
                 </div>
               ) : (
                 <div className="w-1/2" />

@@ -35,14 +35,7 @@ const blurText = {
   }
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 1, ease: "easeOut", delay }
-  })
-};
+
     return(
         <div className="mx-[100px] flex flex-row" id="home">
             <div>
