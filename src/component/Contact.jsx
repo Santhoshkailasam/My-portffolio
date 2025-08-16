@@ -1,4 +1,5 @@
 import React,{ useState } from "react";
+import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 const Contact = () => {
         const [formData, setFormData] = useState({
@@ -48,11 +49,20 @@ const Contact = () => {
 
     return (
         <div id="contact"className="  text-white flex justify-center items-center flex-col p-10  ">
-            {/* conntact */}
-            <h2 className="text-3xl font-bold text-center mb-10">Contact</h2>
+            {/* contact */}
+            <motion.h2 className="text-3xl font-bold text-center mb-10"
+             initial={{ opacity: 0, y: -50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once:false, amount: 0.3 }}
+            >Contact</motion.h2>
             <div className=" bg-white flex flex-row   mb-10 w-[700px] h-[430px]">
                 {/* Get in Touch */}
-            <div className="bg-[#BDD749]  w-[350px] h-[430px] ">
+            <motion.div className="bg-[#BDD749]  w-[350px] h-[430px] "
+             initial={{ opacity: 0, x: -50 }}
+             whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: false, amount: 0.3 }}>
                 <h1 className="text-black text-center mt-10 font-bold text-2xl">GET IN TOUCH</h1>
                 {/* storyset image */}
                 <div className="flex flex-row">
@@ -79,16 +89,27 @@ const Contact = () => {
               </div>
               {/* Follow on social media */}
               <h1 className="text-black ml-18 mt-5">Follow me on Social Media</h1>
-              <div className="flex flex-row  mt-4 w-[30px] h-[30px] gap-[5px] ml-25">
-              <img src="LinkedIn.png" alt="" />
-              <img src="Instagram.png" alt="" />
-              <img src="FB.png" alt="" />
-              <img src="Whatsapp.png" alt="" />
-              <img src="" alt="" />
+              <div className="flex flex-row  mt-1 w-[30px] h-[30px] gap-[5px] ml-22">
+              <div className="flex flex-row mt-1 gap-3">
+            {["LinkedIn.png", "Instagram.png", "FB.png", "Whatsapp.png"].map((icon, idx) => (
+              <motion.img
+                key={idx}
+                src={icon}
+                alt=""
+                className="w-[30px] h-[30px] cursor-pointer"
+                whileHover={{ scale: 1.2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              />
+            ))}
+          </div>
               </div>
-            </div>
+            </motion.div>
             {/* Form */}
-           <form action="#"  onSubmit={sendEmail}  className="flex flex-col justify-center mx-6">
+           <motion.form action="#"  onSubmit={sendEmail}  className="flex flex-col justify-center mx-6"
+            initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+             viewport={{ once: false, amount: 0.3 }}>
             <label className="text-black mb-1">Name</label>
             <input type="text" value={formData.name} onChange={handleChange} name="name" className="w-[300px] p-2  mb-4 border border-gray-300 rounded text-black placeholder-gray-400" placeholder="Your Name" required />
             <label className="text-black mb-1 ">Email</label>
@@ -97,8 +118,10 @@ const Contact = () => {
             <label className="text-black mb-1">Message</label>
             <textarea  value={formData.message}
          onChange={handleChange} name="message"className="w-[300px]   p-2 mb-4 border placeholder-gray-400 text-black border-gray-300 rounded" placeholder="Your Message" rows="4" required></textarea>
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded  hover:bg-blue-600 w-[120px] ml-24 mt-2">Send Message</button>
-           </form>
+            <motion.button type="submit" className="bg-blue-500 text-white p-2 rounded  hover:bg-blue-600 w-[120px] ml-24 mt-2"
+             whileHover={{ scale: 1.1, backgroundColor: "#2563EB" }}
+            transition={{ type: "spring", stiffness: 300 }}>Send Message</motion.button>
+           </motion.form>
            </div>
         </div>
     );

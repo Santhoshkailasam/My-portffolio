@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { title } from "framer-motion/client";
 
 const Experience = () => {
   const experiencedata = [
@@ -7,6 +8,7 @@ const Experience = () => {
       company: "Interain AI",
       role: "Data Analyst Intern",
       duration: "Sep 2024 - Nov 2024",
+      title:"what I'm doing",
       description:
         "Interain AI is empowering students, colleges, and companies with AI-driven, recruitment automation solutions.",
       cn1: "Extracted and cleaned verbal ability and science data from multiple sources.",
@@ -15,11 +17,14 @@ const Experience = () => {
       certificate: "https://drive.google.com/file/d/1-meFa_PpGze530BnijwN-OxX3cZNNVoW/view?usp=sharing",
     },
     {
-      company: "ECIA one solution",
+      company: "EA one solution",
       role: "UI/UX Intern",
-      duration: "July 2025 - present",
-      description: "Upcoming soon",
-      cn1: "Upcoming soon",
+      duration: "July 2025 ",
+      title:"what I'm doing",
+      description: "EA one solution is a leading provider of innovative software solutions.",
+      cn1: "Gained hands-on experience in web design by creating  user-friendly website layouts.",
+      cn2:"Learned to design professional UI/UX prototypes using Figma",
+      cn3:"Collaborated with a team to create user-friendly interfaces",
       certificate: "https://drive.google.com/file/d/1J8h8NYROzIvxDV3xU_pJSy1iCYPIC3jA/view?usp=sharing",
     },
   ];
@@ -42,10 +47,10 @@ const Experience = () => {
             key={index}
             className="relative w-[400px] h-[266px] "
            initial={{ opacity: 0, scale: 0.8 }}      // start small and invisible
-  whileInView={{ opacity: 1, scale: 1 }}   // zoom to full size and visible
-  exit={{ opacity: 0, scale: 0.8 }}        // optional: fade/zoom out when removed
-  transition={{ duration: 0.8, ease: "easeOut" }}
-  viewport={{ once: false, amount: 0.3 }}
+           whileInView={{ opacity: 1, scale: 1 }}   // zoom to full size and visible
+           exit={{ opacity: 0, scale: 0.8 }}        // optional: fade/zoom out when removed
+           transition={{ duration: 0.8, ease: "easeOut" }}
+           viewport={{ once: false, amount: 0.3 }}
           >
             {/* 3D Flip container */}
             <motion.div
@@ -66,6 +71,7 @@ const Experience = () => {
                 className="absolute w-full h-full bg-gray-900 rounded-lg backface-hidden p-4 flex flex-col justify-between"
                 style={{ transform: "rotateY(180deg)" }}
               >
+                <h1 className="text-white text-center font-bold">{exp.title}</h1>
                 <ul className="list-disc ml-5 text-white mt-4">
                   {exp.cn1 && <li>{exp.cn1}</li>}
                   {exp.cn2 && <li>{exp.cn2}</li>}
