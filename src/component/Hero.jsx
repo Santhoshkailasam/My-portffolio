@@ -37,9 +37,9 @@ const blurText = {
 
 
     return(
-        <div className="mx-[100px] flex flex-row" id="home">
+        <div className="mx-4 md:mx-[100px] flex flex-col md:flex-row " id="home">
             <div>
-            <motion.h6 className="text-3xl text-[#BDD749] mt-[190px]"
+            <motion.h6 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#BDD749] mt-[190px]"
             ref={ref}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -59,7 +59,7 @@ const blurText = {
             </motion.h6>
             {/* Myname */}
          <motion.h4
-           className="text-6xl text-[#7FB2FF] mt-[20px]"
+           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px] whitespace-nowrap"
            style={{ filter: "blur(var(--blur))", willChange: "filter, opacity" }}
            variants={blurText}
            initial="hidden"
@@ -68,7 +68,7 @@ const blurText = {
          </motion.h4>
 {/* Software */}
            <motion.h4
-           className="text-6xl text-[#7FB2FF] mt-[20px]"
+           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px] whitespace-nowrap"
            style={{ filter: "blur(var(--blur))", willChange: "filter, opacity" }}
            variants={blurText}
            initial="hidden"
@@ -89,16 +89,17 @@ Software Developer
         </a>
         </div>
 {/* Image */}
-            <div className="">
-                <motion.img src="/Ellipse 1.png" alt="Hero Image" 
-                className="mt-[130px] ml-[100px] absolute"
+            <div className="" >
+                <motion.img src="/Ellipse 1.png" alt="ellipse Image " 
+               className="absolute left-1/2 mt-[20px] ml-2 w-[30%] max-w-[500px] h-auto 
+             md:w-auto md:mt-[140px] md:ml-[100px]"
                 initial={{ x: -200, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
                 viewport={{ once: false, amount: 0.3 }} />
 
                  <motion.img src="/heros.png" alt="Hero Image" 
-                 className=" mt-[70px] ml-[250px]  absolute"
+                  className="mt-[20px] ml-10 w-[10%] max-w-[500px] h-auto absolute left-1/2 md:w-auto md:mt-[70px] md:ml-[250px]"
                  initial={{ x: 200, opacity: 0 }}
                  whileInView={{ x: 0, opacity: 1 }}
                  transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
