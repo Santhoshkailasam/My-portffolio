@@ -26,7 +26,7 @@ const BackgroundVideo = () => {
       loop
       muted
       playsInline
-      className="fixed top-0 left-0 w-[8552px] h-[4555px] mr-5 object-cover z-[-1]"
+      className="fixed top-0 left-0 w-full h-[4555px] mr-5 object-cover z-[-1]"
       style={{ opacity: isVisible ? 1 : 0 }} // Fade in when visible
     >
       {isVisible && (

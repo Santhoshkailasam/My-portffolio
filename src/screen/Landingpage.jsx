@@ -8,7 +8,7 @@ import Contact from '../component/Contact';
 import BackgroundVideo from '../component/bgvideo';
 const LandingPage = () => {
     return(
-        <div >
+        <div className="relative min-h-screen overflow-hidden">
         <BackgroundVideo />
         <Navbar />
         <Hero />

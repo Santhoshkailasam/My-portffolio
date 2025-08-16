@@ -57,7 +57,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once:false, amount: 0.3 }}
             >Contact</motion.h2>
-            <div className=" bg-white flex flex-row  rounded-2xl  mb-10 w-[700px] h-[430px]">
+            <div className=" bg-white flex flex-col md:flex-row rounded-2xl shadow-xl w-full max-w-[700px] mx-4 md:mx-0 overflow-hidden mb-10">
                 {/* Get in Touch */}
         {/* Get in Touch */}
 <motion.div

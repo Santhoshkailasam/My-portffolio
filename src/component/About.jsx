@@ -19,51 +19,52 @@ const About = () => {
 
     return (
         <div id="about">
-            <div className="p-4 mt-[130px]">
+            <div className="p-4 mt-[350px] md:mt-[130px]">
                 {/* For Header */}
-                <motion.h1 className="text-4xl text-[#FFFFFF] mt-[50px] mx-[150px] text-center mb-[50px]"
+                <motion.h1 className=" text-4xl text-[#FFFFFF] mt-[50px] md:mx-[150px] text-center mb-[50px]  whitespace-nowrap"
                  initial={{ opacity: 0, y: -30 }}
                  whileInView={{ opacity: 1, y: 0 }}
                  transition={{ duration: 0.8, ease: "easeOut" }}
                  viewport={{ once: false, amount: 0.3 }}>About Me</motion.h1>
 
                 {/* Card Section */}
-                <div className="flex flex-row justify-center">
+                <div className="flex flex-col md:flex-row justify-center">
                     {/* Img section */}
                     <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                     viewport={{ once: false, amount: 0.3 }}>
-                        <img src="/mine.webp" alt="My Image" className="rounded-sm w-[500px] h-[500px]" />
+                        <img src="/mine.webp" alt="My Image" className="rounded-l-sm h-auto mx-auto md:w-[500px] md:h-[500px]" />
                     </motion.div>
 
                     {/* Profile */}
-                    <motion.div className="bg-[#2A0C0C] text-white p-8 font-sans w-full md:w-[500px]"
+                    <motion.div className="bg-gray-900 text-white p-8 font-sans w-full md:w-[500px] rounded-r-sm"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                     viewport={{ once: false, amount: 0.3 }}>
-                        <ul className="space-y-4">
-                            {data.map((item, index) => (
-                                <li key={index} className="flex">
-                                    <span className="w-[100px] font-bold">{item.label}</span>
-                                    <span className="mx-2">:</span>
-                                    <span className="text-[#C4D613] mx-2">{item.value}</span>
-                                </li>
+                       <ul className="space-y-4 text-sm md:text-base">
+                             {data.map((item, index) => (
+                              <li key={index} className="flex items-center">
+                                <span className="w-[100px] font-bold">{item.label}</span>
+                                <span className="w-2 text-center">:</span>
+                                <span className="text-[#C4D613] ml-2">{item.value}</span>
+                              </li>
                             ))}
-                        </ul>
+                     </ul>
+
 
                         {/* Skillset */}
                         <div className="mt-4">
-                            <h2 className="text-xl font-bold mb-2">Skills</h2>
+                            <h2 className=" text-lg  md:text-xl font-bold mb-2">Skills</h2>
                             {skills.map((skill,index) => (
                                 <motion.div key={skill.name} className="mb-2"
                                      initial={{ opacity: 0 }}
                                      whileInView={{ opacity: 1 }}
                                      transition={{ duration: 0.6, delay: index * 0.2 }}
                                       viewport={{ once: false, amount: 0.3 }}>
-                                    <div className="flex justify-between font-semibold">
+                                    <div className=" text-sm md:text-base flex justify-between font-semibold">
                                         <span>{skill.name}</span>
                                         <span>{skill.percent}%</span>
                                     </div>
