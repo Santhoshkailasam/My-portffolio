@@ -19,7 +19,7 @@ const About = () => {
 
     return (
         <div id="about">
-            <div className="p-4 mt-[100px]">
+            <div className="p-4 mt-[130px]">
                 {/* For Header */}
                 <motion.h1 className="text-4xl text-[#FFFFFF] mt-[50px] mx-[150px] text-center mb-[50px]"
                  initial={{ opacity: 0, y: -30 }}
