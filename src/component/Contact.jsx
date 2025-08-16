@@ -108,7 +108,7 @@ const Contact = () => {
     <div className="flex items-center gap-3 mb-5">
       <img src="Location.png" alt="Location" className="w-[28px] h-[28px]" />
       <div>
-        <h2 className="text-[18px] font-semibold text-black">Location</h2>
+        <h2 className="text-[18px] font-semibold  text-black">Location</h2>
         <p className="text-[14px] text-gray-700">Idayamelur,Sivagangai-630562</p>
       </div>
     </div>
