@@ -24,7 +24,7 @@ const Education = ()=>{
     ]
     return(
       <div className="relative  min-h-screen py-2 text-white">
-      <h2 className="text-3xl font-bold text-center mb-12">Education</h2>
+      <h2 className="text-4xl font-bold text-center mb-12">Education</h2>
 
       <div className="relative w-full max-w-4xl mx-auto">
         {/* Vertical timeline line */}
@@ -34,18 +34,21 @@ const Education = ()=>{
           const isLeft = index % 2 !== 0; // alternate left/right
 
           return (
-            <div key={index} className="relative mb-16 flex items-center w-full">
+            <div key={index} className="relative mb-16 flex flex-col items-center md:flex-row md:items-start w-full">
               
               {/* Left side card */}
+
               {isLeft ? (
-                <div className="w-1/2 pr-6 flex justify-end">
-                  <motion.div className="bg-gray-800 p-4 rounded-lg w-[90%] mt-5 relative mr-10"
+                <div className="w-full md:w-1/2 flex justify-center md:justify-end relative md:pr-6">
+                  <motion.div className="bg-gray-800 p-4 rounded-lg w-11/12 sm:w-4/5 md:w-[90%] mt-20 md:mt-5 relative md:mr-10"
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ amount: 0.3 }}>
+
                     {/* Triangle connected to the right side */}
-                  <div className="absolute right-[-16px] top-6 w-0 h-0 
+
+                  <div className="hidden md:block absolute right-[-16px] top-6 w-0 h-0 
                     border-t-[10px] border-b-[10px] border-l-[16px] 
                     border-t-transparent border-b-transparent border-l-gray-800" />
                     <h3 className="font-semibold text-lg">{edu.institution}</h3>
@@ -59,7 +62,8 @@ const Education = ()=>{
               )}
 
               {/* Timeline circle with icon */}
-              <motion.div className="absolute left-1/2 transform   top-[30px] -translate-x-1/2 bg-[#C4D613] rounded-full h-12 w-12 flex items-center justify-center z-20 border-4 border-black"
+              
+              <motion.div className="absolute left-1/2 transform top-[30px] -translate-x-1/2 bg-[#C4D613] rounded-full h-12 w-12 flex items-center justify-center z-20 border-4 border-black"
                   initial={{ opacity: 0, filter: "blur(12px)" }}
                   whileInView={{ opacity: 1, filter: "blur(0px)" }}
                   transition={{ duration: 1.2, ease: "easeOut" }}
@@ -76,14 +80,16 @@ const Education = ()=>{
 
               {/* Right side card */}
               {!isLeft ? (
-                <div className="w-1/2 pl-6 flex justify-start pt-5">
-                  <motion.div className="bg-gray-800 p-4 rounded-lg w-[90%] relative ml-10 "
+                <div className="w-full pt-22 md:w-1/2 pl-0 justify-center md:pl-6 flex  md:justify-start md:pt-5">
+                  <motion.div className="bg-gray-800 p-4 rounded-lg w-11/12 sm:w-4/5 md:w-[90%] relative md:ml-10 "
                     initial={{ opacity: 0, x: 100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ amount: 0.3 }}>
+
                     {/* Right Triangle */}
-                    <div className="absolute left-[-16px] top-7 w-0 h-0 
+
+                    <div className="hidden md:block absolute left-[-16px] top-7 w-0 h-0 
                     border-t-[10px] border-b-[10px] border-r-[16px] 
                     border-t-transparent border-b-transparent border-r-gray-800" />
                     <h3 className="font-semibold text-lg">{edu.institution}</h3>
