@@ -21,7 +21,7 @@ const About = () => {
         <div id="about">
             <div className="p-4 mt-[350px] md:mt-[130px]">
                 {/* For Header */}
-                <motion.h1 className=" text-4xl text-[#FFFFFF] mt-[50px] md:mx-[150px] text-center mb-[50px]  whitespace-nowrap"
+                <motion.h1 className=" text-4xl font-bold text-[#FFFFFF] mt-[50px] md:mx-[150px] text-center mb-[50px]  whitespace-nowrap"
                  initial={{ opacity: 0, y: -30 }}
                  whileInView={{ opacity: 1, y: 0 }}
                  transition={{ duration: 0.8, ease: "easeOut" }}
