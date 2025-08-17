@@ -68,9 +68,9 @@ const About = () => {
                                         <span>{skill.name}</span>
                                         <span>{skill.percent}%</span>
                                     </div>
-                                    <div className="w-full h-2 bg-pink-200 rounded-full">
+                                    <div className="w-full h-2 bg-white rounded-full">
                                         <motion.div
-                                            className="h-full bg-purple-500 rounded-full"
+                                            className="h-full bg-[#4CAF50] rounded-full"
                                             style={{
                                     background:
                                         "bg-purple-500",
