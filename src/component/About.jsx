@@ -73,7 +73,7 @@ const About = () => {
                                             className="h-full bg-[#4CAF50] rounded-full"
                                             style={{
                                     background:
-                                        "bg-purple-500",
+                                        "bg-[#4CAF50]",
                                     }}
                                 initial={{ width: "0%" }}
                                 whileInView={{ width: `${skill.percent}%` }}
