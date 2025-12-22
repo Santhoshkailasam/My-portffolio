@@ -16,7 +16,7 @@ const Projectslist = [
     title: "Parking App",
     description:
       "Parking App is a user-friendly React Native frontend with a home screen showing nearby spots and a booking system to reserve spaces.",
-    image: "/parking.png",
+    image: "/Parking.png",
     btn: "View Project",
     link: "https://github.com/Santhoshkailasam/Parkingapp",
   },
