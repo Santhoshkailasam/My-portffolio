@@ -78,7 +78,7 @@ const blurText = {
 Software Developer
            </motion.h4>
 {/* button */}
-<a href="https://drive.google.com/file/d/1vcCk7100YJrBZqjBRdYpmdenL3wTBlOA/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+<a href="https://drive.google.com/file/d/1bikiCGcQEFKcBnIA7zplcJ_QLwKpV3VB/view?usp=sharing" target="_blank" rel="noopener noreferrer">
         <motion.button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]"
            variants={buttonVariants}
            initial="initial"
