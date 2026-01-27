@@ -101,6 +101,12 @@ const Experience = () => {
                 </h2>
                 <p className="text-white">{exp.role}</p>
                 <p className="text-white">{exp.duration}</p>
+                {/* Hover / Tap Hint — Bottom */}
+                  {!activeMobile && (
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 px-3 py-1 rounded text-white/40 text-xs opacity-100 group-hover:opacity-0 transition">
+                      {isMobile ? "Tap to view" : "Place cursor here to view"}
+                    </div>
+                  )}
               </div>
 
               {/* Back Side */}

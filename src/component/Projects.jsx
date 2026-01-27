@@ -20,6 +20,24 @@ const Projectslist = [
     btn: "View Project",
     link: "https://github.com/Santhoshkailasam/Parkingapp",
   },
+  {
+    id: 3,
+    title: "Project Management",
+    description:
+      "A React Native + Node.js + MongoDB based project management app for creating projects, assigning tasks, tracking progress, and managing team workflows.",
+    image: "/projectm.png",
+    btn: "View Project",
+    link: "https://github.com/Santhoshkailasam/Project-management.git",
+  },
+  {
+    id: 4,
+    title: "90s Mobile App",
+    description:
+      "A mobile app inspired by a 90s Barbie phone where pressing buttons plays songs.Blending retro nostalgia with fun, interactive sound experiences.",
+    image: "/barbietemp.png",
+    btn: "View Project",
+    link: "https://github.com/Santhoshkailasam/90sToyMobile.git",
+  }
 ];
 
 const Projects = () => {
@@ -49,11 +67,10 @@ const Projects = () => {
   return (
     <div id="projects" className="py-10">
       <motion.h1
-        className="text-[#ffffff] text-center text-4xl font-bold mb-10"
+        className="text-white text-center text-4xl font-bold mb-10"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.8 }}
       >
         Projects
       </motion.h1>
@@ -62,10 +79,10 @@ const Projects = () => {
         ref={containerRef}
         className="flex flex-row items-center justify-center gap-6 sm:gap-10 flex-wrap"
       >
-        {Projectslist.map((project, index) => (
+        {Projectslist.map((project) => (
           <div
             key={project.id}
-            className="relative w-[300px] h-[200px] sm:w-[400px] sm:h-[266px] cursor-pointer overflow-hidden rounded-lg"
+            className="relative w-[300px] h-[200px] sm:w-[400px] sm:h-[266px] cursor-pointer overflow-hidden rounded-lg group"
             onClick={() => {
               if (isMobile) {
                 setActiveMobile(
@@ -81,9 +98,16 @@ const Projects = () => {
               className="w-full h-full object-cover rounded-lg"
             />
 
+            {/* Hover / Tap Hint */}
+          {/* Hover / Tap Hint — Bottom */}
+        {!activeMobile && (
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 px-3 py-1 rounded text-white/40 text-xs opacity-100 group-hover:opacity-0 transition">
+              {isMobile ? "Tap to view" : "Place cursor here to view"}
+            </div>
+          )}
             {/* Overlay */}
             <motion.div
-              className="absolute inset-0 bg-gray-900 bg-opacity-90 text-white p-4 flex flex-col justify-center rounded-lg"
+              className="absolute inset-0 bg-gray-900/90 text-white p-4 flex flex-col justify-center rounded-lg"
               initial={{ opacity: 0 }}
               animate={
                 isMobile
@@ -93,17 +117,21 @@ const Projects = () => {
                   : { opacity: 0 }
               }
               whileHover={!isMobile ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
             >
               <h2 className="text-[#C4D613] font-semibold text-lg mb-2">
                 {project.title}
               </h2>
-              <p className="mb-4 text-sm sm:text-base">{project.description}</p>
+
+              <p className="mb-4 text-sm sm:text-base">
+                {project.description}
+              </p>
+
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg flex justify-center hover:bg-blue-600 transition duration-300"
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg text-center hover:bg-blue-600 transition"
               >
                 {project.btn}
               </a>
