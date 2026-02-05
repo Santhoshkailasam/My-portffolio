@@ -7,7 +7,7 @@ const Education = ()=>{
             degree:"Bachelor of Technology",
             field:"Information Technology",
             duration:"2022-2026",
-            score:"7.87 CGPA",
+            score:"8.02 CGPA",
         },
         {
             institution:"Mannar Higher Secondary School",
