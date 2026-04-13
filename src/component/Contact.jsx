@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
+import { Mail, Phone, MapPin, Linkedin, Github, Send, MessageSquare, Sparkles } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,12 +17,11 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setIsSending(true);
 
     emailjs
       .send("service_8c49npq", "template_urd5hhh", formData, "usOiCoUEmTAQ8kytT")
       .then(() => {
-        console.log("Message sent to owner");
-
         emailjs
           .send(
             "service_bk0iwmf",
@@ -29,190 +30,212 @@ const Contact = () => {
             "6TG0mH3zA0i8W0GSl"
           )
           .then(() => {
-            console.log("Thank-you email sent to user");
-            alert("Message sent!");
+            alert("Message sent successfully!");
             setFormData({ name: "", email: "", message: "" });
+            setIsSending(false);
           });
       })
       .catch((error) => {
         console.error("Error:", error);
         alert("Failed to send message.");
+        setIsSending(false);
       });
   };
 
+  const contactInfo = [
+    {
+      icon: <Mail size={20} />,
+      label: "E-Mail",
+      value: "Kailasam5107@gmail.com",
+      link: "mailto:Kailasam5107@gmail.com",
+      color: "bg-blue-500/10 text-blue-400"
+    },
+    {
+      icon: <Phone size={20} />,
+      label: "Phone / WhatsApp",
+      value: "+91 9159873818",
+      link: "tel:+919159873818",
+      color: "bg-green-500/10 text-green-400"
+    },
+    {
+      icon: <MapPin size={20} />,
+      label: "Location",
+      value: "Idayamelur, Sivagangai-630562",
+      link: null,
+      color: "bg-red-500/10 text-red-400"
+    },
+    {
+      icon: <Linkedin size={20} />,
+      label: "LinkedIn",
+      value: "Kailasam N",
+      link: "https://www.linkedin.com/in/kailasam-n-8975b3327/",
+      color: "bg-blue-600/10 text-blue-500"
+    },
+    {
+      icon: <Github size={20} />,
+      label: "GitHub",
+      value: "Santhoshkailasam",
+      link: "https://github.com/Santhoshkailasam",
+      color: "bg-gray-500/10 text-gray-400"
+    }
+  ];
+
   return (
-    <div
-      id="contact"
-      className="text-white flex justify-center items-center flex-col p-6 md:p-10"
-    >
-      <motion.h2
-        className="text-4xl md:text-5xl font-bold text-center mb-10"
-        initial={{ opacity: 0, y: -50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: false, amount: 0.3 }}
-      >
-        Contact
-      </motion.h2>
-
-      <div className="bg-white flex flex-col md:flex-row rounded-2xl shadow-xl w-full max-w-[700px] overflow-hidden">
-        {/* Get in Touch */}
-        <motion.div
-          className="bg-gradient-to-br from-teal-400 to-cyan-500 text-white w-full md:w-[350px] p-6 flex flex-col items-center rounded-l-2xl md:rounded-l-2xl"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <h1 className="text-center text-3xl md:text-4xl font-extrabold drop-shadow-lg mb-5">
-            GET IN TOUCH
-          </h1>
-
-          <div className="space-y-5 w-full">
-            {/* E-mail */}
-            <div className="flex items-center gap-3">
-              <img src="Mail.png" alt="E-mail" className="w-[28px] h-[28px]" />
-              <div>
-                <h2 className="text-[18px] font-semibold text-black">E-Mail</h2>
-                <a
-                  href="mailto:Kailasam5107@gmail.com"
-                  className="text-[14px] text-gray-700 hover:text-blue-600 transition"
-                >
-                  click here to send an email
-                </a>
-              </div>
-            </div>
-
-            {/* Phone */}
-            <div className="flex items-center gap-3">
-              <img
-                src="Whatsapp.png"
-                alt="Phone"
-                className="w-[28px] h-[28px]"
-              />
-              <div>
-                <h2 className="text-[18px] font-semibold text-black">Phone</h2>
-                <a
-                  href="tel:+919159873818"
-                  className="text-[14px] text-gray-700 hover:text-blue-600 transition"
-                >
-                  click here for whatsapp
-                </a>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-center gap-3">
-              <img
-                src="Location.png"
-                alt="Location"
-                className="w-[28px] h-[28px]"
-              />
-              <div>
-                <h2 className="text-[18px] font-semibold text-black">Location</h2>
-                <p className="text-[14px] text-gray-700">
-                  Idayamelur, Sivagangai-630562
-                </p>
-              </div>
-            </div>
-
-            {/* LinkedIn */}
-            <div className="flex items-center gap-3">
-              <img
-                src="LinkedIn.png"
-                alt="LinkedIn"
-                className="w-[28px] h-[28px]"
-              />
-              <div>
-                <h2 className="text-[18px] font-semibold text-black">LinkedIn</h2>
-                <a
-                  href="https://www.linkedin.com/in/kailasam-n-8975b3327/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[14px] text-gray-700 hover:text-blue-600 transition"
-                >
-                  click here to view profile
-                </a>
-              </div>
-            </div>
-
-            {/* GitHub */}
-            <div className="flex items-center gap-3">
-              <img
-                src="github.svg"
-                alt="GitHub"
-                className="w-[28px] h-[28px]"
-              />
-              <div>
-                <h2 className="text-[18px] font-semibold text-black">GitHub</h2>
-                <a
-                  href="https://github.com/Santhoshkailasam"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[14px] text-gray-700 hover:text-blue-600 transition"
-                >
-                  click here to view profile
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Form */}
-        <motion.form
-          onSubmit={sendEmail}
-          className="flex flex-col justify-center mx-auto p-4 md:p-4 w-full md:w-auto"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <h1 className="text-center text-black text-3xl md:text-5xl font-extrabold mb-5">Contact</h1>
-          <label className="text-black mb-1">Name</label>
-          <input
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            name="name"
-            className="w-full sm:w-[300px] p-2 mb-4 border border-gray-300 rounded text-black placeholder-gray-400"
-            placeholder="Your Name"
-            required
-          />
-
-          <label className="text-black mb-1">Email</label>
-          <input
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            name="email"
-            className="w-full sm:w-[300px] p-2 mb-4 border border-gray-300 text-black rounded placeholder-gray-400"
-            placeholder="Your Email"
-            required
-          />
-
-          <label className="text-black mb-1">Message</label>
-          <textarea
-            value={formData.message}
-            onChange={handleChange}
-            name="message"
-            className="w-full sm:w-[300px] p-2 mb-4 border border-gray-300 text-black rounded placeholder-gray-400"
-            placeholder="Your Message"
-            rows="4"
-            required
-          ></textarea>
-
-          <motion.button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-[125px] md:w-[120px] mx-auto mt-2"
-            whileHover={{ scale: 1.05, backgroundColor: "#2563EB" }}
-            transition={{ type: "spring", stiffness: 300 }}
+    <section id="contact" className="py-24 px-4 md:px-10 relative overflow-hidden bg-black/30">
+      {/* Background Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0367FB]/5 blur-[180px] rounded-full"></div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <motion.div
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C4D613]/10 border border-[#C4D613]/20 text-[#C4D613] text-xs font-bold uppercase tracking-wider mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            Send Message
-          </motion.button>
-        </motion.form>
+            <Sparkles size={14} />
+            Let's Collaborate
+          </motion.div>
+          <motion.h2
+            className="text-white text-5xl md:text-6xl font-extrabold tracking-tight"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Get In <span className="text-[#C4D613]">Touch</span>
+          </motion.h2>
+          <motion.div 
+            className="h-1.5 w-20 bg-[#0367FB] mx-auto rounded-full mt-4"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          {/* Info Side */}
+          <motion.div 
+            className="lg:col-span-5 space-y-6"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="bg-gray-900/40 backdrop-blur-xl p-8 rounded-3xl border border-white/5 h-full space-y-8">
+              <div>
+                <h3 className="text-white text-2xl font-bold mb-2">Connect with me</h3>
+                <p className="text-gray-400">Feel free to reach out for collaborations or just a friendly hello!</p>
+              </div>
+
+              <div className="space-y-4">
+                {contactInfo.map((info, index) => (
+                  <motion.a
+                    key={index}
+                    href={info.link}
+                    target={info.link?.startsWith('http') ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#C4D613]/30 transition-all group ${!info.link && 'cursor-default'}`}
+                    whileHover={info.link ? { x: 10, backgroundColor: "rgba(255,255,255,0.08)" } : {}}
+                  >
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${info.color}`}>
+                      {info.icon}
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">{info.label}</p>
+                      <p className="text-white font-medium group-hover:text-[#C4D613] transition-colors">{info.value}</p>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Form Side */}
+          <motion.div 
+            className="lg:col-span-7"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <form 
+              onSubmit={sendEmail}
+              className="bg-gray-900/40 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-white/5 h-full flex flex-col justify-between"
+            >
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-xl bg-[#0367FB]/10 text-[#0367FB]">
+                    <MessageSquare size={24} />
+                  </div>
+                  <h3 className="text-white text-2xl font-bold">Send a Message</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-gray-400 text-sm font-medium ml-1">Your Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="John Doe"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#C4D613]/50 focus:bg-white/10 transition-all"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-gray-400 text-sm font-medium ml-1">Your Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="john@example.com"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#C4D613]/50 focus:bg-white/10 transition-all"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-gray-400 text-sm font-medium ml-1">Message</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell me about your project..."
+                    rows="5"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#C4D613]/50 focus:bg-white/10 transition-all resize-none"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={isSending}
+                className="mt-8 group relative flex items-center justify-center gap-3 bg-[#0367FB] text-white py-4 px-8 rounded-2xl font-bold overflow-hidden transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                {isSending ? (
+                   <span className="flex items-center gap-2">
+                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                     Sending...
+                   </span>
+                ) : (
+                  <>
+                    <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <span>Send Message</span>
+                  </>
+                )}
+              </motion.button>
+            </form>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Contact;
+
