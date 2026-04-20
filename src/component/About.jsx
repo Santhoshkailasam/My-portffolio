@@ -13,8 +13,8 @@ const About = () => {
     const skills = [
         { name: "Python", percent: 50, color: "from-[#4CAF50] to-[#81C784]" },
         { name: "React", percent: 70, color: "from-[#0367FB] to-[#7FB2FF]" },
-        { name: "Html", percent: 80, color: "from-[#FF9800] to-[#FFB74D]" },
-        { name: "CSS", percent: 60, color: "from-[#2196F3] to-[#64B5F6]" },
+        { name: "React Native", percent: 80, color: "from-[#FF9800] to-[#FFB74D]" },
+        { name: "Next JS", percent: 60, color: "from-[#2196F3] to-[#64B5F6]" },
         { name: "JavaScript", percent: 40, color: "from-[#FFEB3B] to-[#FFF176]" },
         { name: "Tailwind CSS", percent: 60, color: "from-[#00BCD4] to-[#4DD0E1]" },
     ];
@@ -35,7 +35,7 @@ const About = () => {
     };
 
     return (
-        <section id="about" className="py-20 px-4 md:px-10 overflow-hidden">
+        <section id="about" className="py-12 px-4 md:px-10 overflow-hidden">
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-16">
@@ -44,6 +44,7 @@ const About = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
                     >
                         <Sparkles size={14} />
                         Get to know me
@@ -53,6 +54,7 @@ const About = () => {
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
+                        viewport={{ once: true, amount: 0.1 }}
                     >
                         About <span className="text-[#C4D613]">Me</span>
                     </motion.h2>
@@ -61,6 +63,7 @@ const About = () => {
                         initial={{ width: 0 }}
                         whileInView={{ width: 80 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
+                        viewport={{ once: true }}
                     />
                 </div>
 
@@ -68,20 +71,22 @@ const About = () => {
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
                     {/* Image Section */}
                     <motion.div
-                        className="relative group"
+                        className="relative group w-full max-w-[300px] md:max-w-[400px] lg:max-w-[450px]"
                         initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
                         whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
-                        <div className="absolute -inset-4 bg-gradient-to-tr from-[#0367FB] to-[#C4D613] rounded-2xl opacity-20 blur-2xl group-hover:opacity-40 transition duration-1000"></div>
-                        <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-[#C4D613]/50 transition-colors duration-500 shadow-2xl">
+                        <div className="absolute -inset-4 bg-gradient-to-tr from-[#0367FB]/20 to-[#C4D613]/20 rounded-2xl opacity-20 blur-2xl group-hover:opacity-40 transition duration-1000 will-change-opacity pointer-events-none"></div>
+                        <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-[#C4D613]/50 transition-colors duration-500 shadow-2xl bg-gray-900/40">
                             <img
                                 src="/mine.webp"
                                 alt="Kailasam N"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                fetchPriority="low"
+                                loading="lazy"
                             />
                             {/* Decorative element */}
-                            <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 p-3 rounded-xl">
+                            <div className="absolute bottom-4 right-4 bg-black/80 border border-white/10 p-3 rounded-xl shadow-lg translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                                 <Rocket className="text-[#C4D613]" size={24} />
                             </div>
                         </div>
@@ -89,7 +94,7 @@ const About = () => {
 
                     {/* Info and Skills Card */}
                     <motion.div
-                        className="w-full lg:max-w-xl bg-gray-900/40 backdrop-blur-xl border border-white/5 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden group"
+                        className="w-full lg:max-w-xl bg-gray-900/60 border border-white/5 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden group will-change-transform"
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -160,4 +165,5 @@ const About = () => {
 };
 
 export default About;
+
 

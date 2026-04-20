@@ -8,7 +8,7 @@ const Projectslist = [
     title: "Spotify clone",
     description:
       "A sleek Spotify clone built with React Native, featuring smooth navigation and an intuitive UI. Ideal for showcasing front-end mobile development skills.",
-    image: "/spotify.jpg",
+    image: "/spotify_new.png",
     btn: "View Project",
     link: "https://github.com/Santhoshkailasam/Spotifyclone",
   },
@@ -17,7 +17,7 @@ const Projectslist = [
     title: "Parking App",
     description:
       "Parking App is a user-friendly React Native frontend with a home screen showing nearby spots and a booking system to reserve spaces.",
-    image: "/Parking.png",
+    image: "/parking_new.png",
     btn: "View Project",
     link: "https://github.com/Santhoshkailasam/Parkingapp",
   },
@@ -26,7 +26,7 @@ const Projectslist = [
     title: "Project Management",
     description:
       "A React Native + Node.js + MongoDB based project management app for creating projects, assigning tasks, tracking progress, and managing team workflows.",
-    image: "/projectm.png",
+    image: "/project_mgmt_new.png",
     btn: "View Project",
     link: "https://github.com/Santhoshkailasam/Project-management.git",
   },
@@ -35,7 +35,7 @@ const Projectslist = [
     title: "90s Mobile App",
     description:
       "A mobile app inspired by a 90s Barbie phone where pressing buttons plays songs.Blending retro nostalgia with fun, interactive sound experiences.",
-    image: "/barbietemp.png",
+    image: "/retro_music.png",
     btn: "View Project",
     link: "https://github.com/Santhoshkailasam/90sToyMobile.git",
   }
@@ -86,14 +86,15 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-10 overflow-hidden">
+    <section id="projects" className="pt-6 pb-12 px-4 sm:px-10 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 relative">
+        <div className="text-center mb-10 relative">
           <motion.h2
             className="text-white text-5xl md:text-6xl font-extrabold mb-4 tracking-tight"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             Featured <span className="text-[#C4D613]">Projects</span>
           </motion.h2>
@@ -102,6 +103,7 @@ const Projects = () => {
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: true }}
           />
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
             A selection of my recent work, spanning mobile apps and full-stack solutions.
@@ -113,14 +115,15 @@ const Projects = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10"
         >
           {Projectslist.map((project) => (
             <motion.div
               key={project.id}
               variants={cardVariants}
               whileHover={{ y: -10 }}
-              className="relative group bg-gray-900/50 rounded-2xl overflow-hidden border border-white/5 hover:border-[#C4D613]/30 transition-colors duration-500 shadow-2xl backdrop-blur-sm"
+              className="relative group bg-gray-950 rounded-3xl overflow-hidden border border-white/10 hover:border-[#C4D613]/40 transition-all duration-500 shadow-2xl will-change-transform transform translate-z-0"
+              style={{ transform: 'translateZ(0)' }}
               onClick={() => {
                 if (isMobile) {
                   setActiveMobile(activeMobile === project.id ? null : project.id);
@@ -128,41 +131,59 @@ const Projects = () => {
               }}
             >
               {/* Image Container */}
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-[16/10] overflow-hidden">
                 <motion.img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                 
-                {/* Overlay Hint */}
+                {/* Integrated Floating Header (Glassmorphism) */}
+                <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-20 bg-gradient-to-b from-black/60 to-transparent">
+                  <div className="px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#C4D613] animate-pulse" />
+                    <h3 className="text-white font-bold text-sm tracking-wide uppercase">{project.title}</h3>
+                  </div>
+                  <div className="flex gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                    <div className="w-2 h-2 rounded-full bg-[#0367FB]/80 shadow-[0_0_8px_#0367FB]" />
+                    <div className="w-2 h-2 rounded-full bg-[#C4D613]/80 shadow-[0_0_8px_#C4D613]" />
+                  </div>
+                </div>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
+                
+                {/* Overlay Hint (Bottom) */}
                 {!activeMobile && (
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-white/70 text-xs font-medium bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                      {isMobile ? "Tap to explore" : "Hover to explore"}
+                    <span className="text-white/70 text-[10px] uppercase font-bold tracking-widest bg-white/5 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+                       Click to explore
                     </span>
                   </div>
                 )}
               </div>
 
-              {/* Content Overlay */}
+              {/* Content Overlay - Revealed on Hover */}
               <motion.div
-                className="absolute inset-0 bg-gray-950/90 backdrop-blur-md p-6 sm:p-8 flex flex-col justify-center items-start text-left z-10"
-                initial={{ opacity: 0 }}
+                className="absolute inset-0 bg-gray-950/95 backdrop-blur-xl p-6 sm:p-10 flex flex-col justify-end items-start text-left z-30"
+                initial={{ opacity: 0, y: 20 }}
                 animate={
                   isMobile
-                    ? activeMobile === project.id ? { opacity: 1 } : { opacity: 0 }
-                    : { opacity: 0 }
+                    ? activeMobile === project.id ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                    : { opacity: 0, y: 20 }
                 }
-                whileHover={!isMobile ? { opacity: 1 } : {}}
-                transition={{ duration: 0.4 }}
+                whileHover={!isMobile ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <div className="w-full">
-                  <h3 className="text-[#C4D613] font-bold text-2xl mb-3 tracking-wide">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-300 mb-8 text-sm sm:text-base leading-relaxed">
+                  <div className="mb-4">
+                    <span className="text-[#C4D613] text-[10px] font-black uppercase tracking-[0.2em]">Featured Project</span>
+                    <h3 className="text-white font-black text-2xl sm:text-3xl mt-1 tracking-tight">
+                      {project.title}
+                    </h3>
+                  </div>
+                  
+                  <p className="text-gray-400 mb-8 text-xs sm:text-sm md:text-base leading-relaxed font-medium line-clamp-4">
                     {project.description}
                   </p>
                   
@@ -171,32 +192,23 @@ const Projects = () => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-[#0367FB] text-white px-6 py-2.5 rounded-full font-semibold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-lg shadow-blue-500/20"
+                      className="flex items-center gap-2 bg-[#0367FB] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-xl shadow-blue-500/20"
                     >
                       <Github size={18} />
-                      Code
+                      View Source
                     </a>
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-full border border-white/10 text-white hover:bg-white/10 transition-colors"
-                      title="View Project"
+                      className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white hover:bg-[#C4D613] hover:text-black transition-all duration-300"
+                      title="Live Demo"
                     >
                       <ExternalLink size={20} />
                     </a>
                   </div>
                 </div>
               </motion.div>
-
-              {/* Static Content (Always visible/bottom) */}
-              <div className="p-5 flex justify-between items-center group-hover:opacity-0 transition-opacity duration-300">
-                <h3 className="text-white font-semibold text-lg">{project.title}</h3>
-                <div className="flex gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#C4D613]" />
-                  <span className="w-2 h-2 rounded-full bg-[#0367FB]" />
-                </div>
-              </div>
             </motion.div>
           ))}
         </motion.div>

@@ -81,17 +81,18 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 px-4 md:px-10 relative overflow-hidden bg-black/30">
+    <section id="contact" className="pt-8 pb-16 px-4 md:px-10 relative overflow-hidden bg-black/30">
       {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0367FB]/5 blur-[180px] rounded-full"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0367FB]/5 blur-[180px] rounded-full pointer-events-none"></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <motion.div
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C4D613]/10 border border-[#C4D613]/20 text-[#C4D613] text-xs font-bold uppercase tracking-wider mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
             <Sparkles size={14} />
             Let's Collaborate
@@ -101,6 +102,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             Get In <span className="text-[#C4D613]">Touch</span>
           </motion.h2>
@@ -109,39 +111,41 @@ const Contact = () => {
             initial={{ width: 0 }}
             whileInView={{ width: 80 }}
             transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           {/* Info Side */}
           <motion.div 
-            className="lg:col-span-5 space-y-6"
+            className="md:col-span-1 lg:col-span-5 space-y-6"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
-            <div className="bg-gray-900/40 backdrop-blur-xl p-8 rounded-3xl border border-white/5 h-full space-y-8">
+            <div className="bg-gray-900/60 p-6 sm:p-8 rounded-3xl border border-white/5 h-full space-y-6 sm:space-y-8 will-change-transform">
               <div>
-                <h3 className="text-white text-2xl font-bold mb-2">Connect with me</h3>
-                <p className="text-gray-400">Feel free to reach out for collaborations or just a friendly hello!</p>
+                <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">Connect with me</h3>
+                <p className="text-gray-400 text-sm sm:text-base leading-relaxed">Feel free to reach out for collaborations or just a friendly hello!</p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {contactInfo.map((info, index) => (
                   <motion.a
                     key={index}
                     href={info.link}
                     target={info.link?.startsWith('http') ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#C4D613]/30 transition-all group ${!info.link && 'cursor-default'}`}
+                    className={`flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#C4D613]/30 transition-all group ${!info.link && 'cursor-default'} will-change-transform overflow-hidden`}
                     whileHover={info.link ? { x: 10, backgroundColor: "rgba(255,255,255,0.08)" } : {}}
                   >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${info.color}`}>
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 shrink-0 ${info.color}`}>
                       {info.icon}
                     </div>
-                    <div>
-                      <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">{info.label}</p>
-                      <p className="text-white font-medium group-hover:text-[#C4D613] transition-colors">{info.value}</p>
+                    <div className="min-w-0">
+                      <p className="text-gray-500 text-[10px] sm:text-xs font-bold uppercase tracking-widest">{info.label}</p>
+                      <p className="text-white font-medium text-sm sm:text-base group-hover:text-[#C4D613] transition-colors truncate">{info.value}</p>
                     </div>
                   </motion.a>
                 ))}
@@ -151,14 +155,15 @@ const Contact = () => {
 
           {/* Form Side */}
           <motion.div 
-            className="lg:col-span-7"
+            className="md:col-span-1 lg:col-span-7"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <form 
               onSubmit={sendEmail}
-              className="bg-gray-900/40 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-white/5 h-full flex flex-col justify-between"
+              className="bg-gray-900/60 p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/5 h-full flex flex-col justify-between will-change-transform"
             >
               <div className="space-y-6">
                 <div className="flex items-center gap-3 mb-4">

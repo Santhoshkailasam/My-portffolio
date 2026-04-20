@@ -1,10 +1,59 @@
 @import "tailwindcss";
 
-
- :root {
- 
+:root {
   background-color: #000000;
+  color-scheme: dark;
+}
 
+body {
+  margin: 0;
+  background-color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Skip rendering for off-screen sections to save CPU/GPU */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px; /* Placeholder size for better scrollbar stability */
+}
+
+/* Optimization for elements that are transformed frequently */
+.will-change-transform {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Global performance optimization for backdrop filters */
+.backdrop-blur-xl, .backdrop-blur-lg {
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform: translateZ(0);
 }
 
 /* :root {

@@ -75,10 +75,10 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-24 px-4 sm:px-10 bg-black/20 relative overflow-hidden">
+    <section id="experience" className="py-16 px-4 sm:px-10 bg-black/20 relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-1/4 left-0 w-64 h-64 bg-[#0367FB]/5 blur-[120px] rounded-full -translate-x-1/2"></div>
-      <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-[#C4D613]/5 blur-[120px] rounded-full translate-x-1/2"></div>
+      <div className="absolute top-1/4 left-0 w-64 h-64 bg-[#0367FB]/5 blur-[120px] rounded-full -translate-x-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-[#C4D613]/5 blur-[120px] rounded-full translate-x-1/2 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-20">
@@ -86,6 +86,7 @@ const Experience = () => {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0367FB]/10 border border-[#0367FB]/20 text-[#0367FB] text-xs font-bold uppercase tracking-wider mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
             <Briefcase size={14} />
@@ -95,6 +96,7 @@ const Experience = () => {
             className="text-white text-5xl md:text-6xl font-extrabold tracking-tight mb-4"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8 }}
           >
             Work <span className="text-[#C4D613]">Experience</span>
@@ -103,6 +105,7 @@ const Experience = () => {
             className="h-1.5 w-24 bg-[#0367FB] mx-auto rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
         </div>
@@ -112,54 +115,55 @@ const Experience = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10"
         >
           {experiencedata.map((exp, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
               whileHover={{ y: -5 }}
-              className="relative group bg-gray-900/40 backdrop-blur-xl rounded-3xl p-8 border border-white/5 hover:border-white/10 transition-all duration-500 shadow-2xl overflow-hidden"
+              viewport={{ once: true, amount: 0.1 }}
+              className="relative group bg-gray-900/40 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/5 hover:border-white/10 transition-all duration-500 shadow-2xl overflow-hidden"
             >
               {/* Top Accent Gradient */}
               <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${exp.color} opacity-50 group-hover:opacity-100 transition-opacity`}></div>
               
               <div className="flex flex-col h-full">
                 {/* Header */}
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                       <Building2 size={18} className="text-[#C4D613]" />
-                       <h3 className="text-white font-bold text-2xl tracking-tight leading-none group-hover:text-[#C4D613] transition-colors">
+                       <Building2 size={18} className="text-[#C4D613] shrink-0" />
+                       <h3 className="text-white font-bold text-xl sm:text-2xl tracking-tight leading-none group-hover:text-[#C4D613] transition-colors">
                         {exp.company}
                       </h3>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-400 font-medium">
-                      <Briefcase size={14} />
+                    <div className="flex items-center gap-2 text-gray-400 font-medium text-sm sm:text-base">
+                      <Briefcase size={14} className="shrink-0" />
                       <span>{exp.role}</span>
                     </div>
                   </div>
-                  <div className="bg-white/5 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2 text-xs font-bold text-gray-300">
+                  <div className="bg-white/5 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-white/10 flex items-center gap-2 text-[10px] sm:text-xs font-bold text-gray-300 whitespace-nowrap">
                     <Calendar size={14} className="text-[#0367FB]" />
                     {exp.duration}
                   </div>
                 </div>
 
                 {/* Body */}
-                <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 italic">
+                <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6 sm:mb-8 italic font-medium">
                   "{exp.description}"
                 </p>
 
-                <div className="space-y-4 mb-10 flex-grow">
-                  <div className="flex items-center gap-2 text-[#C4D613] text-sm font-bold uppercase tracking-widest">
+                <div className="space-y-4 mb-8 sm:mb-10 flex-grow">
+                  <div className="flex items-center gap-2 text-[#C4D613] text-[10px] sm:text-xs font-bold uppercase tracking-widest">
                     <Sparkles size={14} />
                     Key contributions
                   </div>
                   <ul className="space-y-3">
                     {exp.tasks.map((task, i) => (
-                      <li key={i} className="flex items-start gap-3 group/item">
-                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#0367FB]/60 group-hover/item:bg-[#0367FB] group-hover/item:scale-125 transition-all" />
-                        <span className="text-gray-300 text-sm md:text-base leading-relaxed">
+                      <li key={i} className="flex items-start gap-3 group/item text-sm sm:text-base">
+                        <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#0367FB]/60 group-hover/item:bg-[#0367FB] group-hover/item:scale-125 transition-all shrink-0" />
+                        <span className="text-gray-300 leading-relaxed font-normal">
                           {task}
                         </span>
                       </li>
@@ -173,11 +177,11 @@ const Experience = () => {
                     href={exp.certificate}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full py-3 px-6 bg-white/5 border border-white/10 rounded-2xl text-white font-semibold hover:bg-white/10 hover:border-[#C4D613]/30 transition-all group/btn"
+                    className="inline-flex items-center justify-center gap-2 w-full py-3 px-4 sm:px-6 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl text-white text-sm sm:text-base font-semibold hover:bg-white/10 hover:border-[#C4D613]/30 transition-all group/btn"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <span>View Professional Certificate</span>
+                    <span>View Certificate</span>
                     <ExternalLink size={16} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </motion.a>
                 )}
@@ -185,6 +189,7 @@ const Experience = () => {
             </motion.div>
           ))}
         </motion.div>
+
       </div>
     </section>
   );

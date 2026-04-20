@@ -4,7 +4,7 @@ import { motion,useInView} from "framer-motion";
 import { useState,useRef,useEffect } from "react";
 const Hero =()=>{
 const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.3, once: false });
+  const inView = useInView(ref, { amount: 0.3, once: true });
   const [startTyping, setStartTyping] = useState(false);
   useEffect(() => {
     if (inView) {
@@ -36,78 +36,93 @@ const blurText = {
 };
 
 
-    return(
-        <div className="mx-4 md:mx-[100px] flex flex-col md:flex-row " id="home">
-            <div>
-            <motion.h6 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl text-[#BDD749] mt-20 md:mt-[190px]"
-            ref={ref}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-      >
-    {startTyping ? (
-        <TypeAnimation
-          sequence={["Hello !", 1000]}
-          wrapper="span"
-          speed={50}
-          repeat={0}
-          cursor={false}
-        />
-      ) : (
-        <span className="opacity-0">Hello !</span>
-      )}
-            </motion.h6>
-            {/* Myname */}
-         <motion.h4
-           className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px] whitespace-nowrap"
-           style={{ filter: "blur(var(--blur))", willChange: "filter, opacity" }}
-           variants={blurText}
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: false, amount: 0.3 }}><span className="text-[#ffffff]"> I'M</span> Kailasam N
-         </motion.h4>
-{/* Software */}
-           <motion.h4
-           className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px] whitespace-nowrap"
-           style={{ filter: "blur(var(--blur))", willChange: "filter, opacity" }}
-           variants={blurText}
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: false, amount: 0.3 }}
->
-Software Developer
-           </motion.h4>
-{/* button */}
-<a href="https://drive.google.com/file/d/13BrCMdAUcCDMvUZ6MCgy-rSFSY2UGRZB/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-        <motion.button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]"
-           variants={buttonVariants}
-           initial="initial"
-           whileInView="animate" // triggers on scroll
-           whileHover="hover"
-           viewport={{ once: false, amount: 0.3 }} >Download Resume
-        </motion.button>
-        </a>
-        </div>
-{/* Image */}
-            <div className="" >
-                <motion.img src="/Ellipse 1.png" alt="ellipse Image " 
-               className="absolute left-1/2 transform -translate-x-1/2 mt-16 w-[90%] max-w-[500px] h-auto
-md:left-auto md:translate-x-0 md:mt-[140px] md:ml-[100px] md:w-auto"
-                initial={{ x: -200, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-                viewport={{ once: false, amount: 0.3 }} />
+    return (
+        <div className="mx-4 md:mx-[100px] flex flex-col md:flex-row relative" id="home">
+            <div className="z-10 w-full mb-10 md:mb-0">
+                <motion.h6 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#BDD749] mt-20 md:mt-[190px]"
+                    ref={ref}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                >
+                    {startTyping ? (
+                        <TypeAnimation
+                            sequence={["Hello !", 1000]}
+                            wrapper="span"
+                            speed={50}
+                            repeat={0}
+                            cursor={false}
+                        />
+                    ) : (
+                        <span className="opacity-0">Hello !</span>
+                    )}
+                </motion.h6>
 
-                 <motion.img src="/heros.png" alt="Hero Image" 
-                  className="absolute left-1/2 transform -translate-x-1/2 mt-5 w-[30%] max-w-[500px] h-auto
-md:left-auto md:translate-x-0 md:mt-[70px] md:ml-[250px] md:w-auto"
-                 initial={{ x: 200, opacity: 0 }}
-                 whileInView={{ x: 0, opacity: 1 }}
-                 transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
-                 viewport={{ once: false, amount: 0.3 }} />
+                {/* Myname */}
+                <motion.h4
+                    className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px]"
+                    style={{ filter: "blur(var(--blur))" }}
+                    variants={blurText}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
+                    <span className="text-white">I'M</span> Kailasam N
+                </motion.h4>
+
+                {/* Software */}
+                <motion.h4
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px]"
+                    style={{ filter: "blur(var(--blur))" }}
+                    variants={blurText}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
+                    Software Developer
+                </motion.h4>
+
+                {/* button */}
+                <a href="https://drive.google.com/file/d/13BrCMdAUcCDMvUZ6MCgy-rSFSY2UGRZB/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                    <motion.button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]"
+                        variants={buttonVariants}
+                        initial="initial"
+                        whileInView="animate"
+                        whileHover="hover"
+                        viewport={{ once: true, amount: 0.3 }}
+                    >
+                        Download Resume
+                    </motion.button>
+                </a>
             </div>
-           
+
+            {/* Image Container */}
+            <div className="relative w-full h-[400px] md:h-auto pointer-events-none">
+                <motion.img 
+                    src="/Ellipse 1.png" 
+                    alt="Background Ellipse" 
+                    className="absolute left-1/2 transform -translate-x-1/2 mt-16 w-[90%] max-w-[500px] h-auto md:left-auto md:translate-x-0 md:mt-[140px] md:ml-[100px] md:w-auto opacity-80"
+                    fetchPriority="high"
+                    initial={{ x: -200, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 2, ease: "easeInOut" }}
+                    viewport={{ once: true, amount: 0.3 }}
+                />
+
+                <motion.img 
+                    src="/heros.png" 
+                    alt="Hero Character" 
+                    className="absolute left-1/2 transform -translate-x-1/2 mt-5 w-[30%] max-w-[500px] h-auto md:left-auto md:translate-x-0 md:mt-[70px] md:ml-[250px] md:w-auto z-10"
+                    fetchPriority="high"
+                    initial={{ x: 200, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                />
+            </div>
         </div>
+    
+
     )
 }
 export default Hero;
