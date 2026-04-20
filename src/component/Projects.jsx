@@ -43,9 +43,14 @@ const Projectslist = [
 
 const Projects = () => {
   const [activeMobile, setActiveMobile] = useState(null);
+  const [loadedImages, setLoadedImages] = useState({});
   const containerRef = useRef(null);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const isInView = useInView(containerRef, { once: true, amount: 0.1 });
+
+  const handleImageLoad = (id) => {
+    setLoadedImages(prev => ({ ...prev, [id]: true }));
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -131,21 +136,29 @@ const Projects = () => {
               }}
             >
               {/* Image Container */}
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className="relative aspect-[16/10] overflow-hidden skeleton">
+                {/* Skeleton Loader Overlay */}
+                {!loadedImages[project.id] && (
+                  <div className="absolute inset-0 z-10 bg-gray-900 skeleton" />
+                )}
+                
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className={`w-full h-full object-cover transition-all duration-700 ${
+                    loadedImages[project.id] ? "opacity-100 scale-100" : "opacity-0 scale-110"
+                  } group-hover:scale-110`}
                   loading="lazy"
+                  onLoad={() => handleImageLoad(project.id)}
                 />
                 
                 {/* Integrated Floating Header (Glassmorphism) */}
                 <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-20 bg-gradient-to-b from-black/60 to-transparent">
-                  <div className="px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center gap-2">
+                  <div className="px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#C4D613] animate-pulse" />
                     <h3 className="text-white font-bold text-sm tracking-wide uppercase">{project.title}</h3>
                   </div>
-                  <div className="flex gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                  <div className="flex gap-2 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
                     <div className="w-2 h-2 rounded-full bg-[#0367FB]/80 shadow-[0_0_8px_#0367FB]" />
                     <div className="w-2 h-2 rounded-full bg-[#C4D613]/80 shadow-[0_0_8px_#C4D613]" />
                   </div>
@@ -156,7 +169,7 @@ const Projects = () => {
                 {/* Overlay Hint (Bottom) */}
                 {!activeMobile && (
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-white/70 text-[10px] uppercase font-bold tracking-widest bg-white/5 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+                    <span className="text-white/70 text-[10px] uppercase font-bold tracking-widest bg-white/5 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/10">
                        Click to explore
                     </span>
                   </div>
@@ -165,7 +178,7 @@ const Projects = () => {
 
               {/* Content Overlay - Revealed on Hover */}
               <motion.div
-                className="absolute inset-0 bg-gray-950/95 backdrop-blur-xl p-6 sm:p-10 flex flex-col justify-end items-start text-left z-30"
+                className="absolute inset-0 bg-gray-950/95 backdrop-blur-md p-6 sm:p-10 flex flex-col justify-end items-start text-left z-30"
                 initial={{ opacity: 0, y: 20 }}
                 animate={
                   isMobile

@@ -87,7 +87,7 @@ const Education = () => {
                                     {/* Content Card */}
                                     <div className="w-full md:w-[45%]">
                                         <motion.div 
-                                            className="bg-gray-900/40 backdrop-blur-lg border border-white/5 p-5 sm:p-6 md:p-8 rounded-3xl hover:border-white/10 transition-all duration-500 shadow-2xl group relative"
+                                            className="bg-gray-900/40 backdrop-blur-sm border border-white/5 p-5 sm:p-6 md:p-8 rounded-3xl hover:border-white/10 transition-all duration-500 shadow-2xl group relative"
                                             initial={{ opacity: 0, x: isLeft ? 50 : -50 }}
                                             whileInView={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
