@@ -34,8 +34,8 @@ const Education = () => {
     return (
         <section id="education" className="min-h-screen py-16 px-4 bg-black/10 relative overflow-hidden">
             {/* Background Accents */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0367FB]/5 blur-[150px] rounded-full -mr-64 -mt-64 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C4D613]/5 blur-[150px] rounded-full -ml-64 -mb-64 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0367FB]/5 blur-[100px] rounded-full -mr-64 -mt-64 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C4D613]/5 blur-[100px] rounded-full -ml-64 -mb-64 pointer-events-none"></div>
 
             <div className="max-w-5xl mx-auto relative z-10">
                 <div className="text-center mb-20">
@@ -87,7 +87,7 @@ const Education = () => {
                                     {/* Content Card */}
                                     <div className="w-full md:w-[45%]">
                                         <motion.div 
-                                            className="bg-gray-900/40 backdrop-blur-sm border border-white/5 p-5 sm:p-6 md:p-8 rounded-3xl hover:border-white/10 transition-all duration-500 shadow-2xl group relative"
+                                            className="bg-gray-900/80 border border-white/5 p-5 sm:p-6 md:p-8 rounded-3xl hover:border-white/10 transition-all duration-500 shadow-2xl group relative"
                                             initial={{ opacity: 0, x: isLeft ? 50 : -50 }}
                                             whileInView={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}

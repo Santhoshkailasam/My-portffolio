@@ -2,10 +2,14 @@ import React, { Suspense, lazy } from 'react';
 import Navbar from '../component/navbar';
 import Hero from '../component/Hero';
 import BackgroundVideo from '../component/bgvideo';
+import ErrorBoundary from '../component/ErrorBoundary';
 
 const About = lazy(() => import('../component/About'));
 const Education = lazy(() => import('../component/Education'));
 const Projects = lazy(() => import('../component/Projects'));
+const GitHubActivity = lazy(() => import('../component/GitHubActivity'));
+const GamifiedSection = lazy(() => import('../component/GamifiedSection'));
+const Terminal = lazy(() => import('../component/Terminal'));
 const Experience = lazy(() => import('../component/Experience'));
 const Contact = lazy(() => import('../component/Contact'));
 
@@ -22,9 +26,18 @@ const LandingPage = () => {
             <Hero />
             <Suspense fallback={<LoadingFallback />}>
                 <About />
+                <ErrorBoundary>
+                  <GamifiedSection />
+                </ErrorBoundary>
                 <Education />
                 <Projects />
+                <ErrorBoundary>
+                  <GitHubActivity />
+                </ErrorBoundary>
                 <Experience />
+                <ErrorBoundary>
+                  <Terminal />
+                </ErrorBoundary>
                 <Contact />
             </Suspense>
             <footer className="bg-gray-800 text-white text-center p-4">

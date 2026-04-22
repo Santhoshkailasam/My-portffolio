@@ -11,7 +11,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  will-change: scroll-position;
 }
 
 html.lenis, html.lenis body {
@@ -38,13 +37,11 @@ html.lenis, html.lenis body {
 section {
   content-visibility: auto;
   contain-intrinsic-size: 1px 1000px; /* Placeholder size for better scrollbar stability */
-  transform: translateZ(0);
 }
 
 /* Optimization for elements that are transformed frequently */
 .will-change-transform {
   will-change: transform;
-  transform: translate3d(0,0,0);
 }
 
 .will-change-opacity {
@@ -53,19 +50,13 @@ section {
 
 /* Global performance optimization for backdrop filters */
 .backdrop-blur-xl {
-  backdrop-filter: blur(8px); /* Downgraded from 24px */
-  -webkit-backdrop-filter: blur(8px);
-  backface-visibility: hidden;
-  perspective: 1000;
-  transform: translate3d(0,0,0);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 .backdrop-blur-lg {
-  backdrop-filter: blur(4px); /* Downgraded from 16px */
-  -webkit-backdrop-filter: blur(4px);
-  backface-visibility: hidden;
-  perspective: 1000;
-  transform: translate3d(0,0,0);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 }
 
 /* Premium Skeleton Shimmer Effect */

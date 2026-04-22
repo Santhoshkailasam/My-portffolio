@@ -16,7 +16,7 @@ const About = () => {
         { name: "React Native", percent: 80, color: "from-[#FF9800] to-[#FFB74D]" },
         { name: "Next JS", percent: 60, color: "from-[#2196F3] to-[#64B5F6]" },
         { name: "JavaScript", percent: 40, color: "from-[#FFEB3B] to-[#FFF176]" },
-        { name: "Tailwind CSS", percent: 60, color: "from-[#00BCD4] to-[#4DD0E1]" },
+        { name: "Fast API", percent: 60, color: "from-[#00BCD4] to-[#4DD0E1]" },
     ];
 
     const containerVariants = {
@@ -76,7 +76,7 @@ const About = () => {
                         whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
-                        <div className="absolute -inset-4 bg-gradient-to-tr from-[#0367FB]/20 to-[#C4D613]/20 rounded-2xl opacity-20 blur-2xl group-hover:opacity-40 transition duration-1000 will-change-opacity pointer-events-none"></div>
+                        <div className="absolute -inset-4 bg-gradient-to-tr from-[#0367FB]/10 to-[#C4D613]/10 rounded-2xl opacity-30 pointer-events-none"></div>
                         <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-[#C4D613]/50 transition-colors duration-500 shadow-2xl bg-gray-900/40">
                             <img
                                 src="/mine.webp"
@@ -94,7 +94,7 @@ const About = () => {
 
                     {/* Info and Skills Card */}
                     <motion.div
-                        className="w-full lg:max-w-xl bg-gray-900/60 border border-white/5 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden group will-change-transform"
+                        className="w-full lg:max-w-xl bg-gray-900/60 border border-white/5 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden group"
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -150,7 +150,8 @@ const About = () => {
                                                 className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
                                                 initial={{ width: "0%" }}
                                                 whileInView={{ width: `${skill.percent}%` }}
-                                                transition={{ duration: 1.5, ease: "circOut", delay: index * 0.1 }}
+                                                transition={{ duration: 1, ease: "easeOut", delay: index * 0.08 }}
+                                                viewport={{ once: true }}
                                             />
                                         </div>
                                     </motion.div>

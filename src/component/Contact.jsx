@@ -83,7 +83,7 @@ const Contact = () => {
   return (
     <section id="contact" className="pt-8 pb-16 px-4 md:px-10 relative overflow-hidden bg-black/30">
       {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0367FB]/5 blur-[180px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0367FB]/5 blur-[120px] rounded-full pointer-events-none"></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-10">
@@ -124,7 +124,7 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.1 }}
           >
-            <div className="bg-gray-900/60 p-6 sm:p-8 rounded-3xl border border-white/5 h-full space-y-6 sm:space-y-8 will-change-transform">
+            <div className="bg-gray-900/60 p-6 sm:p-8 rounded-3xl border border-white/5 h-full space-y-6 sm:space-y-8">
               <div>
                 <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">Connect with me</h3>
                 <p className="text-gray-400 text-sm sm:text-base leading-relaxed">Feel free to reach out for collaborations or just a friendly hello!</p>
@@ -137,7 +137,7 @@ const Contact = () => {
                     href={info.link}
                     target={info.link?.startsWith('http') ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#C4D613]/30 transition-all group ${!info.link && 'cursor-default'} will-change-transform overflow-hidden`}
+                    className={`flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#C4D613]/30 transition-all group ${!info.link && 'cursor-default'} overflow-hidden`}
                     whileHover={info.link ? { x: 10, backgroundColor: "rgba(255,255,255,0.08)" } : {}}
                   >
                     <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 shrink-0 ${info.color}`}>
@@ -163,7 +163,7 @@ const Contact = () => {
           >
             <form 
               onSubmit={sendEmail}
-              className="bg-gray-900/60 p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/5 h-full flex flex-col justify-between will-change-transform"
+              className="bg-gray-900/60 p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/5 h-full flex flex-col justify-between"
             >
               <div className="space-y-6">
                 <div className="flex items-center gap-3 mb-4">

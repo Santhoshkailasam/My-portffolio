@@ -14,7 +14,6 @@ const App = () => {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
-      syncTouch: true,
     });
 
     function raf(time) {

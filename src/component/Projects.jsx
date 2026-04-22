@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { ExternalLink, Github, MonitorPlay } from "lucide-react";
+import DemoModal from "./DemoModal";
 
 const Projectslist = [
   {
@@ -38,12 +39,43 @@ const Projectslist = [
     image: "/retro_music.png",
     btn: "View Project",
     link: "https://github.com/Santhoshkailasam/90sToyMobile.git",
+  },
+  {
+    id: 5,
+    title: "Farmer Scheme",
+    description:
+      "A comprehensive web platform dedicated to helping farmers discover and apply for government schemes and subsidies. Features real-time updates and simplified application processes.",
+    image: "/farmer_scheme.png",
+    btn: "View Project",
+    link: "https://github.com/Santhoshkailasam/Farmer-schemes-web.git",
+    type: "website"
+  },
+  {
+    id: 6,
+    title: "Farmer App",
+    description:
+      "A React Native mobile application for farmers to manage their crops, check weather forecasts, and connect with local markets directly from their smartphones.",
+    image: "/farmer_app.png",
+    btn: "View Project",
+    link: "https://github.com/Santhoshkailasam/Final-year-project.git",
   }
 ];
 
 const Projects = () => {
   const [activeMobile, setActiveMobile] = useState(null);
   const [loadedImages, setLoadedImages] = useState({});
+  const [activeDemoProject, setActiveDemoProject] = useState(null);
+  const [demoOpen, setDemoOpen] = useState(false);
+
+  const openDemo = (e, project) => {
+    e.stopPropagation();
+    setActiveDemoProject(project);
+    setDemoOpen(true);
+  };
+  const closeDemo = () => {
+    setDemoOpen(false);
+    setTimeout(() => setActiveDemoProject(null), 300);
+  };
   const containerRef = useRef(null);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const isInView = useInView(containerRef, { once: true, amount: 0.1 });
@@ -127,8 +159,7 @@ const Projects = () => {
               key={project.id}
               variants={cardVariants}
               whileHover={{ y: -10 }}
-              className="relative group bg-gray-950 rounded-3xl overflow-hidden border border-white/10 hover:border-[#C4D613]/40 transition-all duration-500 shadow-2xl will-change-transform transform translate-z-0"
-              style={{ transform: 'translateZ(0)' }}
+              className="relative group bg-gray-950 rounded-3xl overflow-hidden border border-white/10 hover:border-[#C4D613]/40 transition-colors duration-300 shadow-2xl"
               onClick={() => {
                 if (isMobile) {
                   setActiveMobile(activeMobile === project.id ? null : project.id);
@@ -145,10 +176,11 @@ const Projects = () => {
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className={`w-full h-full object-cover transition-all duration-700 ${
+                  className={`w-full h-full object-cover ${
                     loadedImages[project.id] ? "opacity-100 scale-100" : "opacity-0 scale-110"
                   } group-hover:scale-110`}
                   loading="lazy"
+                  decoding="async"
                   onLoad={() => handleImageLoad(project.id)}
                 />
                 
@@ -178,7 +210,7 @@ const Projects = () => {
 
               {/* Content Overlay - Revealed on Hover */}
               <motion.div
-                className="absolute inset-0 bg-gray-950/95 backdrop-blur-md p-6 sm:p-10 flex flex-col justify-end items-start text-left z-30"
+                className="absolute inset-0 bg-gray-950/96 p-6 sm:p-10 flex flex-col justify-end items-start text-left z-30"
                 initial={{ opacity: 0, y: 20 }}
                 animate={
                   isMobile
@@ -200,24 +232,31 @@ const Projects = () => {
                     {project.description}
                   </p>
                   
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 flex-wrap">
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-[#0367FB] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-xl shadow-blue-500/20"
+                      className="flex items-center gap-2 bg-[#0367FB] text-white px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-xl shadow-blue-500/20"
                     >
-                      <Github size={18} />
+                      <Github size={16} />
                       View Source
                     </a>
+                    <button
+                      onClick={(e) => openDemo(e, project)}
+                      className="flex items-center gap-2 bg-[#C4D613] text-black px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-black hover:bg-[#C4D613]/80 transition-all duration-300 shadow-xl shadow-yellow-400/20 cursor-pointer"
+                    >
+                      <MonitorPlay size={16} />
+                      Try Demo
+                    </button>
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white hover:bg-[#C4D613] hover:text-black transition-all duration-300"
+                      className="p-2.5 rounded-2xl bg-white/5 border border-white/10 text-white hover:bg-white/15 transition-all duration-300"
                       title="Live Demo"
                     >
-                      <ExternalLink size={20} />
+                      <ExternalLink size={18} />
                     </a>
                   </div>
                 </div>
@@ -226,6 +265,12 @@ const Projects = () => {
           ))}
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {demoOpen && activeDemoProject && (
+          <DemoModal project={activeDemoProject} onClose={closeDemo} />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

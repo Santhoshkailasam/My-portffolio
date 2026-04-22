@@ -27,11 +27,11 @@ const ref = useRef(null);
   }
 };
 const blurText = {
-  hidden: { opacity: 0, "--blur": "12px" },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    "--blur": "0px",
-    transition: { duration: 1.2, ease: "easeOut" }
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" }
   }
 };
 
@@ -61,7 +61,6 @@ const blurText = {
                 {/* Myname */}
                 <motion.h4
                     className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px]"
-                    style={{ filter: "blur(var(--blur))" }}
                     variants={blurText}
                     initial="hidden"
                     whileInView="visible"
@@ -73,7 +72,6 @@ const blurText = {
                 {/* Software */}
                 <motion.h4
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px]"
-                    style={{ filter: "blur(var(--blur))" }}
                     variants={blurText}
                     initial="hidden"
                     whileInView="visible"
@@ -103,9 +101,9 @@ const blurText = {
                     alt="Background Ellipse" 
                     className="absolute left-1/2 transform -translate-x-1/2 mt-16 w-[90%] max-w-[500px] h-auto md:left-auto md:translate-x-0 md:mt-[140px] md:ml-[100px] md:w-auto opacity-80"
                     fetchPriority="high"
-                    initial={{ x: -200, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 2, ease: "easeInOut" }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true, amount: 0.3 }}
                 />
 
@@ -114,9 +112,9 @@ const blurText = {
                     alt="Hero Character" 
                     className="absolute left-1/2 transform -translate-x-1/2 mt-5 w-[30%] max-w-[500px] h-auto md:left-auto md:translate-x-0 md:mt-[70px] md:ml-[250px] md:w-auto z-10"
                     fetchPriority="high"
-                    initial={{ x: 200, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                     viewport={{ once: true, amount: 0.3 }}
                 />
             </div>

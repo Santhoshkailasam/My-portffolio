@@ -60,7 +60,7 @@ const BackgroundVideo = () => {
           loop
           muted
           playsInline
-          className="fixed top-0 left-0 w-full h-full object-cover z-[-1] transition-opacity duration-1000 will-change-opacity"
+          className="fixed top-0 left-0 w-full h-full object-cover z-[-1] transition-opacity duration-1000 will-change-opacity pointer-events-none"
           style={{ opacity: isVisible ? 0.3 : 0 }}
         >
           {/* Only render source if on desktop and likely to be seen soon */}
