@@ -156,7 +156,6 @@ const Terminal = () => {
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
                             spellCheck="false"
-                            autoFocus
                         />
                         <span className="cursor">_</span>
                     </div>
