@@ -145,11 +145,26 @@ const GitHubActivity = () => {
                 </motion.div>
 
                 {/* Fun Interaction Tip */}
-                <div className="mt-8 flex items-center justify-center gap-4 py-4 px-6 bg-white/5 border border-white/5 rounded-2xl max-w-fit mx-auto">
-                    <Zap size={16} className="text-[#C4D613] animate-pulse" />
-                    <p className="text-gray-400 text-xs font-medium">
-                        Showing my <span className="text-white font-bold">real-time commit history</span> directly from the GitHub API.
-                    </p>
+                <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-6">
+                    <div className="flex items-center gap-4 py-4 px-6 bg-white/5 border border-white/5 rounded-2xl">
+                        <Zap size={16} className="text-[#C4D613] animate-pulse" />
+                        <p className="text-gray-400 text-xs font-medium">
+                            Showing my <span className="text-white font-bold">real-time commit history</span> directly from the GitHub API.
+                        </p>
+                    </div>
+                    
+                    <motion.a
+                        href="https://github.com/Santhoshkailasam"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative flex items-center gap-3 px-8 py-4 bg-[#C4D613] text-black font-black rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(196,214,19,0.3)] hover:shadow-[0_0_50px_rgba(196,214,19,0.5)] transition-all"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+                        <Github size={20} />
+                        <span className="uppercase tracking-tighter">Navigate to GitHub</span>
+                    </motion.a>
                 </div>
             </div>
         </section>

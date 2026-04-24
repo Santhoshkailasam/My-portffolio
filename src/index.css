@@ -157,3 +157,41 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+/* --- Developer Mode Themes --- */
+
+.matrix-theme {
+    filter: sepia(1) hue-rotate(80deg) brightness(0.8) contrast(1.2);
+}
+
+.synthwave-theme {
+    filter: hue-rotate(280deg) brightness(1.1) contrast(1.1);
+}
+
+.wireframe-mode * {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+.wireframe-mode img, 
+.wireframe-mode video {
+    opacity: 0.1;
+}
+
+/* Custom Scrollbar for HUD */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(196, 214, 19, 0.2);
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(196, 214, 19, 0.5);
+}
