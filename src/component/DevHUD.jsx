@@ -20,9 +20,18 @@ const DevHUD = () => {
     const [isResyncing, setIsResyncing] = useState(false);
 
     useEffect(() => {
-        const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
-        window.addEventListener('mousemove', handleMouseMove);
+        let lastUpdate = 0;
+        const throttleMs = 50; // Update every 50ms (20fps) for mouse tracking
+
+        const handleMouseMove = (e) => {
+            const now = performance.now();
+            if (now - lastUpdate >= throttleMs) {
+                setMousePos({ x: e.clientX, y: e.clientY });
+                lastUpdate = now;
+            }
+        };
         
+        window.addEventListener('mousemove', handleMouseMove);
         const uptimeInterval = setInterval(() => setUptime(prev => prev + 1), 1000);
         
         return () => {
@@ -102,7 +111,7 @@ const DevHUD = () => {
 
                         {/* Theme Selector */}
                         <ControlSection title="Color Injection">
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className="grid grid-cols-3 gap-3 p-1">
                                 <ThemeButton active={theme === 'default'} onClick={() => setTheme('default')} color="bg-[#0367FB]" label="Cyber" />
                                 <ThemeButton active={theme === 'matrix'} onClick={() => setTheme('matrix')} color="bg-green-500" label="Neo" />
                                 <ThemeButton active={theme === 'synthwave'} onClick={() => setTheme('synthwave')} color="bg-pink-500" label="Synth" />

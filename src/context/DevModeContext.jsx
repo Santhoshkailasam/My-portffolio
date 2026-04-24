@@ -16,39 +16,49 @@ export const DevModeProvider = ({ children }) => {
     const [glitch, setGlitch] = useState(false);
 
     useEffect(() => {
+        if (!isDevMode) return;
+
         let frameCount = 0;
         let lastTime = performance.now();
-        
+        let animationFrameId;
+
         const updateFPS = () => {
+            if (document.hidden) {
+                animationFrameId = requestAnimationFrame(updateFPS);
+                return;
+            }
+
             const now = performance.now();
             frameCount++;
             if (now - lastTime >= 1000) {
                 setStats(prev => ({ 
                     ...prev, 
                     fps: frameCount,
-                    nodes: document.querySelectorAll('*').length,
-                    renderTime: (Math.random() * 5 + 2).toFixed(1) + 'ms'
+                    // Only count nodes every second, which is still often but acceptable in dev mode
+                    nodes: document.getElementsByTagName('*').length,
+                    renderTime: (Math.random() * 2 + 1).toFixed(1) + 'ms'
                 }));
                 frameCount = 0;
                 lastTime = now;
             }
-            requestAnimationFrame(updateFPS);
+            animationFrameId = requestAnimationFrame(updateFPS);
         };
 
-        const fpsId = requestAnimationFrame(updateFPS);
+        animationFrameId = requestAnimationFrame(updateFPS);
         
         const memInterval = setInterval(() => {
+            if (document.hidden) return;
             setStats(prev => ({ 
                 ...prev, 
-                memory: (Math.random() * 50 + 200).toFixed(1)
+                memory: (Math.random() * 30 + 150).toFixed(1)
             }));
-        }, 3000);
+        }, 5000); // Increased interval to 5s
 
         return () => {
-            cancelAnimationFrame(fpsId);
+            cancelAnimationFrame(animationFrameId);
             clearInterval(memInterval);
         };
-    }, []);
+    }, [isDevMode]);
 
 
     const [xray, setXray] = useState(false);
