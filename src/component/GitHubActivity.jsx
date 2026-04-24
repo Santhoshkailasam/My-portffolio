@@ -66,7 +66,7 @@ const GitHubActivity = () => {
     };
 
     return (
-        <section className="py-20 px-4 md:px-10 bg-black relative overflow-hidden">
+        <section className="py-1 px-4 md:px-10 bg-black relative overflow-hidden">
             {/* Ambient Background */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#0367FB]/5 blur-[120px] rounded-full pointer-events-none"></div>
 

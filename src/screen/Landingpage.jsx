@@ -20,30 +20,32 @@ const LoadingFallback = () => (
 );
 const LandingPage = () => {
     return (
-        <div className="relative min-h-screen overflow-hidden">
-            <BackgroundVideo />
-            <Navbar />
-            <Hero />
-            <Suspense fallback={<LoadingFallback />}>
-                <About />
-                <ErrorBoundary>
-                  <GamifiedSection />
-                </ErrorBoundary>
-                <Education />
-                <Projects />
-                <ErrorBoundary>
-                  <GitHubActivity />
-                </ErrorBoundary>
-                <Experience />
-                <ErrorBoundary>
-                  <Terminal />
-                </ErrorBoundary>
-                <Contact />
-            </Suspense>
-            <footer className="bg-gray-800 text-white text-center p-4">
-                <p>&copy; {new Date().getFullYear()} My Portfolio. All rights reserved.</p>
-            </footer>
-        </div>
-    )
+      <div className="relative min-h-screen overflow-hidden">
+        <BackgroundVideo />
+        <Navbar />
+        <Hero />
+        <Suspense fallback={<LoadingFallback />}>
+          <About />
+          <ErrorBoundary>
+            <GamifiedSection />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <GitHubActivity />
+          </ErrorBoundary>
+          <Education />
+          <Projects />
+          <Experience />
+          <ErrorBoundary>
+            <Terminal />
+          </ErrorBoundary>
+          <Contact />
+        </Suspense>
+        <footer className="bg-gray-800 text-white text-center p-4">
+          <p>
+            &copy; {new Date().getFullYear()} My Portfolio. All rights reserved.
+          </p>
+        </footer>
+      </div>
+    );
 }
 export default LandingPage;
