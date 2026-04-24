@@ -71,11 +71,7 @@ const [isHunting, setIsHunting] = useState(false);
     };
 
     return (
-        <section className="py-24 px-4 md:px-10 bg-black relative overflow-hidden">
-            {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0367FB]/10 blur-[150px] rounded-full -mr-64 -mt-64 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#C4D613]/5 blur-[150px] rounded-full -ml-64 -mb-64 pointer-events-none"></div>
-
+        <section className="py-24 px-4 md:px-10 relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
                 <div className="text-center mb-16">
                     <motion.div
