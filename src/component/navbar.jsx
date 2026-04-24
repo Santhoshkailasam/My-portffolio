@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Rocket, Sparkles } from "lucide-react";
+import { Menu, X, Rocket, Sparkles, Github, Linkedin, Instagram, Mail } from "lucide-react";
 import { useDevMode } from "../context/DevModeContext";
 
 const Navbar = () => {
@@ -11,7 +11,10 @@ const Navbar = () => {
     const { toggleDevMode } = useDevMode();
 
     useEffect(() => {
-        // Show hint after 3 seconds
+        // Show hint after 3 seconds, but not on mobile
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) return;
+
         const timer = setTimeout(() => setShowHint(true), 3000);
         // Hide hint after 13 seconds
         const hideTimer = setTimeout(() => setShowHint(false), 13000);
@@ -20,6 +23,17 @@ const Navbar = () => {
             clearTimeout(hideTimer);
         };
     }, []);
+
+    useEffect(() => {
+        if (nav) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [nav]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -138,58 +152,113 @@ const Navbar = () => {
             {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {nav && (
-                    <motion.div
-                        initial={{ opacity: 0, x: "100%" }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: "100%" }}
-                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 h-[100dvh] bg-gray-950 flex flex-col items-center justify-center p-6 z-[60]"
-                    >
-                        {/* Decorative Background for Mobile Menu */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#0367FB]/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#C4D613]/10 blur-[100px] rounded-full -ml-32 -mb-32"></div>
-
-                        <button 
-                            onClick={() => setNav(false)} 
-                            className="absolute top-6 right-6 text-white p-3 rounded-2xl bg-white/5 border border-white/10"
-                            aria-label="Close menu"
-                        >
-                            <X size={24} />
-                        </button>
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setNav(false)}
+                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
+                        />
                         
-                        <ul className="space-y-6 sm:space-y-8 text-center relative z-10">
-                            {navLinks.map((link, i) => (
-                                <motion.li 
-                                    key={link.name}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: i * 0.1 }}
+                        {/* Drawer */}
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="fixed right-0 top-0 h-[100dvh] w-[80%] max-w-[400px] bg-gray-950/98 backdrop-blur-2xl flex flex-col z-[60] shadow-2xl border-l border-white/10 overflow-hidden"
+                        >
+                            {/* Decorative background elements */}
+                            <div className="absolute top-[-5%] right-[-5%] w-[150px] h-[150px] bg-[#0367FB]/10 blur-[80px] rounded-full" />
+                            <div className="absolute bottom-[-5%] left-[-5%] w-[150px] h-[150px] bg-[#C4D613]/10 blur-[80px] rounded-full" />
+
+                            {/* Header */}
+                            <div className="flex justify-between items-center p-6 border-b border-white/5">
+                                <span className="text-white font-black text-lg tracking-tighter">
+                                    KAILASAM<span className="text-[#C4D613]">PORT</span>
+                                </span>
+                                <button 
+                                    onClick={() => setNav(false)} 
+                                    className="text-white p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-95 transition-all"
+                                    aria-label="Close menu"
                                 >
-                                    <a
-                                        href={link.href}
-                                        onClick={() => setNav(false)}
-                                        className="text-white text-3xl sm:text-4xl font-extrabold hover:text-[#C4D613] transition-colors"
-                                    >
-                                        {link.name}
-                                    </a>
-                                </motion.li>
-                            ))}
-                            <motion.li 
-                                initial={{ opacity: 0, y: 20 }}
+                                    <X size={20} />
+                                </button>
+                            </div>
+                            
+                            {/* Navigation Links */}
+                            <div className="flex-1 flex flex-col px-8 py-10 overflow-y-auto min-h-0" data-lenis-prevent>
+                                <nav>
+                                    <ul className="space-y-4">
+                                        {navLinks.map((link, i) => (
+                                            <motion.li 
+                                                key={link.name}
+                                                initial={{ opacity: 0, x: 20 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
+                                            >
+                                                <a
+                                                    href={link.href}
+                                                    onClick={() => setNav(false)}
+                                                    className="group flex items-center justify-between py-3"
+                                                >
+                                                    <span className="text-3xl font-black text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tighter">
+                                                        {link.name}
+                                                    </span>
+                                                    <motion.div 
+                                                        className="w-0 h-0.5 bg-[#C4D613] group-hover:w-8 transition-all duration-300"
+                                                    />
+                                                </a>
+                                            </motion.li>
+                                        ))}
+                                        <motion.li 
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.1 + navLinks.length * 0.05, duration: 0.4 }}
+                                            className="pt-6"
+                                        >
+                                            <a 
+                                                href="#contact" 
+                                                onClick={() => setNav(false)}
+                                                className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-[#0367FB] to-[#0367FB]/80 text-white font-bold text-lg shadow-xl shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-3"
+                                            >
+                                                Hire Me <Rocket size={18} />
+                                            </a>
+                                        </motion.li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            {/* Footer Socials */}
+                            <motion.div 
+                                initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: navLinks.length * 0.1 }}
-                                className="pt-6"
+                                transition={{ delay: 0.4 }}
+                                className="p-8 border-t border-white/5 bg-white/[0.01]"
                             >
-                                <a 
-                                    href="#contact" 
-                                    onClick={() => setNav(false)}
-                                    className="px-10 py-4 rounded-full bg-[#0367FB] text-white font-bold text-lg shadow-lg shadow-blue-500/20 inline-block"
-                                >
-                                    Hire Me
-                                </a>
-                            </motion.li>
-                        </ul>
-                    </motion.div>
+                                <p className="text-white/30 text-[10px] uppercase tracking-[0.2em] font-bold mb-5">Connect</p>
+                                <div className="flex justify-between items-center">
+                                    {[
+                                        { icon: <Github size={20} />, href: "https://github.com/Santhoshkailasam" },
+                                        { icon: <Linkedin size={20} />, href: "https://linkedin.com/in/santhosh-kailasam" },
+                                        { icon: <Mail size={20} />, href: "mailto:contact@santhoshkailasam.com" }
+                                    ].map((social, i) => (
+                                        <a 
+                                            key={i}
+                                            href={social.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#C4D613] hover:border-[#C4D613]/20 hover:bg-[#C4D613]/5 transition-all active:scale-90"
+                                        >
+                                            {social.icon}
+                                        </a>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </motion.div>
+                    </>
                 )}
             </AnimatePresence>
         </motion.nav>
