@@ -8,8 +8,9 @@ const Terminal = () => {
         { type: 'system', content: 'SYSTEM BOOT SEQUENCE INITIATED...' },
         { type: 'system', content: 'LOADING KERNEL 5.10.0-PORTFOLIO...' },
         { type: 'system', content: 'ESTABLISHING SECURE CONNECTION TO KAILASAM.IO...' },
-        { type: 'system', content: 'WELCOME TO KAILASAM OS v1.0.0' },
-        { type: 'system', content: '----------------------------------------' },
+        {type: 'system', content: 'WELCOME TO KAILASAM OS v1.0.0' },
+        {type: 'system', content: 'SECRET_PROTOCOL: UP DOWN LEFT RIGHT TO OVERRIDE' },
+        {type: 'system', content: '----------------------------------------' },
         { type: 'system', content: '[ PRESS ENTER TO VIEW AVAILABLE COMMANDS ]' },
     ]);
     const [commandHistory, setCommandHistory] = useState([]);

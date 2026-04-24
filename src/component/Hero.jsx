@@ -2,8 +2,8 @@ import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import { motion,useInView} from "framer-motion";
 import { useState,useRef,useEffect } from "react";
-const Hero =()=>{
-const ref = useRef(null);
+const Hero = ({ setShowResume }) => {
+  const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.3, once: true });
   const [startTyping, setStartTyping] = useState(false);
   useEffect(() => {
@@ -81,17 +81,25 @@ const blurText = {
                 </motion.h4>
 
                 {/* button */}
-                <a href="https://drive.google.com/file/d/13BrCMdAUcCDMvUZ6MCgy-rSFSY2UGRZB/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                    <motion.button className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px]"
-                        variants={buttonVariants}
-                        initial="initial"
-                        whileInView="animate"
-                        whileHover="hover"
-                        viewport={{ once: true, amount: 0.3 }}
-                    >
-                        Download Resume
-                    </motion.button>
-                </a>
+                <motion.button 
+                    className="bg-[#0367FB] text-white p-2 rounded-md mt-[30px] cursor-pointer"
+                    variants={buttonVariants}
+                    initial="initial"
+                    whileInView="animate"
+                    whileHover="hover"
+                    viewport={{ once: true, amount: 0.3 }}
+                    onClick={() => {
+                        setShowResume(true);
+                        setTimeout(() => {
+                            const element = document.getElementById('resume');
+                            if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }, 100);
+                    }}
+                >
+                    View Resume
+                </motion.button>
             </div>
 
             {/* Image Container */}

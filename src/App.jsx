@@ -23,6 +23,9 @@ const App = () => {
 
     requestAnimationFrame(raf);
 
+    // Ensure the page starts at the top on refresh
+    window.scrollTo(0, 0);
+
     return () => {
       lenis.destroy();
     };

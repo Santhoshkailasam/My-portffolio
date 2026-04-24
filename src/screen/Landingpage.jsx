@@ -12,6 +12,9 @@ const GamifiedSection = lazy(() => import('../component/GamifiedSection'));
 const Terminal = lazy(() => import('../component/Terminal'));
 const Experience = lazy(() => import('../component/Experience'));
 const Contact = lazy(() => import('../component/Contact'));
+const ResumeViewer = lazy(() => import('../component/ResumeViewer'));
+const LinkedInSection = lazy(() => import('../component/LinkedInSection'));
+const KonamiManager = lazy(() => import('../component/KonamiManager'));
 
 const LoadingFallback = () => (
   <div className="h-screen flex items-center justify-center bg-gray-900">
@@ -19,11 +22,13 @@ const LoadingFallback = () => (
   </div>
 );
 const LandingPage = () => {
+    const [showResume, setShowResume] = React.useState(false);
+
     return (
       <div className="relative min-h-screen overflow-hidden">
         <BackgroundVideo />
         <Navbar />
-        <Hero />
+        <Hero setShowResume={setShowResume} />
         <Suspense fallback={<LoadingFallback />}>
           <About />
           <ErrorBoundary>
@@ -35,9 +40,12 @@ const LandingPage = () => {
           <Education />
           <Projects />
           <Experience />
+          {showResume && <ResumeViewer />}
           <ErrorBoundary>
             <Terminal />
           </ErrorBoundary>
+          <LinkedInSection />
+          <KonamiManager />
           <Contact />
         </Suspense>
         <footer className="bg-gray-800 text-white text-center p-4">
