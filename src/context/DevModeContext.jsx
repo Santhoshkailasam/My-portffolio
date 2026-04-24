@@ -51,19 +51,25 @@ export const DevModeProvider = ({ children }) => {
     }, []);
 
 
+    const [xray, setXray] = useState(false);
+
     useEffect(() => {
         const body = document.body;
-        body.classList.remove('matrix-theme', 'synthwave-theme', 'wireframe-mode');
+        body.classList.remove('matrix-theme', 'synthwave-theme', 'wireframe-mode', 'xray-mode');
         if (theme === 'matrix') body.classList.add('matrix-theme');
         if (theme === 'synthwave') body.classList.add('synthwave-theme');
         if (wireframe) body.classList.add('wireframe-mode');
+        if (xray) body.classList.add('xray-mode');
         
         return () => {
-            body.classList.remove('matrix-theme', 'synthwave-theme', 'wireframe-mode');
+            body.classList.remove('matrix-theme', 'synthwave-theme', 'wireframe-mode', 'xray-mode');
         };
-    }, [theme, wireframe]);
+    }, [theme, wireframe, xray]);
 
-    const toggleDevMode = () => setIsDevMode(prev => !prev);
+    const toggleDevMode = () => {
+        if (window.innerWidth < 768) return; // Block on mobile
+        setIsDevMode(prev => !prev);
+    };
 
     return (
         <DevModeContext.Provider value={{ 
@@ -76,7 +82,9 @@ export const DevModeProvider = ({ children }) => {
             wireframe, 
             setWireframe,
             glitch,
-            setGlitch
+            setGlitch,
+            xray,
+            setXray
         }}>
             {children}
         </DevModeContext.Provider>

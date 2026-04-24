@@ -181,6 +181,16 @@ button:focus-visible {
     opacity: 0.1;
 }
 
+.xray-mode * {
+    outline: 1px solid rgba(3, 103, 251, 0.4) !important;
+    outline-offset: -1px;
+}
+
+.xray-mode *:hover {
+    outline: 2px solid #0367FB !important;
+    background-color: rgba(3, 103, 251, 0.05) !important;
+}
+
 /* Custom Scrollbar for HUD */
 .custom-scrollbar::-webkit-scrollbar {
     width: 4px;

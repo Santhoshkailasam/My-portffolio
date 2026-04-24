@@ -13,10 +13,11 @@ const DevHUD = () => {
     const { 
         isDevMode, toggleDevMode, stats, 
         theme, setTheme, wireframe, setWireframe,
-        glitch, setGlitch 
+        glitch, setGlitch, xray, setXray 
     } = useDevMode();
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [uptime, setUptime] = useState(0);
+    const [isResyncing, setIsResyncing] = useState(false);
 
     useEffect(() => {
         const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
@@ -29,6 +30,11 @@ const DevHUD = () => {
             clearInterval(uptimeInterval);
         };
     }, []);
+
+    const handleResync = () => {
+        setIsResyncing(true);
+        setTimeout(() => setIsResyncing(false), 2000);
+    };
 
     const formatUptime = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -45,7 +51,7 @@ const DevHUD = () => {
             <motion.div 
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
-                className="absolute top-0 left-0 w-full p-4 bg-gray-950/80 backdrop-blur-md border-b border-[#C4D613]/30 flex flex-wrap justify-center gap-6 pointer-events-auto shadow-[0_0_20px_rgba(196,214,19,0.1)]"
+                className="absolute top-0 left-0 w-full p-4 bg-gray-950/80 backdrop-blur-md border-b border-[#C4D613]/30 flex flex-wrap justify-center gap-4 sm:gap-6 pointer-events-auto shadow-[0_0_20px_rgba(196,214,19,0.1)]"
             >
                 <StatItem icon={<Activity size={14} />} label="FPS" value={stats.fps} color="text-green-400" />
                 <StatItem icon={<Cpu size={14} />} label="MEM" value={`${stats.memory}MB`} color="text-blue-400" />
@@ -53,110 +59,115 @@ const DevHUD = () => {
                 <StatItem icon={<Clock size={14} />} label="UPTIME" value={formatUptime(uptime)} color="text-yellow-400" />
                 <StatItem icon={<Component size={14} />} label="NODES" value={stats.nodes} color="text-emerald-400" />
                 <StatItem icon={<Wifi size={14} />} label="LATENCY" value={stats.latency} color="text-orange-400" />
-                <StatItem icon={<Hash size={14} />} label="COMMIT" value="4b555d9" color="text-gray-400" />
+                <StatItem icon={<Hash size={14} />} label="COMMIT" value="bb58d0f" color="text-gray-400" />
             </motion.div>
 
-            {/* Right Panel - Controls */}
             <motion.div 
                 initial={{ x: 300 }}
                 animate={{ x: 0 }}
-                className="absolute right-6 top-24 bottom-6 w-72 bg-gray-950/90 backdrop-blur-xl border border-white/10 rounded-3xl p-6 pointer-events-auto flex flex-col gap-8 shadow-2xl overflow-y-auto custom-scrollbar"
+                data-lenis-prevent
+                className="absolute right-4 md:right-6 top-24 bottom-6 w-[calc(100%-2rem)] md:w-80 bg-gray-950/90 backdrop-blur-xl border border-white/10 rounded-3xl p-6 pointer-events-auto shadow-2xl overflow-hidden"
             >
-                <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                    <div className="flex items-center gap-2">
-                        <Shield className="text-[#C4D613]" size={20} />
-                        <h3 className="text-white font-black uppercase tracking-tighter text-lg">God Mode Panel</h3>
+                <div className="h-full overflow-y-auto custom-scrollbar pr-2">
+                    <div className="flex flex-col gap-8 pb-10">
+                        <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                            <div className="flex items-center gap-2">
+                                <Shield className="text-[#C4D613]" size={20} />
+                                <h3 className="text-white font-black uppercase tracking-tighter text-lg">God Mode Panel</h3>
+                            </div>
+                            <button 
+                                onClick={() => toggleDevMode()}
+                                className="p-2 rounded-xl bg-white/5 text-gray-400 hover:bg-red-500 hover:text-white transition-all shadow-lg border border-white/10"
+                                title="Deactivate Dev Mode"
+                            >
+                                <X size={18} />
+                            </button>
+                        </div>
+
+                        {/* Aesthetic Controls */}
+                        <ControlSection title="Visual Matrix">
+                            <ToggleButton 
+                                active={wireframe} 
+                                onClick={() => setWireframe(!wireframe)} 
+                                icon={wireframe ? <Eye size={16} /> : <EyeOff size={16} />}
+                                label="Wireframe Mode" 
+                            />
+                            <ToggleButton 
+                                active={glitch} 
+                                onClick={() => setGlitch(!glitch)} 
+                                icon={<Zap size={16} />}
+                                label="Glitch Protocol" 
+                            />
+                        </ControlSection>
+
+                        {/* Theme Selector */}
+                        <ControlSection title="Color Injection">
+                            <div className="grid grid-cols-3 gap-2">
+                                <ThemeButton active={theme === 'default'} onClick={() => setTheme('default')} color="bg-[#0367FB]" label="Cyber" />
+                                <ThemeButton active={theme === 'matrix'} onClick={() => setTheme('matrix')} color="bg-green-500" label="Neo" />
+                                <ThemeButton active={theme === 'synthwave'} onClick={() => setTheme('synthwave')} color="bg-pink-500" label="Synth" />
+                            </div>
+                        </ControlSection>
+
+                        {/* System Architecture */}
+                        <ControlSection title="System Architecture">
+                            <div className="space-y-3 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                                <div className="flex justify-between">
+                                    <span>OS:</span>
+                                    <span className="text-white">Win-NT 10.0</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span>CPU:</span>
+                                    <span className="text-white">Ryzen 9 5950X</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span>GPU:</span>
+                                    <span className="text-[#C4D613]">RTX 3080 Ti</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span>Engine:</span>
+                                    <span className="text-white">V8 / Chromium</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span>Render:</span>
+                                    <span className="text-[#C4D613] font-black">{stats.renderTime}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span>Latency:</span>
+                                    <span className="text-orange-400">{stats.latency}</span>
+                                </div>
+                            </div>
+                        </ControlSection>
+
+                        {/* Additional Features */}
+                        <ControlSection title="Diagnostic Tools">
+                            <ToggleButton 
+                                active={xray} 
+                                onClick={() => setXray(!xray)} 
+                                icon={<Search size={16} />}
+                                label="DOM X-Ray" 
+                            />
+                            <ToggleButton 
+                                active={isResyncing} 
+                                onClick={handleResync} 
+                                icon={<RefreshCw size={16} className={isResyncing ? "animate-spin" : ""} />}
+                                label={isResyncing ? "Resyncing..." : "Sync Protocol"} 
+                            />
+                        </ControlSection>
+
+                        {/* Mock Logs */}
+                        <ControlSection title="Active Protocols">
+                            <div className="bg-black/50 rounded-xl p-3 h-32 overflow-hidden flex flex-col-reverse text-[9px]">
+                                {isResyncing && <LogItem text="> Re-syncing global protocols..." color="text-white animate-pulse" />}
+                                <LogItem text="> Connection established to node_342" color="text-green-500" />
+                                <LogItem text="> Injecting CSS-Matrix variables..." color="text-blue-500" />
+                                <LogItem text="> Warning: High memory pressure" color="text-yellow-500" />
+                                <LogItem text="> Handshake complete: 200 OK" color="text-gray-500" />
+                                <LogItem text="> Initializing God Mode HUD..." color="text-[#C4D613]" />
+                            </div>
+                        </ControlSection>
                     </div>
-                    <button 
-                        onClick={() => toggleDevMode()}
-                        className="p-2 rounded-xl bg-white/5 text-gray-400 hover:bg-red-500 hover:text-white transition-all shadow-lg border border-white/10"
-                        title="Deactivate Dev Mode"
-                    >
-                        <X size={18} />
-                    </button>
                 </div>
-
-                {/* Aesthetic Controls */}
-                <ControlSection title="Visual Matrix">
-                    <ToggleButton 
-                        active={wireframe} 
-                        onClick={() => setWireframe(!wireframe)} 
-                        icon={wireframe ? <Eye size={16} /> : <EyeOff size={16} />}
-                        label="Wireframe Mode" 
-                    />
-                    <ToggleButton 
-                        active={glitch} 
-                        onClick={() => setGlitch(!glitch)} 
-                        icon={<Zap size={16} />}
-                        label="Glitch Protocol" 
-                    />
-                </ControlSection>
-
-                {/* Theme Selector */}
-                <ControlSection title="Color Injection">
-                    <div className="grid grid-cols-3 gap-2">
-                        <ThemeButton active={theme === 'default'} onClick={() => setTheme('default')} color="bg-[#0367FB]" label="Cyber" />
-                        <ThemeButton active={theme === 'matrix'} onClick={() => setTheme('matrix')} color="bg-green-500" label="Neo" />
-                        <ThemeButton active={theme === 'synthwave'} onClick={() => setTheme('synthwave')} color="bg-pink-500" label="Synth" />
-                    </div>
-                </ControlSection>
-
-                {/* System Architecture */}
-                <ControlSection title="System Architecture">
-                    <div className="space-y-3 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
-                        <div className="flex justify-between">
-                            <span>OS:</span>
-                            <span className="text-white">Win-NT 10.0</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>CPU:</span>
-                            <span className="text-white">Ryzen 9 5950X</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>GPU:</span>
-                            <span className="text-[#C4D613]">RTX 3080 Ti</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>Engine:</span>
-                            <span className="text-white">V8 / Chromium</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>Render:</span>
-                            <span className="text-[#C4D613] font-black">{stats.renderTime}</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>Latency:</span>
-                            <span className="text-orange-400">{stats.latency}</span>
-                        </div>
-                    </div>
-                </ControlSection>
-
-                {/* Additional Features */}
-                <ControlSection title="Diagnostic Tools">
-                    <ToggleButton 
-                        active={false} 
-                        onClick={() => {}} 
-                        icon={<Search size={16} />}
-                        label="DOM X-Ray" 
-                    />
-                    <ToggleButton 
-                        active={false} 
-                        onClick={() => {}} 
-                        icon={<Server size={16} />}
-                        label="Sync Protocol" 
-                    />
-                </ControlSection>
-
-                {/* Mock Logs */}
-                <ControlSection title="Active Protocols">
-                    <div className="bg-black/50 rounded-xl p-3 h-32 overflow-hidden flex flex-col-reverse text-[9px]">
-                        <LogItem text="> Connection established to node_342" color="text-green-500" />
-                        <LogItem text="> Injecting CSS-Matrix variables..." color="text-blue-500" />
-                        <LogItem text="> Warning: High memory pressure" color="text-yellow-500" />
-                        <LogItem text="> Handshake complete: 200 OK" color="text-gray-500" />
-                        <LogItem text="> Initializing God Mode HUD..." color="text-[#C4D613]" />
-                    </div>
-                </ControlSection>
             </motion.div>
 
             {/* Bottom Left - Mouse Tracking HUD */}
