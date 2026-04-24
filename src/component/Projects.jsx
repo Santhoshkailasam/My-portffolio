@@ -58,6 +58,25 @@ const Projectslist = [
     image: "/farmer_app.png",
     btn: "View Project",
     link: "https://github.com/Santhoshkailasam/Final-year-project.git",
+  },
+  {
+    id: 7,
+    title: "TodoTask",
+    description:
+      "A high-performance task management web application built with React and Node.js. It features a modern UI with real-time updates, task categorization, and priority tracking.",
+    image: "/todotask_preview.png",
+    btn: "View Project",
+    link: "https://sktodotech.netlify.app/",
+    type: "website"
+  },
+  {
+    id: 8,
+    title: "Offline Chatbot",
+    description:
+      "A privacy-first mobile chatbot that operates entirely offline. It uses a quantized local large language model to provide intelligent assistance without needing an internet connection.",
+    image: "/offline_chatbot.png",
+    btn: "View Project",
+    link: "https://github.com/Santhoshkailasam/offline-chatbot",
   }
 ];
 

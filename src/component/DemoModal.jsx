@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Music, Play, Pause, SkipForward, SkipBack, Heart, Car, CheckCircle, Circle, Plus, Phone, Volume2, Shuffle, Repeat, Sparkles } from "lucide-react";
+import { X, Music, Play, Pause, SkipForward, SkipBack, Heart, Car, CheckCircle, Circle, Plus, Phone, Volume2, Shuffle, Repeat, Sparkles, Send } from "lucide-react";
 
 /* ── Phone Frame Wrapper ── */
 const PhoneFrame = ({ children, bg = "bg-gray-900" }) => (
@@ -375,6 +375,89 @@ const FarmerAppDemo = () => {
     </PhoneFrame>
   );
 };
+ 
+/* ── Offline Chatbot Demo ── */
+const ChatbotDemo = () => {
+  const [messages, setMessages] = useState([
+    { id: 1, text: "Hello! I'm your Offline Assistant. How can I help you today?", isAi: true },
+  ]);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const userMsg = { id: Date.now(), text: input, isAi: false };
+    setMessages(prev => [...prev, userMsg]);
+    setInput("");
+    setIsTyping(true);
+    
+    setTimeout(() => {
+      const responses = [
+        "I'm processing this locally on your device. Privacy first!",
+        "No internet? No problem. I'm always available.",
+        "That's a great question. Here's what I think...",
+        "I'm powered by a local quantized LLM for maximum security."
+      ];
+      const aiMsg = { id: Date.now() + 1, text: responses[Math.floor(Math.random() * responses.length)], isAi: true };
+      setMessages(prev => [...prev, aiMsg]);
+      setIsTyping(false);
+    }, 1500);
+  };
+
+  return (
+    <PhoneFrame bg="bg-[#0b0e14]">
+      <div className="px-4 pb-4 flex flex-col h-[400px]">
+        <div className="flex justify-between text-[9px] text-gray-500 mb-2 px-1">
+          <span>9:41</span><span>●●● 🔋</span>
+        </div>
+        <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-2">
+          <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center">
+            <Sparkles size={16} className="text-white" />
+          </div>
+          <div>
+            <p className="text-xs font-bold text-white">Offline AI</p>
+            <p className="text-[10px] text-purple-400">● Local Mode</p>
+          </div>
+        </div>
+        <div className="flex-1 overflow-y-auto space-y-3 mb-4 pr-1 custom-scrollbar">
+          {messages.map(m => (
+            <div key={m.id} className={`flex ${m.isAi ? 'justify-start' : 'justify-end'}`}>
+              <div className={`max-w-[85%] px-3 py-2 rounded-2xl text-[11px] leading-snug ${
+                m.isAi ? 'bg-white/10 text-white rounded-tl-none' : 'bg-purple-600 text-white rounded-tr-none shadow-lg shadow-purple-900/20'
+              }`}>
+                {m.text}
+              </div>
+            </div>
+          ))}
+          {isTyping && (
+            <div className="flex justify-start">
+              <div className="bg-white/10 px-3 py-2 rounded-2xl rounded-tl-none flex gap-1 items-center">
+                <div className="w-1 h-1 bg-purple-400 rounded-full animate-bounce" />
+                <div className="w-1 h-1 bg-purple-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                <div className="w-1 h-1 bg-purple-400 rounded-full animate-bounce [animation-delay:0.4s]" />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="flex gap-2">
+          <input 
+            value={input} 
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && handleSend()}
+            placeholder="Ask me anything..."
+            className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-[11px] text-white placeholder-gray-500 outline-none focus:border-purple-500/50"
+          />
+          <button 
+            onClick={handleSend}
+            className="p-2 rounded-xl bg-purple-600 text-white hover:bg-purple-500 transition-colors shadow-lg shadow-purple-900/30"
+          >
+            <Send size={16} />
+          </button>
+        </div>
+      </div>
+    </PhoneFrame>
+  );
+};
 
 
 /* ── Content map ── */
@@ -398,6 +481,20 @@ const getDemoContent = (project) => {
       </div>
     ) 
   };
+  if (t.includes("todotask")) return { 
+    label: "Web App", 
+    component: (
+      <div className="w-full h-[500px] sm:h-[600px] rounded-xl overflow-hidden border border-white/10 bg-white">
+        <iframe 
+          src="https://sktodotech.netlify.app/" 
+          className="w-full h-full border-none"
+          title="TodoTask Demo"
+          loading="lazy"
+        />
+      </div>
+    ) 
+  };
+  if (t.includes("chatbot")) return { label: "AI Assistant", component: <ChatbotDemo /> };
   return { label: "Demo", component: <p className="text-gray-400 p-4">Demo coming soon.</p> };
 };
 
