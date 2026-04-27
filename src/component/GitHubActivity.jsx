@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GitHubCalendar } from 'react-github-calendar';
 import { Github, Code, GitPullRequest, Star, Terminal, Zap, Users } from 'lucide-react';
+import Skeleton from './Skeleton';
 
 const GitHubActivity = () => {
     const [userData, setUserData] = useState({
@@ -15,6 +16,7 @@ const GitHubActivity = () => {
     useEffect(() => {
         const fetchGitHubData = async () => {
             try {
+                setLoading(true);
                 // Fetch basic user info
                 const userRes = await fetch('https://api.github.com/users/Santhoshkailasam');
                 const userJson = await userRes.json();
@@ -25,15 +27,20 @@ const GitHubActivity = () => {
                 
                 const totalStars = reposJson.reduce((acc, repo) => acc + repo.stargazers_count, 0);
 
-                // Fetch contribution count (Yearly)
+                // Fetch total contribution count by summing all years
                 let contributions = 0;
                 try {
-                    const contribRes = await fetch('https://github-contributions-api.deno.dev/Santhoshkailasam.json');
+                    const url = `https://github-contributions-api.jogruber.de/v4/Santhoshkailasam`;
+                    const contribRes = await fetch(url);
                     const contribJson = await contribRes.json();
-                    contributions = contribJson.totalContributions || 0;
+                    
+                    if (contribJson.total) {
+                        // Sum up all years
+                        contributions = Object.values(contribJson.total).reduce((acc, count) => acc + (count || 0), 0);
+                    }
                 } catch (e) {
-                    // Fallback if API fails
-                    contributions = "2.4k+";
+                    console.error("Error fetching contributions:", e);
+                    contributions = 0;
                 }
 
                 setUserData({
@@ -54,7 +61,7 @@ const GitHubActivity = () => {
 
     const stats = [
         { label: "Public Repos", value: userData.public_repos, icon: <Code size={18} />, color: "text-blue-400" },
-        { label: "Yearly Commits", value: userData.totalContributions, icon: <GitPullRequest size={18} />, color: "text-emerald-400" },
+        { label: `Total Commits`, value: userData.totalContributions, icon: <GitPullRequest size={18} />, color: "text-emerald-400" },
         { label: "Total Stars", value: userData.stars, icon: <Star size={18} />, color: "text-yellow-400" },
         { label: "Followers", value: userData.followers, icon: <Users size={18} />, color: "text-purple-400" },
     ];
@@ -106,31 +113,53 @@ const GitHubActivity = () => {
                                 viewport={{ once: true }}
                             >
                                 <div className={`mb-2 ${stat.color}`}>{stat.icon}</div>
-                                <p className="text-white text-xl font-black">
-                                    {loading ? "..." : stat.value}
-                                </p>
+                                <div className="h-8 flex items-center">
+                                    {loading ? (
+                                        <Skeleton className="w-16 h-6" />
+                                    ) : (
+                                        <p className="text-white text-xl font-black">{stat.value}</p>
+                                    )}
+                                </div>
                                 <p className="text-gray-500 text-[10px] uppercase font-bold tracking-wider">{stat.label}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
 
-                {/* The GitHub Calendar */}
+                {/* The GitHub Calendar & Year Switcher */}
                 <motion.div 
                     className="bg-gray-950/80 border border-white/5 rounded-3xl p-6 md:p-10 flex flex-col items-center justify-center overflow-hidden"
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                 >
-                    <div className="w-full overflow-x-auto custom-scrollbar flex justify-center py-4">
-                        <GitHubCalendar 
-                            username="Santhoshkailasam" 
-                            theme={theme}
-                            fontSize={12}
-                            blockSize={12}
-                            blockMargin={4}
-                            colorScheme="dark"
-                        />
+                    {/* Contribution Legend */}
+                    <div className="flex flex-col items-center mb-8">
+                        <div className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Contribution Activity</div>
+                        <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#C4D613]/50 to-transparent" />
+                    </div>
+
+                    <div className="w-full overflow-x-auto custom-scrollbar flex justify-center py-4 min-h-[160px]">
+                        {loading ? (
+                            <div className="flex gap-1">
+                                {[...Array(30)].map((_, i) => (
+                                    <div key={i} className="flex flex-col gap-1">
+                                        {[...Array(7)].map((_, j) => (
+                                            <Skeleton key={j} className="w-3 h-3 rounded-sm" />
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <GitHubCalendar 
+                                username="Santhoshkailasam" 
+                                theme={theme}
+                                fontSize={12}
+                                blockSize={12}
+                                blockMargin={4}
+                                colorScheme="dark"
+                            />
+                        )}
                     </div>
                     <div className="mt-6 flex items-center gap-6 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
                         <div className="flex items-center gap-2">
@@ -149,7 +178,7 @@ const GitHubActivity = () => {
                     <div className="flex items-center gap-4 py-4 px-6 bg-white/5 border border-white/5 rounded-2xl">
                         <Zap size={16} className="text-[#C4D613] animate-pulse" />
                         <p className="text-gray-400 text-xs font-medium">
-                            Showing my <span className="text-white font-bold">real-time commit history</span> directly from the GitHub API.
+                            Showing my <span className="text-white font-bold">all-time contribution history</span> compiled from the GitHub API.
                         </p>
                     </div>
                     

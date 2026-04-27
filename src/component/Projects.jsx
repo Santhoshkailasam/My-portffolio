@@ -2,10 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ExternalLink, Github, MonitorPlay } from "lucide-react";
 import DemoModal from "./DemoModal";
+import Skeleton from "./Skeleton";
 
 const Projectslist = [
   {
     id: 1,
+    title: "Web Analyzer Speed Genius",
+    description:
+      "A high-performance web performance analyzer that provides real-time auditing, historical trends, and AI-driven optimization suggestions to boost site speed and SEO metrics.",
+    image: "/speed_genius.png",
+    btn: "View Project",
+    link: "https://github.com/Santhoshkailasam/web-performance",
+    type: "website",
+  },
+  {
+    id: 2,
     title: "Spotify clone",
     description:
       "A sleek Spotify clone built with React Native, featuring smooth navigation and an intuitive UI. Ideal for showcasing front-end mobile development skills.",
@@ -14,7 +25,7 @@ const Projectslist = [
     link: "https://github.com/Santhoshkailasam/Spotifyclone",
   },
   {
-    id: 2,
+    id: 3,
     title: "Parking App",
     description:
       "Parking App is a user-friendly React Native frontend with a home screen showing nearby spots and a booking system to reserve spaces.",
@@ -23,7 +34,7 @@ const Projectslist = [
     link: "https://github.com/Santhoshkailasam/Parkingapp",
   },
   {
-    id: 3,
+    id: 4,
     title: "Project Management",
     description:
       "A React Native + Node.js + MongoDB based project management app for creating projects, assigning tasks, tracking progress, and managing team workflows.",
@@ -32,7 +43,7 @@ const Projectslist = [
     link: "https://github.com/Santhoshkailasam/Project-management.git",
   },
   {
-    id: 4,
+    id: 5,
     title: "90s Mobile App",
     description:
       "A mobile app inspired by a 90s Barbie phone where pressing buttons plays songs.Blending retro nostalgia with fun, interactive sound experiences.",
@@ -41,7 +52,7 @@ const Projectslist = [
     link: "https://github.com/Santhoshkailasam/90sToyMobile.git",
   },
   {
-    id: 5,
+    id: 6,
     title: "Farmer Scheme",
     description:
       "A comprehensive web platform dedicated to helping farmers discover and apply for government schemes and subsidies. Features real-time updates and simplified application processes.",
@@ -51,7 +62,7 @@ const Projectslist = [
     type: "website",
   },
   {
-    id: 6,
+    id: 7,
     title: "Farmer App",
     description:
       "A React Native mobile application for farmers to manage their crops, check weather forecasts, and connect with local markets directly from their smartphones.",
@@ -60,7 +71,7 @@ const Projectslist = [
     link: "https://github.com/Santhoshkailasam/Final-year-project.git",
   },
   {
-    id: 7,
+    id: 8,
     title: "TodoTask",
     description:
       "A high-performance task management web application built with React and Node.js. It features a modern UI with real-time updates, task categorization, and priority tracking.",
@@ -70,7 +81,7 @@ const Projectslist = [
     type: "website",
   },
   {
-    id: 8,
+    id: 9,
     title: "Offline Chatbot",
     description:
       "A privacy-first mobile chatbot that operates entirely offline. It uses a quantized local large language model to provide intelligent assistance without needing an internet connection.",
@@ -186,10 +197,10 @@ const Projects = () => {
               }}
             >
               {/* Image Container */}
-              <div className="relative aspect-[16/10] overflow-hidden skeleton">
+              <div className="relative aspect-[16/10] overflow-hidden">
                 {/* Skeleton Loader Overlay */}
                 {!loadedImages[project.id] && (
-                  <div className="absolute inset-0 z-10 bg-gray-900 skeleton" />
+                  <Skeleton className="absolute inset-0 z-10" />
                 )}
                 
                 <motion.img
