@@ -81,9 +81,9 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="pt-8 pb-16 px-4 md:px-10 relative overflow-hidden bg-black/30">
+    <section id="contact" className="pt-6 pb-12 px-4 md:px-10 relative overflow-hidden bg-black/30">
       {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0367FB]/5 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0367FB]/5 blur-[80px] rounded-full pointer-events-none"></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-10">

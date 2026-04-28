@@ -464,6 +464,19 @@ const ChatbotDemo = () => {
 const getDemoContent = (project) => {
   const t = project.title.toLowerCase();
   if (t.includes("spotify")) return { label: "Music Player", component: <SpotifyDemo /> };
+  if (t.includes("web analyzer")) return { 
+    label: "Web App", 
+    component: (
+      <div className="w-full h-[500px] sm:h-[600px] rounded-xl overflow-hidden border border-white/10 bg-white">
+        <iframe 
+          src="https://webanalyze.netlify.app/" 
+          className="w-full h-full border-none"
+          title="Web Analyzer Demo"
+          loading="lazy"
+        />
+      </div>
+    ) 
+  };
   if (t.includes("parking")) return { label: "Parking App", component: <ParkingDemo /> };
   if (t.includes("project")) return { label: "Task Board", component: <ProjectMgmtDemo /> };
   if (t.includes("90s")) return { label: "Retro Phone", component: <RetroPhoneDemo /> };

@@ -73,12 +73,12 @@ const GitHubActivity = () => {
     };
 
     return (
-        <section className="py-1 px-4 md:px-10 bg-black relative overflow-hidden">
+        <section className="py-8 px-4 md:px-10 bg-black relative overflow-hidden">
             {/* Ambient Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#0367FB]/5 blur-[120px] rounded-full pointer-events-none"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#0367FB]/5 blur-[80px] rounded-full pointer-events-none"></div>
 
             <div className="max-w-6xl mx-auto relative z-10">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
                     <div>
                         <motion.div
                             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C4D613]/10 border border-[#C4D613]/20 text-[#C4D613] text-xs font-bold uppercase tracking-wider mb-4"

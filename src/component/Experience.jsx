@@ -75,7 +75,7 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-16 px-4 sm:px-10 bg-black/20 relative overflow-hidden">
+    <section id="experience" className="py-10 md:py-16 px-4 sm:px-10 bg-black/20 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-1/4 left-0 w-64 h-64 bg-[#0367FB]/5 blur-[80px] rounded-full -translate-x-1/2 pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-[#C4D613]/5 blur-[80px] rounded-full translate-x-1/2 pointer-events-none"></div>

@@ -32,7 +32,7 @@ const Education = () => {
     ];
 
     return (
-        <section id="education" className="min-h-screen py-16 px-4 bg-black/10 relative overflow-hidden">
+        <section id="education" className="min-h-screen py-10 md:py-16 px-4 bg-black/10 relative overflow-hidden">
             {/* Background Accents */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0367FB]/5 blur-[100px] rounded-full -mr-64 -mt-64 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C4D613]/5 blur-[100px] rounded-full -ml-64 -mb-64 pointer-events-none"></div>

@@ -85,10 +85,10 @@ const About = () => {
     };
 
     return (
-        <section id="about" className="py-24 px-4 md:px-10 overflow-hidden relative">
+        <section id="about" className="pt-22 md:pt-22 pb-12 md:pb-20 px-4 md:px-10 overflow-hidden relative">
             {/* Background Decorative Elements */}
-            <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#0367FB]/5 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#C4D613]/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/4 -left-20 w-80 h-80 bg-[#0367FB]/5 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#C4D613]/5 blur-[80px] rounded-full pointer-events-none" />
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Header Section */}

@@ -71,9 +71,9 @@ const [isHunting, setIsHunting] = useState(false);
     };
 
     return (
-        <section className="py-24 px-4 md:px-10 relative overflow-hidden">
+        <section className="py-12 md:py-16 px-4 md:px-10 relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
-                <div className="text-center mb-16">
+                <div className="text-center mb-10">
                     <motion.div
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0367FB]/10 border border-[#0367FB]/20 text-[#0367FB] text-xs font-black uppercase tracking-wider mb-4"
                         initial={{ opacity: 0, scale: 0.8 }}

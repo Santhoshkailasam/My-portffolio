@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import Navbar from '../component/navbar';
 import Hero from '../component/Hero';
-import BackgroundVideo from '../component/bgvideo';
 import ErrorBoundary from '../component/ErrorBoundary';
 import { DevModeProvider } from '../context/DevModeContext';
 import Skeleton from '../component/Skeleton';
@@ -58,7 +57,6 @@ const LandingPage = () => {
     return (
       <DevModeProvider>
         <div className="relative min-h-screen overflow-hidden">
-          <BackgroundVideo />
           <Navbar />
           <Hero setShowResume={setShowResume} />
           <Suspense fallback={<LoadingFallback />}>

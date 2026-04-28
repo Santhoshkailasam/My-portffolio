@@ -16,14 +16,14 @@ const BentoTile = ({ children, className = "", delay = 0 }) => (
 
 const LinkedInSection = () => {
   return (
-    <section id="linkedin" className="py-32 px-4 sm:px-10 bg-[#020205] relative overflow-hidden">
+    <section id="linkedin" className="py-10 md:py-20 px-4 sm:px-10 bg-[#020205] relative overflow-hidden">
       {/* Background Glows */}
-      <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-[#0077b5]/5 blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-[#0367FB]/5 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-[#0077b5]/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] bg-[#0367FB]/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div className="space-y-4">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-4 md:mb-8 gap-6">
+          <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0077b5]/10 border border-[#0077b5]/30 text-[#0077b5] text-[10px] font-black uppercase tracking-[0.4em]">
               <Linkedin size={14} fill="#0077b5" />
               Network Node
@@ -33,7 +33,7 @@ const LinkedInSection = () => {
                 <span className="text-gradient">Ecosystem.</span>
             </h2>
           </div>
-          <div className="text-white/30 text-[10px] font-black uppercase tracking-[0.5em] mb-2">
+          <div className="text-white/30 text-[10px] font-black uppercase tracking-[0.5em] mb-2 text-center md:text-right">
             LinkedIn // Kailasam N // Connect
           </div>
         </div>

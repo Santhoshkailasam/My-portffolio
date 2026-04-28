@@ -37,9 +37,9 @@ const blurText = {
 
 
     return (
-        <div className="mx-4 md:mx-[100px] flex flex-col md:flex-row relative" id="home">
+        <div className="mx-4 md:mx-[100px] flex flex-col md:flex-row relative pb-10 md:pb-20" id="home">
             <div className="z-10 w-full mb-10 md:mb-0">
-                <motion.h6 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#BDD749] mt-20 md:mt-[190px]"
+                <motion.h6 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#BDD749] mt-20 md:mt-48"
                     ref={ref}
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -104,10 +104,10 @@ const blurText = {
 
             {/* Image Container */}
             <div className="relative w-full h-[400px] md:h-auto pointer-events-none">
-                <motion.img 
+                    <motion.img 
                     src="/Ellipse 1.png" 
                     alt="Background Ellipse" 
-                    className="absolute left-1/2 transform -translate-x-1/2 mt-16 w-[90%] max-w-[500px] h-auto md:left-auto md:translate-x-0 md:mt-[140px] md:ml-[100px] md:w-auto opacity-80"
+                    className="absolute left-1/2 transform -translate-x-1/2 mt-16 w-[90%] max-w-[500px] h-auto md:left-auto md:translate-x-0 md:mt-24 md:ml-[100px] md:w-auto opacity-80"
                     fetchPriority="high"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}

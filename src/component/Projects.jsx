@@ -153,11 +153,11 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="pt-6 pb-12 px-4 sm:px-10 overflow-hidden">
+    <section id="projects" className="pt-4 pb-8 px-4 sm:px-10 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10 relative">
+        <div className="text-center mb-6 relative">
           <motion.h2
-            className="text-white text-5xl md:text-6xl font-extrabold mb-4 tracking-tight"
+            className="text-white text-5xl md:text-6xl font-extrabold mb-2 sm:mb-4 tracking-tight"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -172,7 +172,7 @@ const Projects = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             viewport={{ once: true }}
           />
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-400 mt-2 sm:mt-6 max-w-2xl mx-auto text-lg">
             A selection of my recent work, spanning mobile apps and full-stack solutions.
           </p>
         </div>
@@ -240,7 +240,7 @@ const Projects = () => {
 
               {/* Content Overlay - Revealed on Hover */}
               <motion.div
-                className="absolute inset-0 bg-gray-950/96 p-6 sm:p-10 flex flex-col justify-end items-start text-left z-30"
+                className="absolute inset-0 bg-gray-950/96 p-3 sm:p-10 flex flex-col justify-center sm:justify-end items-start text-left z-30"
                 initial={{ opacity: 0, y: 20 }}
                 animate={
                   isMobile
@@ -251,30 +251,30 @@ const Projects = () => {
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <div className="w-full">
-                  <div className="mb-4">
+                  <div className="mb-1 sm:mb-4">
                     <span className="text-[#C4D613] text-[10px] font-black uppercase tracking-[0.2em]">Featured Project</span>
-                    <h3 className="text-white font-black text-2xl sm:text-3xl mt-1 tracking-tight">
+                    <h3 className="text-white font-black text-lg sm:text-3xl mt-0 sm:mt-1 tracking-tight">
                       {project.title}
                     </h3>
                   </div>
                   
-                  <p className="text-gray-400 mb-8 text-xs sm:text-sm md:text-base leading-relaxed font-medium line-clamp-4">
+                  <p className="text-gray-400 mb-2 sm:mb-8 text-[10px] sm:text-sm md:text-base leading-relaxed font-medium line-clamp-2 sm:line-clamp-4">
                     {project.description}
                   </p>
                   
-                  <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-[#0367FB] text-white px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-xl shadow-blue-500/20"
+                      className="flex items-center gap-2 bg-[#0367FB] text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-sm font-bold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-xl shadow-blue-500/20"
                     >
                       <Github size={16} />
                       View Source
                     </a>
                     <button
                       onClick={(e) => openDemo(e, project)}
-                      className="flex items-center gap-2 bg-[#C4D613] text-black px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-black hover:bg-[#C4D613]/80 transition-all duration-300 shadow-xl shadow-yellow-400/20 cursor-pointer"
+                      className="flex items-center gap-2 bg-[#C4D613] text-black px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-sm font-black hover:bg-[#C4D613]/80 transition-all duration-300 shadow-xl shadow-yellow-400/20 cursor-pointer"
                     >
                       <MonitorPlay size={16} />
                       Try Demo
@@ -283,7 +283,7 @@ const Projects = () => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-2xl bg-white/5 border border-white/10 text-white hover:bg-white/15 transition-all duration-300"
+                      className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-white hover:bg-white/15 transition-all duration-300"
                       title="Live Demo"
                     >
                       <ExternalLink size={18} />
