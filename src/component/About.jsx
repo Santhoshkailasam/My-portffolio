@@ -166,7 +166,7 @@ const About = () => {
                     {/* Right Column: Bio & Skills */}
                     <div className="lg:col-span-7 space-y-8">
                         <motion.div 
-                            className="premium-glass p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden border-white/10"
+                            className="premium-glass p-8 md:p-12 rounded-[2.5rem] relative border-white/10"
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
@@ -204,37 +204,38 @@ const About = () => {
                                 </div>
 
                                 {/* Skills Section */}
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <span className="text-white font-black text-xl tracking-tight">Core Expertise</span>
-                                        <div className="h-[2px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
-                                    </div>
-                                    
-                                    <div className="grid grid-cols-1 gap-6">
-                                        {skills.map((skill, index) => (
-                                            <div key={index} className="space-y-2 group/skill">
-                                                <div className="flex justify-between items-end">
-                                                    <span className="text-white/90 font-bold text-sm tracking-wide">{skill.name}</span>
-                                                    <span className="text-[#C4D613] font-black text-xs">{skill.percent}%</span>
+                                <div className="space-y-12">
+                                    <div className="space-y-6">
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <span className="text-white font-black text-xl tracking-tight">Core Expertise</span>
+                                            <div className="h-[2px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                                        </div>
+                                        
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                            {skills.map((skill, index) => (
+                                                <div key={index} className="space-y-2 group/skill">
+                                                    <div className="flex justify-between items-end">
+                                                        <span className="text-white/90 font-bold text-sm tracking-wide">{skill.name}</span>
+                                                        <span className="text-accent font-black text-xs">{skill.percent}%</span>
+                                                    </div>
+                                                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden p-[1px]">
+                                                        <motion.div
+                                                            className={`h-full rounded-full bg-gradient-to-r ${skill.color} relative overflow-hidden`}
+                                                            initial={{ width: 0 }}
+                                                            whileInView={{ width: `${skill.percent}%` }}
+                                                            transition={{ duration: 1.5, ease: "easeOut", delay: index * 0.1 }}
+                                                            viewport={{ once: true }}
+                                                        >
+                                                            <motion.div 
+                                                                className="absolute inset-0 bg-white/20 w-1/2 -skew-x-12"
+                                                                animate={{ x: ["-100%", "300%"] }}
+                                                                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                                                            />
+                                                        </motion.div>
+                                                    </div>
                                                 </div>
-                                                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden p-[1px]">
-                                                    <motion.div
-                                                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} relative overflow-hidden`}
-                                                        initial={{ width: 0 }}
-                                                        whileInView={{ width: `${skill.percent}%` }}
-                                                        transition={{ duration: 1.5, ease: "easeOut", delay: index * 0.1 }}
-                                                        viewport={{ once: true }}
-                                                    >
-                                                        {/* Shimmer effect inside bar */}
-                                                        <motion.div 
-                                                            className="absolute inset-0 bg-white/20 w-1/2 -skew-x-12"
-                                                            animate={{ x: ["-100%", "300%"] }}
-                                                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                                        />
-                                                    </motion.div>
-                                                </div>
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -245,6 +246,8 @@ const About = () => {
         </section>
     );
 };
+
+
 
 export default About;
 

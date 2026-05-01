@@ -76,13 +76,13 @@ const Navbar = () => {
                     whileHover={{ scale: 1.05 }}
                 >
                     <div 
-                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-tr from-[#0367FB] to-[#C4D613] flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:shadow-[#C4D613]/20 transition-all shrink-0 cursor-pointer active:scale-90 relative"
+                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:shadow-accent/20 transition-all shrink-0 cursor-pointer active:scale-90 relative"
                         onClick={triggerEasterEgg}
                         title="Click for Surprise ✨"
                     >
                         <Rocket size={18} className="group-hover:rotate-12 transition-transform" />
                         <motion.div
-                            className="absolute -top-1 -right-1 text-[#C4D613]"
+                            className="absolute -top-1 -right-1 text-accent"
                             animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
                             transition={{ repeat: Infinity, duration: 2 }}
                         >
@@ -98,17 +98,17 @@ const Navbar = () => {
                                     exit={{ opacity: 0, scale: 0.5, x: 20 }}
                                     className="absolute left-full ml-4 pointer-events-none"
                                 >
-                                    <div className="relative bg-[#C4D613] text-black text-[9px] font-black py-2 px-4 rounded-xl whitespace-nowrap shadow-[0_0_20px_rgba(196,214,19,0.3)] uppercase tracking-wider flex items-center gap-2">
+                                    <div className="relative bg-accent text-black text-[9px] font-black py-2 px-4 rounded-xl whitespace-nowrap shadow-[0_0_20px_rgba(196,214,19,0.3)] uppercase tracking-wider flex items-center gap-2">
                                         <span>Click Rocket or type <span className="bg-black/10 px-1 rounded">↑ ↓ ← →</span></span>
                                         {/* Triangle arrow */}
-                                        <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-[#C4D613] rotate-45" />
+                                        <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-accent rotate-45" />
                                     </div>
                                 </motion.div>
                             )}
                         </AnimatePresence>
                     </div>
                     <span className="text-white font-black text-xl sm:text-2xl tracking-tighter">
-                        KAILASAM<span className="text-[#C4D613]">PORTFOLIO</span>
+                        KAILASAM<span className="text-accent">PORTFOLIO</span>
                     </span>
                 </motion.a>
 
@@ -123,14 +123,14 @@ const Navbar = () => {
                                 {link.name}
                             </a>
                             <motion.div 
-                                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C4D613] rounded-full group-hover:w-full transition-all duration-300"
+                                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent rounded-full group-hover:w-full transition-all duration-300"
                             />
                         </li>
                     ))}
                     <li>
                         <a 
                             href="#contact" 
-                            className="ml-2 lg:ml-4 px-5 lg:px-6 py-2 rounded-full bg-[#0367FB] text-white font-bold text-[13px] hover:bg-[#0367FB]/80 transition-all shadow-lg shadow-blue-500/20"
+                            className="ml-2 lg:ml-4 px-5 lg:px-6 py-2 rounded-full bg-primary text-white font-bold text-[13px] hover:bg-primary/80 transition-all shadow-lg shadow-blue-500/20"
                         >
                             Hire Me
                         </a>
@@ -171,13 +171,13 @@ const Navbar = () => {
                             className="fixed right-0 top-0 h-[100dvh] w-[80%] max-w-[400px] bg-gray-950/98 backdrop-blur-2xl flex flex-col z-[60] shadow-2xl border-l border-white/10 overflow-hidden"
                         >
                             {/* Decorative background elements */}
-                            <div className="absolute top-[-5%] right-[-5%] w-[150px] h-[150px] bg-[#0367FB]/10 blur-[80px] rounded-full" />
-                            <div className="absolute bottom-[-5%] left-[-5%] w-[150px] h-[150px] bg-[#C4D613]/10 blur-[80px] rounded-full" />
+                            <div className="absolute top-[-5%] right-[-5%] w-[150px] h-[150px] bg-primary/10 blur-[80px] rounded-full" />
+                            <div className="absolute bottom-[-5%] left-[-5%] w-[150px] h-[150px] bg-accent/10 blur-[80px] rounded-full" />
 
                             {/* Header */}
                             <div className="flex justify-between items-center p-6 border-b border-white/5">
                                 <span className="text-white font-black text-lg tracking-tighter">
-                                    KAILASAM<span className="text-[#C4D613]">PORT</span>
+                                    KAILASAM<span className="text-accent">PORT</span>
                                 </span>
                                 <button 
                                     onClick={() => setNav(false)} 
@@ -208,7 +208,7 @@ const Navbar = () => {
                                                         {link.name}
                                                     </span>
                                                     <motion.div 
-                                                        className="w-0 h-0.5 bg-[#C4D613] group-hover:w-8 transition-all duration-300"
+                                                        className="w-0 h-0.5 bg-accent group-hover:w-8 transition-all duration-300"
                                                     />
                                                 </a>
                                             </motion.li>
@@ -222,7 +222,7 @@ const Navbar = () => {
                                             <a 
                                                 href="#contact" 
                                                 onClick={() => setNav(false)}
-                                                className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-[#0367FB] to-[#0367FB]/80 text-white font-bold text-lg shadow-xl shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-3"
+                                                className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-white font-bold text-lg shadow-xl shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-3"
                                             >
                                                 Hire Me <Rocket size={18} />
                                             </a>
@@ -250,13 +250,14 @@ const Navbar = () => {
                                             href={social.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#C4D613] hover:border-[#C4D613]/20 hover:bg-[#C4D613]/5 transition-all active:scale-90"
+                                            className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-accent hover:border-accent/20 hover:bg-accent/5 transition-all active:scale-90"
                                         >
                                             {social.icon}
                                         </a>
                                     ))}
                                 </div>
                             </motion.div>
+
                         </motion.div>
                     </>
                 )}

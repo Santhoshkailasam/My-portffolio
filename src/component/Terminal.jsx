@@ -21,14 +21,17 @@ const Terminal = () => {
     const commands = {
         help: () => [
             'AVAILABLE COMMANDS:',
-            '  help      - Show this help menu',
-            '  about     - About me & mission',
-            '  projects  - View my featured work',
-            '  skills    - My technical arsenal',
-            '  contact   - Get in touch',
-            '  clear     - Wipe terminal history',
-            '  date      - Current system time',
-            '  whoami    - User privileges info'
+            '  help          - Show this help menu',
+            '  about         - About me & mission',
+            '  projects      - View my featured work',
+            '  skills        - My technical arsenal',
+            '  contact       - Get in touch',
+            '  hire-me       - Fast-track to contact',
+            '  sudo          - Elevate privileges',
+            '  fetch-github  - Fetch latest git activity',
+            '  clear         - Wipe terminal history',
+            '  date          - Current system time',
+            '  whoami        - User privileges info'
         ],
         about: () => [
             'NAME: KAILASAM N',
@@ -61,9 +64,39 @@ const Terminal = () => {
             'GITHUB: github.com/Santhoshkailasam',
             'WHATSAPP: +91 9159873818'
         ],
+        'hire-me': () => {
+            setTimeout(() => {
+                const element = document.getElementById('contact');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+            return [
+                'REDIRECTING TO CONTACT SECTION...',
+                'PREPARING COLLABORATION PROTOCOLS...',
+                'DONE.'
+            ];
+        },
+        sudo: () => {
+            return [
+                'AUTHENTICATING...',
+                'PASSWORD ACCEPTED.',
+                'USER PRIVILEGES ELEVATED TO: ROOT',
+                'WELCOME, COMMANDER.'
+            ];
+        },
+        'fetch-github': () => [
+            'FETCHING RECENT COMMITS FROM GITHUB API...',
+            '----------------------------------------',
+            'commit bb58d0f - Initializing God Mode Panel (2 hours ago)',
+            'commit 7a29e12 - Optimizing framer-motion animations (5 hours ago)',
+            'commit f102c98 - Merging premium UI features (1 day ago)',
+            'commit d834a21 - Fixing GitHub Activity Fetcher (2 days ago)',
+            '----------------------------------------',
+            'DONE. All systems synced.'
+        ],
         whoami: () => ['GUEST_USER_@_KAILASAM_OS', 'ACCESS_LEVEL: 0 (READ_ONLY)'],
         date: () => [new Date().toLocaleString()],
     };
+
 
     useEffect(() => {
         if (terminalRef.current) {
