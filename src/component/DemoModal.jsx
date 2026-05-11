@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Music, Play, Pause, SkipForward, SkipBack, Heart, Car, CheckCircle, Circle, Plus, Phone, Volume2, Shuffle, Repeat, Sparkles, Send } from "lucide-react";
+import { X, Music, Play, Pause, SkipForward, SkipBack, Heart, Car, CheckCircle, Circle, Plus, Phone, Volume2, Shuffle, Repeat, Sparkles, Send, Mail, ShieldCheck } from "lucide-react";
 
 /* ── Phone Frame Wrapper ── */
 const PhoneFrame = ({ children, bg = "bg-gray-900" }) => (
@@ -458,6 +458,99 @@ const ChatbotDemo = () => {
     </PhoneFrame>
   );
 };
+ 
+ /* ── Village Connect Demo ── */
+ const VillageConnectDemo = () => {
+   const [step, setStep] = useState(1);
+ 
+   return (
+     <PhoneFrame bg="bg-[#0c2427]">
+       <div className="px-4 pb-4 text-white h-[420px] flex flex-col">
+         <div className="flex justify-between text-[9px] text-gray-500 mb-4 px-1">
+           <span>9:41</span><span>●●● 🔋</span>
+         </div>
+ 
+         {step === 1 ? (
+           <div className="flex-1 flex flex-col items-center justify-center text-center space-y-8 animate-in fade-in duration-500">
+             <div className="w-32 h-32 rounded-full bg-[#143d41] border-4 border-[#1ea3a3]/30 flex items-center justify-center shadow-[0_0_30px_rgba(30,163,163,0.2)]">
+               <div className="w-20 h-20 rounded-full bg-[#1ea3a3]/20 flex items-center justify-center">
+                 <div className="flex -space-x-2">
+                   <div className="w-8 h-8 rounded-full bg-[#1ea3a3] border-2 border-[#143d41]" />
+                   <div className="w-8 h-8 rounded-full bg-[#1ea3a3] border-2 border-[#143d41]" />
+                 </div>
+               </div>
+             </div>
+             
+             <div>
+               <h3 className="text-xl font-black mb-2">Community Updates</h3>
+               <p className="text-gray-400 text-[11px] leading-relaxed">
+                 Connect with your village<br />community anytime.
+               </p>
+             </div>
+ 
+             <div className="flex gap-1.5">
+               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+               <div className="w-1.5 h-1.5 rounded-full bg-[#1ea3a3]" />
+             </div>
+ 
+             <button 
+               onClick={() => setStep(2)}
+               className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#1ea3a3] to-[#143d41] text-[12px] font-black shadow-lg shadow-[#1ea3a3]/20 flex items-center justify-center gap-2"
+             >
+               Get Started <SkipForward size={14} />
+             </button>
+           </div>
+         ) : (
+           <div className="flex-1 flex flex-col animate-in slide-in-from-right duration-500">
+             <h3 className="text-lg font-black mb-6">Welcome Back</h3>
+             
+             <div className="space-y-4 mb-8">
+               <div className="bg-[#143d41]/50 border border-white/5 rounded-2xl p-4 flex items-center gap-3">
+                 <Mail size={18} className="text-[#1ea3a3]" />
+                 <div className="flex-1">
+                   <p className="text-[9px] text-gray-500 uppercase font-bold">Email</p>
+                   <p className="text-[11px] text-white/50">santhosh@village.com</p>
+                 </div>
+               </div>
+ 
+               <div className="bg-[#143d41]/50 border border-white/5 rounded-2xl p-4 flex items-center gap-3">
+                 <ShieldCheck size={18} className="text-[#1ea3a3]" />
+                 <div className="flex-1">
+                   <p className="text-[9px] text-gray-500 uppercase font-bold">Password</p>
+                   <p className="text-[11px] text-white/50">••••••••••••</p>
+                 </div>
+               </div>
+               
+               <div className="text-right">
+                 <button className="text-[10px] text-[#1ea3a3] font-bold">Forgot Password?</button>
+               </div>
+             </div>
+ 
+             <button className="w-full py-3.5 rounded-2xl bg-[#1ea3a3] text-[12px] font-black shadow-lg shadow-[#1ea3a3]/20 mb-4">
+               Login to Community
+             </button>
+ 
+             <div className="text-center">
+               <p className="text-[10px] text-gray-500">
+                 New to the village? <button className="text-[#1ea3a3] font-bold">Join now</button>
+               </p>
+             </div>
+ 
+             <div className="mt-auto grid grid-cols-2 gap-2">
+               <div className="bg-[#1ea3a3]/10 border border-[#1ea3a3]/20 rounded-xl p-2 text-center">
+                 <p className="text-[10px] font-bold text-[#1ea3a3]">Emergency</p>
+               </div>
+               <div className="bg-[#1ea3a3]/10 border border-[#1ea3a3]/20 rounded-xl p-2 text-center">
+                 <p className="text-[10px] font-bold text-[#1ea3a3]">Events</p>
+               </div>
+             </div>
+           </div>
+         )}
+       </div>
+     </PhoneFrame>
+   );
+ };
 
 
 /* ── Content map ── */
@@ -508,6 +601,7 @@ const getDemoContent = (project) => {
     ) 
   };
   if (t.includes("chatbot")) return { label: "AI Assistant", component: <ChatbotDemo /> };
+  if (t.includes("village connect")) return { label: "Community App", component: <VillageConnectDemo /> };
   return { label: "Demo", component: <p className="text-gray-400 p-4">Demo coming soon.</p> };
 };
 

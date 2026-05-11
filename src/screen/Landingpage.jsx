@@ -16,6 +16,7 @@ const Contact = lazy(() => import('../component/Contact'));
 const ResumeViewer = lazy(() => import('../component/ResumeViewer'));
 const LinkedInSection = lazy(() => import('../component/LinkedInSection'));
 const KonamiManager = lazy(() => import('../component/KonamiManager'));
+const Certificates = lazy(() => import('../component/Certificates'));
 const DevHUD = lazy(() => import('../component/DevHUD'));
 
 const LoadingFallback = () => (
@@ -68,6 +69,7 @@ const LandingPage = () => {
               <GitHubActivity />
             </ErrorBoundary>
             <Education />
+            <Certificates />
             <Projects />
             <Experience />
             {showResume && <ResumeViewer />}

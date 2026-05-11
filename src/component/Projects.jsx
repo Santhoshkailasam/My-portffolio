@@ -118,6 +118,18 @@ const Projectslist = [
     techDescription: "TensorFlow Lite with 4-bit quantization, running locally on-device for 100% privacy.",
     outcome: "Successful deployment of a smart assistant that requires zero internet and maintains user data locally."
   },
+  {
+    id: 10,
+    title: "Village Connect",
+    description:
+      "A React Native mobile application designed to empower rural communities with real-time access to essential services, healthcare, and local market data.",
+    image: "/village_connect_ui.png",
+    btn: "View Project",
+    link: "https://github.com/Santhoshkailasam/Village-Connect",
+    challenge: "Optimizing app performance for low-end devices and ensuring reliable offline functionality in remote areas.",
+    techDescription: "React Native, Redux, and Firebase for real-time synchronization and offline data persistence.",
+    outcome: "Successfully deployed a robust mobile solution that bridges the digital gap for over 500+ rural users."
+  },
 ];
 
 
