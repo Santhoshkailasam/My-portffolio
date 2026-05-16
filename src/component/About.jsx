@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { User, Book, Briefcase, Languages, Rocket, Sparkles, Trophy, Coffee, Target, Zap } from "lucide-react";
 
@@ -127,7 +127,7 @@ const About = () => {
                             <div className="absolute -inset-1 bg-gradient-to-r from-[#0367FB] to-[#C4D613] rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
                             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden premium-glass border border-white/20">
                                 <img
-                                    src="/mine.webp"
+                                    src="/profile1.png"
                                     alt="Kailasam N"
                                     className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
                                     loading="lazy"

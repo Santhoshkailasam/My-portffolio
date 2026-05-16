@@ -51,7 +51,7 @@ const LinkedInSection = () => {
                 <div className="absolute -top-12 left-8">
                     <div className="w-24 h-24 rounded-2xl border-4 border-[#020205] overflow-hidden bg-gray-900 shadow-2xl">
                         <img 
-                            src="/Profile.jpeg" 
+                            src="/profile1.png" 
                             alt="Kailasam N" 
                             className="w-full h-full object-cover"
                             onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=Kailasam+N&background=0077b5&color=fff' }}
