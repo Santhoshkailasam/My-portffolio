@@ -120,7 +120,7 @@ const LinkedInSection = () => {
             </div>
             <div>
               <p className="text-4xl font-black text-white tracking-tighter">
-                500+
+                50+
               </p>
               <p className="text-[10px] text-white/30 font-black uppercase tracking-widest mt-1">
                 Professional Connections
