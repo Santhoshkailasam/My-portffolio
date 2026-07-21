@@ -2,22 +2,16 @@ import React, { Suspense, lazy } from 'react';
 import Navbar from '../component/navbar';
 import Hero from '../component/Hero';
 import ErrorBoundary from '../component/ErrorBoundary';
-import { DevModeProvider } from '../context/DevModeContext';
 import Skeleton from '../component/Skeleton';
 
 const About = lazy(() => import('../component/About'));
 const Education = lazy(() => import('../component/Education'));
 const Projects = lazy(() => import('../component/Projects'));
 const GitHubActivity = lazy(() => import('../component/GitHubActivity'));
-const GamifiedSection = lazy(() => import('../component/GamifiedSection'));
-const Terminal = lazy(() => import('../component/Terminal'));
 const Experience = lazy(() => import('../component/Experience'));
 const Contact = lazy(() => import('../component/Contact'));
 const ResumeViewer = lazy(() => import('../component/ResumeViewer'));
-const LinkedInSection = lazy(() => import('../component/LinkedInSection'));
-const KonamiManager = lazy(() => import('../component/KonamiManager'));
 const Certificates = lazy(() => import('../component/Certificates'));
-const DevHUD = lazy(() => import('../component/DevHUD'));
 
 const LoadingFallback = () => (
   <div className="min-h-screen bg-black p-4 md:p-10">
@@ -37,7 +31,7 @@ const LoadingFallback = () => (
           <Skeleton className="w-64 h-64 md:w-96 md:h-96 rounded-3xl" />
         </div>
       </div>
-      
+
       {/* Section Skeleton */}
       <div className="space-y-8 pt-20">
         <div className="flex flex-col items-center gap-4">
@@ -53,41 +47,30 @@ const LoadingFallback = () => (
   </div>
 );
 const LandingPage = () => {
-    const [showResume, setShowResume] = React.useState(false);
+  const [showResume, setShowResume] = React.useState(false);
 
-    return (
-      <DevModeProvider>
-        <div className="relative min-h-screen overflow-hidden">
-          <Navbar />
-          <Hero setShowResume={setShowResume} />
-          <Suspense fallback={<LoadingFallback />}>
-            <About />
-            <ErrorBoundary>
-              <GamifiedSection />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <GitHubActivity />
-            </ErrorBoundary>
-            <Education />
-            <Certificates />
-            <Projects />
-            <Experience />
-            {showResume && <ResumeViewer />}
-            <ErrorBoundary>
-              <Terminal />
-            </ErrorBoundary>
-            <LinkedInSection />
-            <KonamiManager />
-            <DevHUD />
-            <Contact />
-          </Suspense>
-          <footer className="bg-gray-800 text-white text-center p-4">
-            <p>
-              &copy; {new Date().getFullYear()} My Portfolio. All rights reserved.
-            </p>
-          </footer>
-        </div>
-      </DevModeProvider>
-    );
+  return (
+      <div className="relative min-h-screen overflow-hidden">
+        <Navbar />
+        <Hero setShowResume={setShowResume} />
+        <Suspense fallback={<LoadingFallback />}>
+          <About />
+          <ErrorBoundary>
+            <GitHubActivity />
+          </ErrorBoundary>
+          <Education />
+          <Certificates />
+          <Projects />
+          <Experience />
+          {showResume && <ResumeViewer />}
+          <Contact />
+        </Suspense>
+        <footer className="bg-gray-800 text-white text-center p-4">
+          <p>
+            &copy; {new Date().getFullYear()} My Portfolio. All rights reserved.
+          </p>
+        </footer>
+      </div>
+  );
 }
 export default LandingPage;

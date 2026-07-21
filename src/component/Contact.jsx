@@ -84,7 +84,7 @@ const Contact = () => {
     <section id="contact" className="pt-6 pb-12 px-4 md:px-10 relative overflow-hidden bg-black/30">
       {/* Background Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0367FB]/5 blur-[80px] rounded-full pointer-events-none"></div>
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-10">
           <motion.div
@@ -106,7 +106,7 @@ const Contact = () => {
           >
             Get In <span className="text-[#C4D613]">Touch</span>
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="h-1.5 w-20 bg-[#0367FB] mx-auto rounded-full mt-4"
             initial={{ width: 0 }}
             whileInView={{ width: 80 }}
@@ -117,7 +117,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           {/* Info Side */}
-          <motion.div 
+          <motion.div
             className="md:col-span-1 lg:col-span-5 space-y-6"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -154,14 +154,14 @@ const Contact = () => {
           </motion.div>
 
           {/* Form Side */}
-          <motion.div 
+          <motion.div
             className="md:col-span-1 lg:col-span-7"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.1 }}
           >
-            <form 
+            <form
               onSubmit={sendEmail}
               className="bg-gray-900/60 p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/5 h-full flex flex-col justify-between"
             >
@@ -223,10 +223,10 @@ const Contact = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 {isSending ? (
-                   <span className="flex items-center gap-2">
-                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                     Sending...
-                   </span>
+                  <span className="flex items-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Sending...
+                  </span>
                 ) : (
                   <>
                     <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

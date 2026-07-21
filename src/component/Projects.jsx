@@ -194,10 +194,10 @@ const Projects = () => {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6, ease: "easeOut" } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
     },
   };
 
@@ -214,7 +214,7 @@ const Projects = () => {
           >
             Featured <span className="text-[#C4D613]">Projects</span>
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="h-1.5 w-24 bg-[#0367FB] mx-auto rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
@@ -251,18 +251,17 @@ const Projects = () => {
                 {!loadedImages[project.id] && (
                   <Skeleton className="absolute inset-0 z-10" />
                 )}
-                
+
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className={`w-full h-full object-cover ${
-                    loadedImages[project.id] ? "opacity-100 scale-100" : "opacity-0 scale-110"
-                  } group-hover:scale-110`}
+                  className={`w-full h-full object-cover ${loadedImages[project.id] ? "opacity-100 scale-100" : "opacity-0 scale-110"
+                    } group-hover:scale-110`}
                   loading="lazy"
                   decoding="async"
                   onLoad={() => handleImageLoad(project.id)}
                 />
-                
+
                 {/* Integrated Floating Header (Glassmorphism) */}
                 <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-20 bg-gradient-to-b from-black/60 to-transparent">
                   <div className="px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center gap-2">
@@ -276,12 +275,12 @@ const Projects = () => {
                 </div>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
-                
+
                 {/* Overlay Hint (Bottom) */}
                 {!activeMobile && (
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-white/70 text-[10px] uppercase font-bold tracking-widest bg-white/5 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/10">
-                       Click to explore
+                      Click to explore
                     </span>
                   </div>
                 )}
@@ -306,11 +305,11 @@ const Projects = () => {
                       {project.title}
                     </h3>
                   </div>
-                  
+
                   <p className="text-gray-400 mb-2 sm:mb-8 text-[10px] sm:text-sm md:text-base leading-relaxed font-medium line-clamp-2 sm:line-clamp-4">
                     {project.description}
                   </p>
-                  
+
                   <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                     <a
                       href={project.link}
@@ -329,12 +328,12 @@ const Projects = () => {
                       Demo
                     </button>
                     <button
-                        onClick={(e) => openCaseStudy(e, project)}
-                        className="flex items-center gap-2 bg-white/5 border border-white/10 text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-sm font-bold hover:bg-white/10 transition-all duration-300"
-                      >
-                        <BookOpen size={16} />
-                        Case Study
-                      </button>
+                      onClick={(e) => openCaseStudy(e, project)}
+                      className="flex items-center gap-2 bg-white/5 border border-white/10 text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-sm font-bold hover:bg-white/10 transition-all duration-300"
+                    >
+                      <BookOpen size={16} />
+                      Case Study
+                    </button>
                   </div>
                 </div>
               </motion.div>

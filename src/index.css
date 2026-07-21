@@ -39,7 +39,8 @@ body {
   overflow-x: hidden;
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -62,7 +63,8 @@ html.lenis, html.lenis body {
 /* Skip rendering for off-screen sections to save CPU/GPU */
 section {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 1000px; /* Placeholder size for better scrollbar stability */
+  contain-intrinsic-size: 1px 1000px;
+  /* Placeholder size for better scrollbar stability */
 }
 
 /* Optimization for elements that are transformed frequently */
@@ -104,8 +106,17 @@ section {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.1); }
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
 }
 
 .float-animation {
@@ -113,8 +124,15 @@ section {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* Premium Skeleton Shimmer Effect */
@@ -132,13 +150,11 @@ section {
   bottom: 0;
   left: 0;
   transform: translateX(-100%);
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.05) 20%,
-    rgba(255, 255, 255, 0.1) 60%,
-    rgba(255, 255, 255, 0)
-  );
+  background-image: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.05) 20%,
+      rgba(255, 255, 255, 0.1) 60%,
+      rgba(255, 255, 255, 0));
   animation: shimmer 2s infinite;
 }
 
@@ -219,42 +235,45 @@ button:focus-visible {
 /* --- Developer Mode Themes --- */
 
 .wireframe-mode * {
-    background: rgba(0, 0, 0, 0.05) !important;
-    outline: 1px solid rgba(255, 255, 255, 0.1) !important;
-    color: rgba(255, 255, 255, 0.5) !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    border-color: transparent !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+  outline: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
 }
 
-.wireframe-mode img, 
+.wireframe-mode img,
 .wireframe-mode video {
-    opacity: 0.15;
-    filter: grayscale(1);
+  opacity: 0.15;
+  filter: grayscale(1);
 }
 
 .xray-mode * {
-    outline: 1px solid rgba(3, 103, 251, 0.2) !important;
-    outline-offset: -1px;
+  outline: 1px solid rgba(3, 103, 251, 0.2) !important;
+  outline-offset: -1px;
 }
 
 .xray-mode *:hover {
-    outline: 2px solid #0367FB !important;
-    background-color: rgba(3, 103, 251, 0.05) !important;
+  outline: 2px solid #0367FB !important;
+  background-color: rgba(3, 103, 251, 0.05) !important;
 }
 
 
 /* Custom Scrollbar for HUD */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(196, 214, 19, 0.2);
-    border-radius: 10px;
+  background: rgba(196, 214, 19, 0.2);
+  border-radius: 10px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(196, 214, 19, 0.5);
+  background: rgba(196, 214, 19, 0.5);
 }

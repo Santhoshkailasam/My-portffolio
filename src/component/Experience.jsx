@@ -5,8 +5,22 @@ import { Building2, Briefcase, Calendar, Award, ExternalLink, Sparkles } from "l
 const Experience = () => {
   const experiencedata = [
     {
+      company: "Sukraa Software Solution Pvt Ltd",
+      role: "Software Developer",
+      duration: "Present",
+      description:
+        "Sukraa Software Solution Pvt Ltd is a healthcare product-based company delivering innovative software solutions for the medical industry.",
+      tasks: [
+        "Developing and maintaining scalable software applications.",
+        "Collaborating with cross-functional teams to design and implement new features.",
+        "Optimizing application performance and ensuring high-quality code delivery.",
+      ],
+      certificate: "",
+      color: "from-[#C4D613] to-[#BDD749]"
+    },
+    {
       company: "Monakin Pvt ltd",
-      role: "Web and Mobile App Developer",
+      role: "Web and Mobile App Developer Intern",
       duration: "Jan 2026 - Mar 2026",
       description:
         "Monakin is a leading provider of innovative software solutions.",
@@ -16,7 +30,7 @@ const Experience = () => {
         "Optimized application performance and user experience.",
       ],
       certificate:
-        "https://drive.google.com/file/d/1-meFa_PpGze530BnijwN-OcZNNVoW/view?usp=sharing",
+        "/monakin-certificate.html",
       color: "from-[#0367FB] to-[#7FB2FF]"
     },
     {
@@ -34,7 +48,7 @@ const Experience = () => {
         "https://drive.google.com/file/d/1J8h8NYROzIvxDV3xU_pJSy1iCYPIC3jA/view?usp=sharing",
       color: "from-[#C4D613] to-[#BDD749]"
     },
-     {
+    {
       company: "Interain AI",
       role: "Data Analyst Intern",
       duration: "Sep 2024 - Nov 2024",
@@ -66,11 +80,11 @@ const Experience = () => {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       scale: 1,
-      transition: { duration: 0.8, ease: "circOut" } 
+      transition: { duration: 0.8, ease: "circOut" }
     },
   };
 
@@ -101,7 +115,7 @@ const Experience = () => {
           >
             Work <span className="text-[#C4D613]">Experience</span>
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="h-1.5 w-24 bg-[#0367FB] mx-auto rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
@@ -127,16 +141,21 @@ const Experience = () => {
             >
               {/* Top Accent Gradient */}
               <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${exp.color} opacity-50 group-hover:opacity-100 transition-opacity`}></div>
-              
+
               <div className="flex flex-col h-full">
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
-                       <Building2 size={18} className="text-[#C4D613] shrink-0" />
-                       <h3 className="text-white font-bold text-xl sm:text-2xl tracking-tight leading-none group-hover:text-[#C4D613] transition-colors">
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      <Building2 size={18} className="text-[#C4D613] shrink-0" />
+                      <h3 className="text-white font-bold text-xl sm:text-2xl tracking-tight leading-none group-hover:text-[#C4D613] transition-colors">
                         {exp.company}
                       </h3>
+                      {exp.role.toLowerCase().includes('intern') && (
+                        <span className="px-2 py-0.5 rounded-full bg-white/10 text-white/70 text-[10px] font-bold uppercase tracking-widest border border-white/20">
+                          Intern
+                        </span>
+                      )}
                     </div>
                     <div className="flex items-center gap-2 text-gray-400 font-medium text-sm sm:text-base">
                       <Briefcase size={14} className="shrink-0" />

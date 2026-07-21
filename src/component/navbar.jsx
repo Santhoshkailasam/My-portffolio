@@ -1,28 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Rocket, Sparkles, Github, Linkedin, Instagram, Mail } from "lucide-react";
-import { useDevMode } from "../context/DevModeContext";
-
 const Navbar = () => {
     const [nav, setNav] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [unlocked, setUnlocked] = useState(false);
-    const [showHint, setShowHint] = useState(false);
-    const { toggleDevMode } = useDevMode();
-
-    useEffect(() => {
-        // Show hint after 3 seconds, but not on mobile
-        const isMobile = window.innerWidth < 768;
-        if (isMobile) return;
-
-        const timer = setTimeout(() => setShowHint(true), 3000);
-        // Hide hint after 13 seconds
-        const hideTimer = setTimeout(() => setShowHint(false), 13000);
-        return () => {
-            clearTimeout(timer);
-            clearTimeout(hideTimer);
-        };
-    }, []);
 
     useEffect(() => {
         if (nav) {
@@ -42,12 +24,6 @@ const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    const triggerEasterEgg = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleDevMode();
-    };
 
     const navLinks = [
         { name: "About", href: "#about" },
@@ -77,9 +53,7 @@ const Navbar = () => {
                     whileHover={{ scale: 1.05 }}
                 >
                     <div 
-                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:shadow-accent/20 transition-all shrink-0 cursor-pointer active:scale-90 relative"
-                        onClick={triggerEasterEgg}
-                        title="Click for Surprise ✨"
+                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:shadow-accent/20 transition-all shrink-0 relative"
                     >
                         <Rocket size={18} className="group-hover:rotate-12 transition-transform" />
                         <motion.div
@@ -89,24 +63,6 @@ const Navbar = () => {
                         >
                             <Sparkles size={10} />
                         </motion.div>
-
-                        {/* Hint Tooltip */}
-                        <AnimatePresence>
-                            {showHint && (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.5, x: 20 }}
-                                    animate={{ opacity: 1, scale: 1, x: 0 }}
-                                    exit={{ opacity: 0, scale: 0.5, x: 20 }}
-                                    className="absolute left-full ml-4 pointer-events-none"
-                                >
-                                    <div className="relative bg-accent text-black text-[9px] font-black py-2 px-4 rounded-xl whitespace-nowrap shadow-[0_0_20px_rgba(196,214,19,0.3)] uppercase tracking-wider flex items-center gap-2">
-                                        <span>Click Rocket or type <span className="bg-black/10 px-1 rounded">↑ ↓ ← →</span></span>
-                                        {/* Triangle arrow */}
-                                        <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-accent rotate-45" />
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
                     </div>
                     <span className="text-white font-black text-xl sm:text-2xl tracking-tighter">
                         KAILASAM<span className="text-accent">PORTFOLIO</span>

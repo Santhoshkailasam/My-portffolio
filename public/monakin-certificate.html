@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monakin Internship Certificate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+        }
+
+        .certificate-container {
+            width: 800px;
+            min-height: 1000px;
+            background: white;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 60px;
+            box-sizing: border-box;
+            margin: 40px 0;
+            overflow: hidden;
+        }
+
+        /* Modern UI Geometric Accents */
+        .accent-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, #0367FB 0%, #C4D613 100%);
+        }
+
+        .accent-bg-1 {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: #0367FB;
+            opacity: 0.03;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .accent-bg-2 {
+            position: absolute;
+            bottom: -50px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: #C4D613;
+            opacity: 0.03;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.5px;
+        }
+
+        .company-name span {
+            color: #0367FB;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Title Area */
+        .title-area {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #111827;
+            margin: 0 0 15px 0;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4b5563;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Body Text */
+        .body-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #374151;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .body-text strong {
+            color: #111827;
+        }
+
+        ul {
+            margin: 20px 0 30px 20px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #374151;
+            font-size: 15px;
+        }
+
+        li::marker {
+            color: #0367FB;
+        }
+
+        /* Footer / Signature */
+        .footer {
+            margin-top: 80px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .signature-block {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .signature-image {
+            font-family: 'Playfair Display', cursive;
+            font-size: 32px;
+            color: #1e3a8a;
+            margin-bottom: 5px;
+            transform: rotate(-5deg);
+            opacity: 0.8;
+        }
+
+        .signature-line {
+            width: 200px;
+            height: 1px;
+            background-color: #9ca3af;
+            margin: 10px auto;
+        }
+
+        .signature-name {
+            font-weight: 800;
+            font-size: 16px;
+            color: #111827;
+            margin: 0;
+        }
+
+        .signature-title {
+            font-size: 14px;
+            color: #6b7280;
+            margin: 5px 0 0 0;
+        }
+
+        /* Seal */
+        .seal {
+            position: absolute;
+            right: 180px;
+            bottom: -20px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #0367FB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.15;
+            transform: rotate(-15deg);
+            z-index: 5;
+        }
+
+        .seal-inner {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px dashed #0367FB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 800;
+            color: #0367FB;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .certificate-container {
+                width: 100%;
+                margin: 0;
+                padding: 40px 20px;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="certificate-container">
+        <!-- Accents -->
+        <div class="accent-top"></div>
+        <div class="accent-bg-1"></div>
+        <div class="accent-bg-2"></div>
+
+        <div class="content">
+            <!-- Header -->
+            <div class="header">
+                <div class="company-name">
+                    MONAKIN <span>PVT LTD</span>
+                </div>
+                <div class="contact-info">
+                    +91 98765 43210<br>
+                    contact@monakin.com<br>
+                    www.monakin.com
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="title-area">
+                <h1 class="title">CERTIFICATE</h1>
+                <div class="subtitle">To whomsoever it may concern</div>
+            </div>
+
+            <!-- Body -->
+            <div class="body-text">
+                This is to certify that <strong>Kailasam N</strong> has successfully completed the position of <strong>Web and Mobile App Developer Intern</strong> at <strong>Monakin Pvt Ltd</strong>, Chennai.
+            </div>
+
+            <div class="body-text">
+                The internship commenced on <strong>January 2026</strong> and continued for a duration of <strong>5 months</strong> until <strong>May 2026</strong>. During this period, Kailasam N's services were found to be highly satisfactory in carrying out the assigned job duties, which included:
+            </div>
+
+            <ul>
+                <li>Developing and maintaining highly responsive web and mobile applications using modern frameworks like React and React Native.</li>
+                <li>Working on creative layouts, UI/UX improvements, and ensuring cross-platform compatibility across devices.</li>
+                <li>Collaborating cross-functionally with the design and development teams to meet strict project timelines and high quality standards.</li>
+            </ul>
+
+            <div class="body-text">
+                <strong>Kailasam N</strong> demonstrated exceptional technical skills, creativity, and adaptability during the tenure. Their contribution to the assigned tasks reflected strong commitment, a willingness to learn, and utmost professionalism.
+            </div>
+
+            <div class="body-text">
+                We wish Kailasam N all the very best in their future endeavors.
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="seal">
+                    <div class="seal-inner">Monakin<br>Pvt Ltd<br>Official</div>
+                </div>
+                
+                <div class="signature-block">
+                    <div class="signature-image">Kiruba Karan A</div>
+                    <div class="signature-line"></div>
+                    <p class="signature-name">Kiruba Karan A</p>
+                    <p class="signature-title">Chief Executive Officer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
