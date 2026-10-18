@@ -30,7 +30,7 @@ const Experience = () => {
         "Optimized application performance and user experience.",
       ],
       certificate:
-        "/monakin-certificate.html",
+        "/Monakin-Internship.pdf",
       color: "from-[#0367FB] to-[#7FB2FF]"
     },
     {
