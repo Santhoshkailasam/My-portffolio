@@ -1,52 +1,94 @@
+
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Website Identity -->
+    <meta name="application-name" content="Kailasam" />
+    <meta property="og:site_name" content="Kailasam" />
 
-  <!-- Apple / Android -->
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Google Website Name Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Kailasam",
+        "alternateName": "Kailasam Portfolio",
+        "url": "https://kailasamnportfolio.netlify.app/"
+      }
+    </script>
 
+    <!-- Viewport -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
-  <!-- Site Identity (prevents Netlify label) -->
-  <meta property="og:site_name" content="Kailasam" />
-  <meta name="application-name" content="Kailasam" />
+    <!-- SEO Meta Tags -->
+    <title>Kailasam | Web Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Welcome to Kailasam's Portfolio. Explore web development projects, skills, and creative work in front-end and full-stack development."
+    />
+    <meta
+      name="keywords"
+      content="Kailasam, Kailasam Portfolio, web developer, React developer, frontend developer, JavaScript, full-stack developer, web development projects"
+    />
+    <meta name="author" content="Kailasam" />
+    <meta name="robots" content="index, follow" />
 
-  <!-- Viewport (only once) -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Canonical URL -->
+    <link
+      rel="canonical"
+      href="https://kailasamnportfolio.netlify.app/"
+    />
 
-  <!-- SEO Meta Tags -->
-  <title>Kailasam | Web Developer Portfolio</title>
-  <meta name="description"
-    content="Welcome to Kailasam's Portfolio. Explore web development projects, skills, and creative work in front-end and full-stack development." />
-  <meta name="keywords"
-    content="Kailasam, portfolio, web developer, react developer, front-end, javascript, projects, netlify,Kailasam Portfolio,kailasam portfolio" />
-  <meta name="author" content="Kailasam" />
-  <link rel="canonical" href="https://kailasamnportfolio.netlify.app" />
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Kailasam | Web Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore Kailasam's web development projects, technical skills, and creative work."
+    />
+    <meta
+      property="og:url"
+      content="https://kailasamnportfolio.netlify.app/"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kailasam" />
+    <meta
+      property="og:image"
+      content="https://kailasamnportfolio.netlify.app/Preview-image.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Kailasam Web Developer Portfolio preview"
+    />
 
-  <!-- Open Graph (for social sharing) -->
-  <meta property="og:title" content="Kailasam | Web Developer Portfolio" />
-  <meta property="og:description" content="Check out Kailasam's web development projects and skills." />
-  <meta property="og:url" content="https://kailasamnportfolio.netlify.app" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://kailasamnportfolio.netlify.app/Preview-image.png" />
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kailasam | Web Developer Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Explore Kailasam's web development projects and creative skills."
+    />
+    <meta
+      name="twitter:image"
+      content="https://kailasamnportfolio.netlify.app/Preview-image.png"
+    />
 
-  <!-- Optional: Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Kailasam | Web Developer Portfolio" />
-  <meta name="twitter:description" content="Explore Kailasam's web development projects and creative skills." />
-  <meta name="twitter:image" content="https://kailasamnportfolio.netlify.app/Preview-image.png" />
-</head>
+    <meta name="theme-color" content="#0F766E" />
+  </head>
 
-<body>
-  <div id="root"></div>
-  <div id="modal-root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <div id="modal-root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
