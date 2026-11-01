@@ -39,7 +39,7 @@ const Hero = ({ setShowResume }) => {
   return (
     <div className="mx-4 md:mx-[100px] flex flex-col md:flex-row relative pb-10 md:pb-20" id="home">
       <div className="z-10 w-full mb-10 md:mb-0">
-        <motion.h6 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#BDD749] mt-20 md:mt-48"
+        <motion.p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#BDD749] mt-20 md:mt-48"
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -56,10 +56,10 @@ const Hero = ({ setShowResume }) => {
           ) : (
             <span className="opacity-0">Hello !</span>
           )}
-        </motion.h6>
+        </motion.p>
 
-        {/* Myname */}
-        <motion.h4
+        {/* Main H1 Heading */}
+        <motion.h1
           className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px]"
           variants={blurText}
           initial="hidden"
@@ -67,18 +67,10 @@ const Hero = ({ setShowResume }) => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <span className="text-white">I'M</span> Kailasam N
-        </motion.h4>
-
-        {/* Software */}
-        <motion.h4
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px]"
-          variants={blurText}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          Software Developer
-        </motion.h4>
+          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#7FB2FF] mt-[20px]">
+            Software Developer
+          </span>
+        </motion.h1>
 
         {/* button */}
         <motion.button
