@@ -602,6 +602,32 @@ const getDemoContent = (project) => {
   };
   if (t.includes("chatbot")) return { label: "AI Assistant", component: <ChatbotDemo /> };
   if (t.includes("village connect")) return { label: "Community App", component: <VillageConnectDemo /> };
+  if (t.includes("codepush")) return {
+    label: "Web App",
+    component: (
+      <div className="w-full h-[500px] sm:h-[600px] rounded-xl overflow-hidden border border-white/10 bg-white">
+        <iframe
+          src="https://codepushs.netlify.app/"
+          className="w-full h-full border-none"
+          title="CodePush Console Demo"
+          loading="lazy"
+        />
+      </div>
+    )
+  };
+  if (t.includes("expense tracker")) return {
+    label: "Web App",
+    component: (
+      <div className="w-full h-[500px] sm:h-[600px] rounded-xl overflow-hidden border border-white/10 bg-white">
+        <iframe
+          src="http://skmar.netlify.app/"
+          className="w-full h-full border-none"
+          title="Expense Tracker Demo"
+          loading="lazy"
+        />
+      </div>
+    )
+  };
   return { label: "Demo", component: <p className="text-gray-400 p-4">Demo coming soon.</p> };
 };
 

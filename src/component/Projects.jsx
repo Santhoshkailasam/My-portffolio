@@ -130,6 +130,36 @@ const Projectslist = [
     techDescription: "React Native, Redux, and Firebase for real-time synchronization and offline data persistence.",
     outcome: "Successfully deployed a robust mobile solution that bridges the digital gap for over 500+ rural users."
   },
+  {
+    id: 11,
+    title: "CodePush Console",
+    description:
+      "A self-hosted OTA (Over-The-Air) update platform for React Native apps. Features a real-time dashboard with live OTA activity stream, release history, remote config, crash analytics, and SHA-256 integrity verification via Netlify Edge.",
+    image: "/codepush_preview.png",
+    btn: "View Project",
+    link: "https://codepushs.netlify.app/",
+    liveLink: "https://codepushs.netlify.app/",
+    type: "website",
+    isFeatured: true,
+    challenge: "Building a secure, tamper-proof OTA delivery pipeline with sub-100ms edge latency and SHA-256 integrity checks for production React Native apps.",
+    techDescription: "React, Firebase Firestore for real-time sync, Netlify Edge Functions & CDN for bundle delivery, and Web Crypto API for SHA-256 signature verification.",
+    outcome: "Achieved 63ms edge latency with active Netlify CDN, supporting live OTA deployments with zero downtime and tamper-proof integrity status."
+  },
+  {
+    id: 12,
+    title: "Expense Tracker",
+    description:
+      "A smart real-time personal finance manager with live Firebase sync. Tracks monthly income, expenses, and balance across categories like Food, Transport, and Salary — with UPI, Card, and Cash filters, transaction reports, and PWA support.",
+    image: "/expense_tracker_preview.png",
+    btn: "View Project",
+    link: "http://skmar.netlify.app/",
+    liveLink: "http://skmar.netlify.app/",
+    type: "website",
+    isFeatured: true,
+    challenge: "Designing a real-time financial dashboard that handles multi-category transaction filtering, monthly aggregations, and report generation without page reloads.",
+    techDescription: "React, Firebase Firestore for live data, Netlify hosting with PWA support, and custom charting for monthly financial summaries.",
+    outcome: "A fully functional personal finance tool tracking ₹19,740 income and ₹7,402 expenses in real-time with 34 transactions and instant report generation."
+  },
 ];
 
 
@@ -311,15 +341,27 @@ const Projects = () => {
                   </p>
 
                   <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-[#0367FB] text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-sm font-bold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-xl shadow-blue-500/20"
-                    >
-                      <Github size={16} />
-                      Source
-                    </a>
+                    {project.liveLink ? (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-[#0367FB] text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-sm font-bold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-xl shadow-blue-500/20"
+                      >
+                        <ExternalLink size={16} />
+                        Live Demo
+                      </a>
+                    ) : (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-[#0367FB] text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-sm font-bold hover:bg-[#0367FB]/80 transition-all duration-300 shadow-xl shadow-blue-500/20"
+                      >
+                        <Github size={16} />
+                        Source
+                      </a>
+                    )}
                     <button
                       onClick={(e) => openDemo(e, project)}
                       className="flex items-center gap-2 bg-[#C4D613] text-black px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-sm font-black hover:bg-[#C4D613]/80 transition-all duration-300 shadow-xl shadow-yellow-400/20 cursor-pointer"
