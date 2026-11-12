@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import { Mail, Phone, MapPin, Linkedin, Github, Send, MessageSquare, Sparkles } from "lucide-react";
 
+const OWNER_EMAIL = "Kailasam5107@gmail.com";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -10,35 +12,53 @@ const Contact = () => {
     message: "",
   });
   const [isSending, setIsSending] = useState(false);
+  const [sendStatus, setSendStatus] = useState(null); // "success" | "fallback" | "error"
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Opens Gmail as fallback with message pre-filled
+  const openMailtoFallback = () => {
+    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    window.open(`mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`, "_blank");
+  };
+
   const sendEmail = (e) => {
     e.preventDefault();
     setIsSending(true);
+    setSendStatus(null);
 
     emailjs
-      .send("service_8c49npq", "template_urd5hhh", formData, "usOiCoUEmTAQ8kytT")
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID_1,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID_1,
+        formData,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY_1
+      )
       .then(() => {
-        emailjs
-          .send(
-            "service_bk0iwmf",
-            "template_c0s1gdo",
-            { name: formData.name, email: formData.email },
-            "6TG0mH3zA0i8W0GSl"
-          )
-          .then(() => {
-            alert("Message sent successfully!");
-            setFormData({ name: "", email: "", message: "" });
-            setIsSending(false);
-          });
+        // Send auto-reply to visitor
+        return emailjs.send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID_2,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID_2,
+          { name: formData.name, email: formData.email },
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY_2
+        );
+      })
+      .then(() => {
+        setSendStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setIsSending(false);
       })
       .catch((error) => {
-        console.error("Error:", error);
-        alert("Failed to send message.");
+        console.error("EmailJS Error:", error);
+        // ── Fallback: open Gmail with message pre-filled ──
         setIsSending(false);
+        setSendStatus("fallback");
+        openMailtoFallback();
       });
   };
 
@@ -234,6 +254,35 @@ const Contact = () => {
                   </>
                 )}
               </motion.button>
+
+              {/* Status Messages */}
+              {sendStatus === "success" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 flex items-center gap-3 p-4 rounded-2xl bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium"
+                >
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shrink-0" />
+                  Message sent successfully! I'll get back to you soon. 🎉
+                </motion.div>
+              )}
+              {sendStatus === "fallback" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 text-sm"
+                >
+                  <p className="font-bold mb-1">⚠️ Auto-send limit reached</p>
+                  <p className="text-yellow-400/80 text-xs">
+                    Your Gmail has been opened with the message pre-filled. Just hit send!
+                    <br />
+                    Or email directly:{" "}
+                    <a href={`mailto:${OWNER_EMAIL}`} className="underline font-bold text-yellow-300">
+                      {OWNER_EMAIL}
+                    </a>
+                  </p>
+                </motion.div>
+              )}
             </form>
           </motion.div>
         </div>

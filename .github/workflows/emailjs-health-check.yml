@@ -1,0 +1,112 @@
+name: 📧 EmailJS Monthly Health Check
+
+# ── Runs on the 1st of every month at 9:00 AM IST (3:30 AM UTC) ──
+on:
+  schedule:
+    - cron: "30 3 1 * *"
+
+  # Also allows manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  test-emailjs:
+    name: Test EmailJS Contact Form
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── Step 1: Test EmailJS Service 1 (main send) ──
+      - name: 🔍 Test EmailJS Service 1 (Main)
+        id: test_service1
+        env:
+          SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID_1 }}
+          TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID_1 }}
+          PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY_1 }}
+        run: |
+          RESPONSE=$(curl -s -o /tmp/res1.json -w "%{http_code}" \
+            --request POST \
+            --url https://api.emailjs.com/api/v1.0/email/send \
+            --header 'Content-Type: application/json' \
+            --data "{
+              \"service_id\": \"$SERVICE_ID\",
+              \"template_id\": \"$TEMPLATE_ID\",
+              \"user_id\": \"$PUBLIC_KEY\",
+              \"template_params\": {
+                \"name\": \"[GitHub Auto-Test]\",
+                \"email\": \"autotest@github.com\",
+                \"message\": \"Monthly automated health check - $(date '+%B %Y')\"
+              }
+            }")
+
+          echo "STATUS_CODE=$RESPONSE" >> $GITHUB_OUTPUT
+          echo "Response body: $(cat /tmp/res1.json)"
+
+          if [ "$RESPONSE" = "200" ]; then
+            echo "RESULT=✅ PASSED" >> $GITHUB_OUTPUT
+          else
+            echo "RESULT=❌ FAILED (HTTP $RESPONSE)" >> $GITHUB_OUTPUT
+          fi
+
+      # ── Step 2: Test EmailJS Service 2 (auto-reply) ──
+      - name: 🔍 Test EmailJS Service 2 (Auto-Reply)
+        id: test_service2
+        env:
+          SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID_2 }}
+          TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID_2 }}
+          PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY_2 }}
+        run: |
+          RESPONSE=$(curl -s -o /tmp/res2.json -w "%{http_code}" \
+            --request POST \
+            --url https://api.emailjs.com/api/v1.0/email/send \
+            --header 'Content-Type: application/json' \
+            --data "{
+              \"service_id\": \"$SERVICE_ID\",
+              \"template_id\": \"$TEMPLATE_ID\",
+              \"user_id\": \"$PUBLIC_KEY\",
+              \"template_params\": {
+                \"name\": \"[GitHub Auto-Test]\",
+                \"email\": \"autotest@github.com\"
+              }
+            }")
+
+          echo "STATUS_CODE=$RESPONSE" >> $GITHUB_OUTPUT
+          echo "Response body: $(cat /tmp/res2.json)"
+
+          if [ "$RESPONSE" = "200" ]; then
+            echo "RESULT=✅ PASSED" >> $GITHUB_OUTPUT
+          else
+            echo "RESULT=❌ FAILED (HTTP $RESPONSE)" >> $GITHUB_OUTPUT
+          fi
+
+      # ── Step 3: Check quota via EmailJS stats endpoint ──
+      - name: 📊 Check Monthly Quota Usage
+        id: check_quota
+        run: |
+          echo "Month: $(date '+%B %Y')"
+          echo "Note: EmailJS free plan = 200 emails/month"
+          echo "Login to https://dashboard.emailjs.com to check exact usage"
+
+      # ── Step 4: Summary Report ──
+      - name: 📋 Print Health Check Report
+        run: |
+          echo "========================================"
+          echo "  EmailJS Monthly Health Check Report"
+          echo "  Date: $(date '+%d %B %Y, %H:%M UTC')"
+          echo "========================================"
+          echo ""
+          echo "Service 1 (Main Send):   ${{ steps.test_service1.outputs.RESULT }}"
+          echo "Service 2 (Auto-Reply):  ${{ steps.test_service2.outputs.RESULT }}"
+          echo ""
+          echo "Free plan quota:         200 emails/month"
+          echo "Dashboard:               https://dashboard.emailjs.com"
+          echo "========================================"
+
+      # ── Step 5: Fail the workflow if either service is down ──
+      - name: ❌ Fail if any service is broken
+        if: |
+          contains(steps.test_service1.outputs.RESULT, 'FAILED') ||
+          contains(steps.test_service2.outputs.RESULT, 'FAILED')
+        run: |
+          echo "One or more EmailJS services failed!"
+          echo "Check your API keys and quota at: https://dashboard.emailjs.com"
+          exit 1
+
