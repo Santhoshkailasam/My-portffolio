@@ -65,7 +65,7 @@ const Navbar = () => {
                         </motion.div>
                     </div>
                     <span className="text-white font-black text-xl sm:text-2xl tracking-tighter">
-                        KAILASAM<span className="text-accent">PORTFOLIO</span>
+                        KAILASAM<span className="text-accent">DEVELOPER</span>
                     </span>
                 </motion.a>
 
@@ -134,7 +134,7 @@ const Navbar = () => {
                             {/* Header */}
                             <div className="flex justify-between items-center p-6 border-b border-white/5">
                                 <span className="text-white font-black text-lg tracking-tighter">
-                                    KAILASAM<span className="text-accent">PORT</span>
+                                    KAILASAM<span className="text-accent">DEV</span>
                                 </span>
                                 <button 
                                     onClick={() => setNav(false)} 
